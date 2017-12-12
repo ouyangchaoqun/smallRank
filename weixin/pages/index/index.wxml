@@ -1,0 +1,64 @@
+<!--index.wxml-->
+
+   <view class="top">
+
+       <view class="today_run_num">
+          <view class="text">第一名</view>
+           <view class="num"><text>{{todayNum}}</text><text class="unit">步</text></view>
+          <view class="text">今日步数</view>
+      </view>
+       <view class="nums">
+            <view class="curr_coin">
+                <text class="text">当前积分</text>
+                <text>0</text>
+            </view>
+            <view class="change_coin">
+                <text class="text">昨日步数可兑换积分</text>
+                <text>164</text>
+            </view>
+       </view>
+        <button class="change" >立即兑换</button>
+        <view class="tip">每1000步可兑换1积分</view>
+   </view>
+    <view class="ad">
+        生命在于运动，您迈出的每一步都带来价值！
+    </view>
+
+
+
+  <view class="tab">
+        <text class="{{tab ==0?'on':''}}" bindtap="tab" data-index="0">今天 <text class="line"></text></text>
+        <text class="{{tab ==1?'on':''}}"  bindtap="tab"  data-index="1">昨天 <text class="line"></text></text>
+        <text class="{{tab ==2?'on':''}}"  bindtap="tab"  data-index="2">上周 <text class="line"></text></text>
+        <text class="{{tab ==3?'on':''}}"  bindtap="tab" data-index="3">上月 <text class="line"></text></text>
+  </view>
+<swiper indicator-dots="{{false}}" current="{{tab}}" autoplay="{{false}}"  bindchange="changeIndex" class="tj" >
+    <block wx:for="{{imgUrls}}">
+
+            <swiper-item>
+
+                <scroll-view  scroll-y="{{true}}">
+          <view
+                  class="item" wx:for="{{20}}">
+              <text class="order">{{item+1}}</text>
+              <view class="line"></view>
+              <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+              <text class="">CCC</text>
+              <view class="hearts">
+                  <view class="num2">6</view>
+                  <view class="heart"></view>
+              </view>
+              <view class="num">
+                  <text class="c">步</text>
+                  <text>2880</text>
+              </view>
+
+          </view>
+                </scroll-view>
+            </swiper-item>
+
+
+    </block>
+</swiper>
+
+

@@ -1,0 +1,62 @@
+.top{ margin: 15px; background: #fff; padding-top: 20px; padding-bottom: 15px;box-shadow:  0 3px 8px rgba(102,102,102,0.2); border-radius: 3px;
+}
+page{ background: #f5f3fa}
+.top .today_run_num{ height: 140px; width: 165px; text-align: center;   background: url(http://oss.xqzs.cn/xqzs/miniprogram/run/6CE51C8CC1FD6BD18ABC71ED6FD98D45.png) no-repeat ; background-size: 165px; margin: 0 auto; padding-top:32px;  }
+.today_run_num view{ display: block; line-height: 1;}
+.today_run_num view.num{ color: #333; font-size: 36px;  margin: 18px 0  }
+.today_run_num view{ font-size: 15px; color:#999;}
+.ad{ border: 4px solid #F0DA90; height: 44px; border-radius: 24px;
+  background: -webkit-linear-gradient(left,#F3D388,#ECB48B ); text-align: center; color:#666; font-size: 13px; line-height: 44px;  margin: 15px;
+  box-shadow:  0 3px 8px rgba(102,102,102,0.2),0px 0px 2px rgba(102,102,102,0.4) inset;  }
+.today_run_num .unit{ font-size: 14px;}
+.nums{ width: 100%; text-align: center;  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;  }
+.nums>view
+{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  color:#666; font-size: 18px;
+}
+.nums>view text{ display: block}
+.nums>view text.text
+{
+  margin-bottom: 11px;
+  color:#999; font-size: 12px;
+}
+button.change{ background: #75CF85 ; height: 42px; display: block; margin: 15px; border-radius: 21px; line-height: 42px; color:#fff; font-size: 15px;}
+button.change:active{ background: #56cf51
+}
+.top .tip{ color:#999; font-size: 12px; text-align: center}
+.tab {  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 44px; background: #fff; margin-bottom: 15px;
+}
+.tab>text
+{ -webkit-box-flex: 1;
+  -webkit-flex: 1; font-size: 14px;
+  flex: 1; text-align: center;
+height: 44px; line-height: 44px;
+}
+.tab>text.on{ color:#75CF85; position: relative}
+.tab>text.on .line{ height: 2px; width: 12px; position: absolute; bottom:0; left:50%; margin-left:-6px;display: block; background: #75CF85}
+.tj  .item{
+  background: #fff; position: relative; height: 66px;
+}
+.tj{height: 530px;}
+
+.tj .item .order{ line-height: 66px; color:#969696 ; font-size: 15px; margin-left: 20px;}
+.tj .item .line{ height: 1px; background: #f1f1f1; width: 100%;   display: block; position: absolute; bottom:0; left:0}
+.tj .item image{ height: 40px; width: 40px; border-radius: 50%; float:left; margin-top: 13px; margin-left: 20px;}
+.tj  .item text{line-height: 66px; color:#333; font-size: 14px; display: block;float:left; margin-left: 12px;}
+.tj .item .hearts{ float:right;}
+.tj  .item .num{ float:right; margin-right: 6px;}
+.tj  .item .num text{ color:#75CF85 ; font-size: 23px; float:left; margin-right: 6px; margin-left: 0}
+.tj  .item .num text.c{ font-size:12px; }
+scroll-view{ height: 100%; overflow: auto}
+
+.tj .item .hearts{ width: 44px; text-align: center}
+.tj .item .hearts .heart{ background: url(http://oss.xqzs.cn/xqzs/mini/program/6704785CE606F699CBEF226CF782A735.png) no-repeat; height:13px; width: 14px; background-size: 14px; margin: 0 auto; }
+.tj .item .hearts .num2{ font-size: 12px; color:#999; }

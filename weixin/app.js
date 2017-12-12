@@ -1,5 +1,9 @@
 //app.js
 App({
+
+    API_URL: "http://api.m.xqzs.cn/api/v1/",
+    WEB_DOMAIN: 'http://js.mood.hh-idea.com/',
+
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
