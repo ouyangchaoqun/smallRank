@@ -1,14 +1,13 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/notice/notice"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#75CF85",
     "navigationBarTitleText": "运动bear",
-    "navigationBarTextStyle":"light"
+    "navigationBarTextStyle": "light"
   }
 }
-
-

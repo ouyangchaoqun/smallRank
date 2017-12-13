@@ -1,7 +1,7 @@
 //app.js
 App({
 
-    API_URL: "http://api.m.xqzs.cn/api/v1/",
+    API_URL: "http://api.mood.hh-idea.com/api/v1/",
     WEB_DOMAIN: 'http://js.mood.hh-idea.com/',
 
   onLaunch: function () {
