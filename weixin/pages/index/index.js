@@ -56,10 +56,13 @@ Page({
                                 },
                                 success: function (data) {
                                     console.log(data.data)
-                                    _this.setData({
-                                        todayNum: data.data.data.stepInfoList[data.data.data.stepInfoList.length-1].step,
+                                    if(data.data.data.stepInfoList){
+                                        _this.setData({
+                                            todayNum: data.data.data.stepInfoList[data.data.data.stepInfoList.length-1].step,
 
-                                    })
+                                        })
+                                    }
+
 
                                 }
                             })

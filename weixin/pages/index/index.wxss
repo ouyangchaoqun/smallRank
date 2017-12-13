@@ -52,11 +52,11 @@ height: 44px; line-height: 44px;
 .tj .item image{ height: 40px; width: 40px; border-radius: 50%; float:left; margin-top: 13px; margin-left: 20px;}
 .tj  .item text{line-height: 66px; color:#333; font-size: 14px; display: block;float:left; margin-left: 12px;}
 .tj .item .hearts{ float:right;}
-.tj  .item .num{ float:right; margin-right: 6px;}
+.tj  .item .num{ float:right;   }
 .tj  .item .num text{ color:#75CF85 ; font-size: 23px; float:left; margin-right: 6px; margin-left: 0}
-.tj  .item .num text.c{ font-size:12px; }
+.tj  .item .num text.c{ font-size:12px; margin-right: 0 }
 scroll-view{ height: 100%; overflow: auto}
 
-.tj .item .hearts{ width: 44px; text-align: center}
-.tj .item .hearts .heart{ background: url(http://oss.xqzs.cn/xqzs/mini/program/6704785CE606F699CBEF226CF782A735.png) no-repeat; height:13px; width: 14px; background-size: 14px; margin: 0 auto; }
+.tj .item .hearts{ width: 44px; text-align: center;margin-top: 18px;}
+.tj .item .hearts .heart{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_heart.png) no-repeat; height:13px; width: 14px; background-size: 14px; margin: 0 auto;  margin-top:3px;}
 .tj .item .hearts .num2{ font-size: 12px; color:#999; }

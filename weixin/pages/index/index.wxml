@@ -49,8 +49,9 @@
                   <view class="heart"></view>
               </view>
               <view class="num">
-                  <text class="c">步</text>
+
                   <text>2880</text>
+                  <text class="c">步</text>
               </view>
 
           </view>
