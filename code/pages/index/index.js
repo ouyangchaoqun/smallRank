@@ -22,7 +22,8 @@ var options = Object.assign(marquee, {
         noticeLink:'',
         timeInData:null,
         todayChangeCoin:{},
-        yesterdayChangeCoin:{}
+        yesterdayChangeCoin:{},
+        timetime:0
     },
     getExChangeCoin:function () {
        //werun/coin/exchange
@@ -332,6 +333,54 @@ var options = Object.assign(marquee, {
 
     },
     onLoad: function () {
+        let date= new Date();
+        this.setData({
+            timetime:date
+        })
+
+
+        app.userInfoReadyCallback = res => {
+            let _this = this;
+            wx.login({
+                success: function (loginRes) {
+                    console.log(loginRes);
+
+                    let userInfo;
+                    let encryptedData;
+                    let iv;
+                    encryptedData = res.encryptedData;
+                    iv = res.iv;
+
+                    if (loginRes.code) {
+
+                        let code = loginRes.code;
+
+                        wx.request({
+                            url: app.API_URL + "user/create/by/secret",
+                            method: 'PUT',
+                            data: ({js_code: code, encryptedData: encryptedData, iv: iv}),
+                            success: function (res) {
+                                app.getUserRunData();
+                                let user = res.data.data;
+                                wx.setStorageSync('user', user);//存储userInfo
+
+                                wx.reLaunch({
+                                    url: '/pages/index/index'
+                                });
+
+                            }
+                        });
+
+
+                    } else {
+                        console.log('获取用户登录态失败！' + loginRes.errMsg)
+                    }
+
+
+
+                }
+            });
+        }
 
 
         this.setData({ userId: app.getUserId() });

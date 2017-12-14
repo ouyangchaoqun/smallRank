@@ -7,121 +7,87 @@ App({
     WEB_DOMAIN: 'http://js.mood.hh-idea.com/',
 
     onLaunch: function () {
-        let that = this;
+
         let _this = this;
         let user = wx.getStorageSync('user') || {};
 
-        // 登录
+
 
         if (!user.id) {
-            wx.login({
-                success: function (loginRes) {
-                    console.log(loginRes);
+            // 获取用户信息
+            wx.getSetting({
+                success: res => {
+                    if (!res.authSetting['scope.userInfo']) {
+                        // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+                        console.log("/ 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框")
+                        wx.getUserInfo({
+                            success: res => {
+                                // 可以将 res 发送给后台解码出 unionId
+                                // this.globalData.userInfo = res.userInfo
 
-                    let userInfo;
-                    let encryptedData;
-                    let iv;
-                    wx.getUserInfo({
-                        success: function (res) {
-
-                            userInfo = res.userInfo;
-                            encryptedData = res.encryptedData;
-                            iv = res.iv;
-
-                            if (loginRes.code) {
-
-                                let code = loginRes.code;
-
-                                 wx.request({
-                                    url: that.API_URL + "user/create/by/secret",
-                                    method: 'PUT',
-                                    data: ({js_code: code, encryptedData: encryptedData, iv: iv}),
+                                // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                                // 所以此处加入 callback 以防止这种情况
+                                if (_this.userInfoReadyCallback) {
+                                    _this.userInfoReadyCallback(res)
+                                }
+                            },
+                            fail: function (res) {
+                                wx.reLaunch({
+                                    url: '/pages/index/index'
+                                })
+                                console.log("授权许可")
+                                wx.showModal({
+                                    title: '授权许可',
+                                    content: '是否授权访问您的信息???',
                                     success: function (res) {
-                                        _this.getUserRunData();
-                                        let user = res.data.data;
-                                        wx.setStorageSync('user', user);//存储userInfo
+                                        if (res.confirm) {
+                                            wx.openSetting({
+                                                success: function (data) {
+                                                    if (data) {
+                                                        if (data.authSetting["scope.userInfo"] == true) {
+                                                            loginStatus = true;
+                                                            wx.getUserInfo({
 
-                                        wx.reLaunch({
-                                            url: "/pages/index/index"
-                                        });
+                                                                success: function (data) {
 
+                                                                    wx.reLaunch({
+                                                                        url: '/pages/index/index'
+                                                                    })
+                                                                },
+                                                                fail: function () {
+                                                                    console.info("3授权失败返回数据");
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                    76
+                                                },
+                                                fail: function () {
+                                                    console.info("设置失败返回数据");
+                                                }
+                                            });
+                                        } else if (res.cancel) {
+
+                                        }
                                     }
                                 });
+                                console.log("fail")
+                                console.log(res)
+                            },
+                            complete:function (res) {
 
-
-                            } else {
-                                console.log('获取用户登录态失败！' + loginRes.errMsg)
                             }
-                        },
-                        fail: function (res) {
-                            console.log("授权许可")
-                            wx.showModal({
-                                title: '授权许可',
-                                content: '是否授权访问您的信息',
-                                success: function (res) {
-                                    if (res.confirm) {
-                                        wx.openSetting({
-                                            success: function (data) {
-                                                if (data) {
-                                                    if (data.authSetting["scope.userInfo"] == true) {
-                                                        loginStatus = true;
-                                                        wx.getUserInfo({
-
-                                                            success: function (data) {
-
-                                                                wx.reLaunch({
-                                                                    url: '/page/index/index'
-                                                                })
-                                                            },
-                                                            fail: function () {
-                                                                console.info("3授权失败返回数据");
-                                                            }
-                                                        });
-                                                    }
-                                                }
-                                                76
-                                            },
-                                            fail: function () {
-                                                console.info("设置失败返回数据");
-                                            }
-                                        });
-                                    } else if (res.cancel) {
-
-                                    }
-                                }
-                            });
-                            console.log("fail")
-                            console.log(res)
-                        }
-                    });
-
+                        })
+                    }
                 }
-            });
+            })
+
         } else {
             _this.getUserRunData();
 
         }
 
-        // 获取用户信息
-        wx.getSetting({
-            success: res => {
-                if (res.authSetting['scope.userInfo']) {
-                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-                    wx.getUserInfo({
-                        success: res => {
-                            // 可以将 res 发送给后台解码出 unionId
-                            this.globalData.userInfo = res.userInfo
 
-                            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                            // 所以此处加入 callback 以防止这种情况
-                            if (this.userInfoReadyCallback) {
-                                this.userInfoReadyCallback(res)
-                            }
-                        }
-                    })
-                }
-            }
-        })
     },
 
     run:{
