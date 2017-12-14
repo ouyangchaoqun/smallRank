@@ -4,7 +4,7 @@ const app = getApp()
 import marquee from '../marquee/marquee.js';
 var options = Object.assign(marquee, {
     data: {
-        userId:1275,
+        userId:app.getUserId(),
         marquee: { text: '生命在于运动，您迈出的每一步都将带来价值！每天都可将前一天的运动步数兑换成积分哟！' },
         tab:0,
         tabOver:false,
@@ -17,7 +17,36 @@ var options = Object.assign(marquee, {
         lastWeek:[],
         user:{},
         myRank:{rank:1},
-        myTodayRank:{rank:1}
+        myTodayRank:{rank:1},
+        todayChanged:false,
+        noticeLink:'',
+        timeInData:null,
+        todayChangeCoin:{},
+        yesterdayChangeCoin:{}
+    },
+    getExChangeCoin:function () {
+       //werun/coin/exchange
+        let _this=this;
+        wx.request({
+            url: app.API_URL + "werun/coin/exchange/" + this.data.userId,
+            method: "GET",
+            success: function (data) {
+                if(data.data.status==1){
+                    _this.setData({
+                        yesterdayChangeCoin: data.data.data[0],
+                        todayChangeCoin: data.data.data[1]
+                    });
+                    if(_this.data.yesterdayChangeCoin.isExchange==1){
+                        _this.setData({
+                            todayChanged: true,
+                        });
+                    }
+                }
+
+
+            }
+        })
+
     },
     care:function (e) {
         let _this = this;
@@ -37,7 +66,6 @@ var options = Object.assign(marquee, {
             dataType= "week";
             item = _this.data.lastMonth[index];
         }
-        console.log(item)
         wx.request({
             url: app.API_URL + "werun/care",
             method: "PUT",
@@ -65,19 +93,23 @@ var options = Object.assign(marquee, {
                     if (type === "today") {
                         _this.setData({
                             today:dataRe
-                        })
+                        });
+                        _this.getMyRank(0)
                     } else if (type === "yesterday") {
                         _this.setData({
                             yesterday:dataRe
-                        })
+                        });
+                        _this.getMyRank(1)
                     } else if (type === "lastWeek") {
                         _this.setData({
                             lastWeek:dataRe
-                        })
+                        });
+                        _this.getMyRank(2)
                     } else if (type === "lastMonth") {
                         _this.setData({
                             lastMonth:dataRe
-                        })
+                        });
+                        _this.getMyRank(3)
                     }
                 }
 
@@ -133,6 +165,10 @@ var options = Object.assign(marquee, {
                 myRank: this._getMyRank(this.data.today),
                 myTodayRank: this._getMyRank(this.data.today),
             })
+
+
+
+
         }else if(index==1){
             this.setData({
                 myRank: this._getMyRank(this.data.yesterday),
@@ -153,8 +189,7 @@ var options = Object.assign(marquee, {
             if(data[i].userId==this.data.userId){
                 rank=data[i];
                 rank.rank=i+1;
-                console.log("rankrankrankrankrank")
-                console.log(rank)
+
                 break
             }
         }
@@ -162,68 +197,57 @@ var options = Object.assign(marquee, {
     },
     getRunData:function () {
         let _this=this;
-        wx.login({
-            success: function(loginRes) {
-                console.log(loginRes)
-                if (loginRes.code) {
-
-                    wx.getWeRunData({
-                        success(runRes) {
-                            const encryptedData = runRes.encryptedData;
-                            //发起网络请求
-                            wx.request({
-                                url: app.API_URL + "wei/xin/post/decrypt/data",
-                                method: "POST",
-                                data:{
-                                    iv:runRes.iv,
-                                    encryptedData:runRes.encryptedData,
-                                    code:loginRes.code
-                                },
-                                success: function (data) {
-                                    console.log(data.data)
-
-
-
-
-                                    //获取本地userid
-                                    //若本地userid 空则去获取
-                                    if(data.data.data.session_key){
-                                        let unionid= data.data.data.session_key.unionid;
-
-                                    }
-
-
-                                    if(data.data.data.stepInfoList){
-                                        _this.setData({
-                                            todayNum: data.data.data.stepInfoList[data.data.data.stepInfoList.length-1].step,
-                                        });
-                                        wx.request({
-                                            url: app.API_URL + "werun/"+_this.data.userId,
-                                            method: "PUT",
-                                            data:data.data.data.stepInfoList,
-                                            success: function (data) {
-                                                _this.getLastWeekData();
-                                                _this.getLastMonthData();
-                                                _this.getTodayData();
-                                                _this.getYesterdayData();
-
-                                            }
-                                        })
-
-                                    }
-
-
-                                }
-                            })
-
-                        }
+        let data = app.getRunStorageData();
+        if(data.length>0){
+            clearTimeout(_this.data.timeInData);
+            _this.setData({
+                todayNum: data[data.length-1].step,
+            });
+            let todayRunNum=0;
+            let todayRunNumEnd=data[data.length-1].step;
+            let timeIn =    setInterval(function () {
+                todayRunNum= todayRunNum + parseInt(todayRunNumEnd/500);
+                _this.setData({
+                    todayNum: todayRunNum,
+                });
+                if(todayRunNum>=todayRunNumEnd){
+                    _this.setData({
+                        todayNum: todayRunNumEnd,
                     });
-                    console.log(loginRes.code)
-                } else {
+                    clearInterval(timeIn);
 
                 }
+
+
+            },1);
+
+            if(_this.data.userId){
+                wx.request({
+                    url: app.API_URL + "werun/"+_this.data.userId,
+                    method: "PUT",
+                    data:data,
+                    success: function (data) {
+                        _this.getLastWeekData();
+                        _this.getLastMonthData();
+                        _this.getTodayData();
+                        _this.getYesterdayData();
+                        _this.getExChangeCoin();
+
+                    }
+                })
             }
-        });
+        }else{
+             _this.setData({
+                 timeInData: setTimeout( function () {
+                     _this.getRunData();
+                 },300)
+
+             })
+
+        }
+
+
+
     },
     getTodayData:function () {
         let _this=this;
@@ -259,29 +283,113 @@ var options = Object.assign(marquee, {
         })
     },
     _getData:function (type,callback) {
+        if(this.data.userId){
+            wx.showLoading()
+            wx.request({
+                url: app.API_URL + "werun/rank/"+type+"/"+this.data.userId,
+                method: "GET",
+                success: function (data) {
+                    callback(data);
+                    wx.hideLoading()
+                }
+            })
+        }
+
+    },
+    getNotice:function () {
+        let _this=this;
+        //消息提醒
         wx.request({
-            url: app.API_URL + "werun/rank/"+type+"/"+this.data.userId+"/1/400",
-            method: "GET",
-            success: function (data) {
-                console.log(data)
-                callback(data);
+            url: app.API_URL + 'werun/last/notice/' + _this.data.userId,
+            success: function (res) {
+                if (res.data.status == 1) {
+                    let noticeLink = '/pages/notice/notice?time=' + app.run.dateTime.getTimeStamp();
+                    _this.setData({
+                        notice: res.data.data,
+                        noticeLink: noticeLink
+                    })
+
+
+                }
             }
         })
     },
-    onLoad: function () {
-        this.initScreen();
-        this.getRunData();
-        this.getLastWeekData();
-        this.getLastMonthData();
-        this.getTodayData();
-        this.getYesterdayData();
+    goCareList:function (e) {
+        let _this=this;
+        let id =  e.currentTarget.dataset.id;
+        let count =  e.currentTarget.dataset.count;
+        if(count==0)return;
+        let type = "day";
+        if(_this.data.tab==2){
+            type = "week";
+        }else   if(_this.data.tab==3){
+            type = "month";
+        }
+         wx.navigateTo({
+            url: '/pages/care/list?type='+type+'&id='+id
+        })
 
+
+    },
+    onLoad: function () {
+
+
+        this.setData({ userId: app.getUserId() });
+        this.getNotice();
+        this.isChanged();
+        this.initScreen();
         this.getUserInfo();
+        this.initData();
 
         const str = this.data.marquee.text;
         const width = this.getWidth(str);
-        console.log('width',width);
-        this.setData({ [`${'marquee'}.width`]: width });
+         this.setData({ [`${'marquee'}.width`]: width });
+
+    },
+    initData:function () {
+        // this.getLastWeekData();
+        // this.getLastMonthData();
+        // this.getTodayData();
+        // this.getYesterdayData();
+
+        this.getRunData();
+        this.getExChangeCoin();
+    },
+
+    onShow:function () {
+            let _this = this;
+            if(_this.data.userId){
+
+                wx.login({
+                    success: function (loginRes) {
+                        console.log("showLoainres");
+                        wx.getWeRunData({
+                            success(runRes) {
+                                //发起网络请求
+                                wx.request({
+                                    url: app.API_URL + "wei/xin/post/decrypt/data",
+                                    method: "POST",
+                                    data: {
+                                        iv: runRes.iv,
+                                        encryptedData: runRes.encryptedData,
+                                        code: loginRes.code
+                                    },
+                                    success: function (data) {
+
+                                        if (data.data.data.stepInfoList) {
+                                            app.setRunStorageData(data.data.data.stepInfoList);
+                                        }
+                                        _this.initData();
+
+                                    }
+                                })
+
+                            }
+                        });
+                    }
+                });
+            }
+
 
     },
     tab:function (e) {
@@ -290,6 +398,57 @@ var options = Object.assign(marquee, {
             tab: index
         });
         this.getMyRank(index);
+    },
+    isChanged:function () {
+        let _this=this;
+        wx.getStorage({
+            key: 'todayChanged',
+            success: function(res) {
+
+                if(_this.getDateFormat()==res.data.date){
+                    _this.setData({
+                        todayChanged:true
+                    });
+                }
+
+
+            }
+        })
+    },
+    getDateFormat:function () {
+        let date=new Date();
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        return year+"-"+month+'-'+day
+    },
+    change:function () {
+        let _this=this;
+        if(this.data.todayChanged){
+            return ;
+        }
+        wx.showLoading();
+        wx.request({
+            url: app.API_URL + "werun/exchange/coin",
+            method: "PUT",
+            data:{
+                userId:this.data.userId,
+            },
+            success: function (data) {
+                wx.hideLoading();
+                 if(data.data.status===1){
+                    _this.getUserInfo();
+                    wx.setStorage({
+                        key:"todayChanged",
+                        data:{date:_this.getDateFormat(),changed:true}
+                    })
+                    _this.setData({
+                        todayChanged:true
+                    });
+                }
+            }
+        })
+
     }
 });
 Page(options);

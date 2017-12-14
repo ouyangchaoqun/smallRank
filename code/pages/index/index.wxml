@@ -1,122 +1,148 @@
 <!--index.wxml-->
 <scroll-view bindscroll="scroll" scroll-y="{{true}}" style="height:{{wHeight}}px">
-   <view class="top">
+    <view class="top">
         <view class="coin">{{user.coinAmount}}</view>
-       <view class="today_run_num">
-          <view class="text">第{{myTodayRank.rank}}名</view>
-           <view class="num"><text>{{todayNum}}</text><text class="unit"></text></view>
-          <view class="text">今日步数</view>
-      </view>
-       <view class="nums">
-            <view class="change_coin">
-                <text class="text">昨日步数可兑换积分</text>
-                <text>164</text>
+        <view class="today_run_num">
+            <view class="text">第{{myTodayRank.rank}}名</view>
+            <view class="num">
+                <text>{{todayNum}}</text>
+                <text class="unit"></text>
             </view>
-       </view>
-        <button class="change" >立即兑换</button>
-   </view>
-    <view class="ad">
-        <view class="text"><include src="../marquee/marquee.wxml" /></view>
+            <view class="text">今日步数</view>
+        </view>
+        <block wx-if="{{!todayChanged}}">
+            <view class="nums">
+                <view class="change_coin">
+                    <text class="text">昨日步数可兑换积分</text>
+                    <text>{{yesterdayChangeCoin.coinNum}}</text>
+                </view>
+            </view>
+            <button class="change" bindtap="change">立即兑换</button>
+        </block>
+        <block wx-if="{{todayChanged}}">
+            <view class="nums">
+                <view class="change_coin">
+                    <text class="text">今日可兑换积分</text>
+                    <text>{{todayChangeCoin.coinNum}}</text>
+                </view>
+            </view>
+            <button class="change changed" bindtap="change">明日兑换</button>
+        </block>
     </view>
+    <view class="ad">
+        <view class="text">
+            <include src="../marquee/marquee.wxml"/>
+        </view>
+    </view>
+
+    <navigator url="{{noticeLink}}" open-type="navigate" class="notice_link" wx:if="{{notice.count>0}}">
         <view class="notice_box notice_box_p">
-            <view class="notice" >
-                <image class="notice_friend" src="{{user.faceUrl}}"></image>
+            <view class="notice">
+                <image class="notice_friend" src="{{notice.user[0].faceUrl}}"></image>
                 <view>{{notice.count}} 条新消息</view>
-                <image  class="goNotice" src="http://oss.xqzs.cn/xqzs/mini/program/iconjt.png" alt="" />
+                <image class="goNotice" src="http://oss.xqzs.cn/xqzs/mini/program/iconjt.png" alt=""/>
             </view>
         </view>
-
+    </navigator>
 
 
     <view wx-if="{{tabOver}}" class="tabh"></view>
-  <view class="tab {{tabOver?'over':''}}" >
-        <text class="{{tab ==0?'on':''}}"  bindtap="tab"  data-index="0">今天 <text class="line"></text></text>
-        <text class="{{tab ==1?'on':''}}"  bindtap="tab"  data-index="1">昨天 <text class="line"></text></text>
-        <text class="{{tab ==2?'on':''}}"  bindtap="tab"  data-index="2">上周 <text class="line"></text></text>
-        <text class="{{tab ==3?'on':''}}"  bindtap="tab"  data-index="3">上月 <text class="line"></text></text>
-  </view>
-<view   class="tj" >
-    <block wx-if="{{tab ==0}}">
-           <view class="item" wx:for="{{today}}" wx:for-item="name"  wx:for-index="index">
-              <text class="order">{{index+1}}</text>
-              <view class="line"></view>
-               <image src="{{name.faceUrl}}"></image>
-               <text class="">{{name.nickName}}</text>
-               <view class="hearts" bindtap="care" data-index="{{index}}" data-type="today">
-                   <view class="num2">{{name.careCount}}</view>
-                   <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
-               </view>
-               <view class="num"  >
-                   <text>{{name.step}}</text>
-                   <text class="c">步</text>
-               </view>
-          </view>
-    </block>
-    <block wx-if="{{tab ==1}}">
-        <view class="item" wx:for="{{yesterday}}" wx:for-item="name"  wx:for-index="index">
-            <text class="order">{{index+1}}</text>
-            <view class="line"></view>
-            <image src="{{name.faceUrl}}"></image>
-            <text class="">{{name.nickName}}</text>
-            <view class="hearts" bindtap="care" data-index="{{index}}" data-type="yesterday">
-                <view class="num2">{{name.careCount}}</view>
-                <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
+    <view class="tab {{tabOver?'over':''}}">
+        <text class="{{tab ==0?'on':''}}" bindtap="tab" data-index="0">今天
+            <text class="line"></text>
+        </text>
+        <text class="{{tab ==1?'on':''}}" bindtap="tab" data-index="1">昨天
+            <text class="line"></text>
+        </text>
+        <text class="{{tab ==2?'on':''}}" bindtap="tab" data-index="2">上周
+            <text class="line"></text>
+        </text>
+        <text class="{{tab ==3?'on':''}}" bindtap="tab" data-index="3">上月
+            <text class="line"></text>
+        </text>
+    </view>
+    <view class="tj">
+        <block wx-if="{{tab ==0}}">
+            <view class="item" wx:for="{{today}}" wx:for-item="name" wx:for-index="index">
+                <text class="order">{{index+1}}</text>
+                <view class="line"></view>
+                <image src="{{name.faceUrl}}"></image>
+                <text class="">{{name.nickName}}</text>
+                <view class="hearts" bindtap="care" data-index="{{index}}" data-type="today">
+                    <view class="num2">{{name.careCount}}</view>
+                    <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
+                </view>
+                <view class="num">
+                    <text>{{name.step}}</text>
+                    <text class="c">步</text>
+                </view>
             </view>
-            <view class="num"  >
-                <text>{{name.step}}</text>
-                <text class="c">步</text>
+        </block>
+        <block wx-if="{{tab ==1}}">
+            <view class="item" wx:for="{{yesterday}}" wx:for-item="name" wx:for-index="index">
+                <text class="order">{{index+1}}</text>
+                <view class="line"></view>
+                <image src="{{name.faceUrl}}"></image>
+                <text class="">{{name.nickName}}</text>
+                <view class="hearts" bindtap="care" data-index="{{index}}" data-type="yesterday">
+                    <view class="num2">{{name.careCount}}</view>
+                    <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
+                </view>
+                <view class="num">
+                    <text>{{name.step}}</text>
+                    <text class="c">步</text>
+                </view>
             </view>
-        </view>
-    </block>
-    <block wx-if="{{tab ==2}}">
-        <view class="item" wx:for="{{lastWeek}}" wx:for-item="name"  wx:for-index="index">
-             <text class="order">{{index+1}}</text>
-            <view class="line"></view>
-            <image src="{{name.faceUrl}}"></image>
-            <text class="">{{name.nickName}}</text>
-            <view class="hearts" bindtap="care" data-index="{{index}}" data-type="lastWeek">
-                <view class="num2">{{name.careCount}}</view>
-                <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
+        </block>
+        <block wx-if="{{tab ==2}}">
+            <view class="item" wx:for="{{lastWeek}}" wx:for-item="name" wx:for-index="index">
+                <text class="order">{{index+1}}</text>
+                <view class="line"></view>
+                <image src="{{name.faceUrl}}"></image>
+                <text class="">{{name.nickName}}</text>
+                <view class="hearts" bindtap="care" data-index="{{index}}" data-type="lastWeek">
+                    <view class="num2">{{name.careCount}}</view>
+                    <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
+                </view>
+                <view class="num">
+                    <text>{{name.step}}</text>
+                    <text class="c">步</text>
+                </view>
             </view>
-            <view class="num"  >
-                <text>{{name.step}}</text>
-                <text class="c">步</text>
+        </block>
+        <block wx-if="{{tab ==3}}">
+            <view class="item" wx:for="{{lastMonth}}" wx:for-item="name" wx:for-index="index">
+                <text class="order">{{index+1}}</text>
+                <view class="line"></view>
+                <image src="{{name.faceUrl}}"></image>
+                <text class="">{{name.nickName}}</text>
+                <view class="hearts" bindtap="care" data-index="{{index}}" data-type="lastMonth">
+                    <view class="num2">{{name.careCount}}</view>
+                    <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
+                </view>
+                <view class="num">
+                    <text>{{name.step}}</text>
+                    <text class="c">步</text>
+                </view>
             </view>
-        </view>
-    </block>
-    <block wx-if="{{tab ==3}}">
-        <view class="item" wx:for="{{lastMonth}}" wx:for-item="name"  wx:for-index="index">
-            <text class="order">{{index+1}}</text>
-            <view class="line"></view>
-            <image src="{{name.faceUrl}}"></image>
-            <text class="">{{name.nickName}}</text>
-            <view class="hearts" bindtap="care" data-index="{{index}}" data-type="lastMonth">
-                <view class="num2">{{name.careCount}}</view>
-                <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
-            </view>
-            <view class="num"  >
-                <text>{{name.step}}</text>
-                <text class="c">步</text>
-            </view>
-        </view>
-    </block>
-</view>
+        </block>
+    </view>
 </scroll-view>
 
 
 <view class="bottom_rank tj">
     <view class="item">
         <text class="order">{{myRank.rank}}</text>
-    <image src="{{user.faceUrl}}"></image>
-    <text class="">{{user.nickName}}</text>
-    <view class="hearts">
-        <view class="num2">{{myRank.careCount}}</view>
-        <view class="heart{{myRank.careCount>0?'_on':''}}"></view>
-    </view>
-    <view class="num">
-        <text>{{myRank.step}}</text>
-        <text class="c">步</text>
-    </view>
+        <image src="{{user.faceUrl}}"></image>
+        <text class="">{{user.nickName}}</text>
+        <view class="hearts"  bindtap="goCareList" data-id="{{myRank.id}}" data-count="{{myRank.careCount}}">
+            <view class="num2">{{myRank.careCount}}</view>
+            <view class="heart{{myRank.careCount>0?'_on':''}}"></view>
+        </view>
+        <view class="num">
+            <text>{{myRank.step}}</text>
+            <text class="c">步</text>
+        </view>
     </view>
 </view>
 

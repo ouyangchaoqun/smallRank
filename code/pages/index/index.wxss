@@ -5,6 +5,8 @@ page{ background: #f5f3fa}
 .top .coin{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_coin.png) no-repeat ;   background-size: 11px;   height: 12px; font-size: 12px; padding-left: 16px; line-height: 1; color:#FF9933 ; position: absolute;top:15px;left: 15px;}
 .today_run_num view{ display: block; line-height: 1;}
 .today_run_num view.num{ color: #00d082; font-size: 36px;  margin: 18px 0  }
+.notice_link.navigator-hover{ background: none}
+
 .today_run_num view{ font-size: 15px; color:#999;}
 .ad{
     height: 44px;
@@ -32,11 +34,17 @@ page{ background: #f5f3fa}
     color:#999; font-size: 12px;
 }
 button.change{ background: #75CF85 ; height: 42px; display: block; margin: 15px auto; width: 160px; overflow: hidden; border:0; border-radius: 21px; line-height: 42px; color:#fff; font-size: 15px;}
+button.change:active{ background: #56cf51  }
+button.changed{ background:rgba(121,212,157,0.4);
+
+}
+button.changed.button-hover,button.changed:active{background:rgba(121,212,157,0.4) !important;
+
+}
 button.change::after{
     border:none;
 }
-button.change:active{ background: #56cf51
-}
+
 .tabh{ height: 44px;margin-bottom: 15px;}
 .tab.over{ position: fixed; width: 100%; background:#fff; top:0; left:0; z-index: 100000; border-bottom: 1px solid #f5f3fa}
 .top .tip{ color:#999; font-size: 12px; text-align: center}
