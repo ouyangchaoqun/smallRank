@@ -4,7 +4,7 @@ page{ background: #f5f3fa}
 .top .today_run_num{ height: 140px; width: 165px; text-align: center;   background: url(http://oss.xqzs.cn/xqzs/mini/program/index_run_num_b.png) no-repeat ; background-size: 165px; margin: 0 auto; padding-top:32px;  }
 .top .coin{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_coin.png) no-repeat ;   background-size: 11px;   height: 12px; font-size: 12px; padding-left: 16px; line-height: 1; color:#FF9933 ; position: absolute;top:15px;left: 15px;}
 .today_run_num view{ display: block; line-height: 1;}
-.today_run_num view.num{ color: #00d082; font-size: 36px;  margin: 18px 0  }
+.today_run_num view.num{ color: #00d082; font-size: 36px;  margin: 18px 0; margin-bottom: 28px;  }
 .notice_link.navigator-hover{ background: none}
 
 .today_run_num view{ font-size: 15px; color:#999;}
@@ -30,7 +30,7 @@ page{ background: #f5f3fa}
 .nums>view text{ display: block; color:#FF9133}
 .nums>view text.text
 {
-    margin-bottom: 11px;
+    margin-bottom: 4px;
     color:#999; font-size: 12px;
 }
 button.change{ background: #75CF85 ; height: 42px; display: block; margin: 15px auto; width: 160px; overflow: hidden; border:0; border-radius: 21px; line-height: 42px; color:#fff; font-size: 15px;}

@@ -1,7 +1,6 @@
 <!--index.wxml-->
 <scroll-view bindscroll="scroll" scroll-y="{{true}}" style="height:{{wHeight}}px">
     <view class="top">
-        <view>{{timetime}}</view>
         <view class="coin">{{user.coinAmount}}</view>
         <view class="today_run_num">
             <view class="text">第{{myTodayRank.rank}}名</view>
@@ -30,7 +29,7 @@
             <button class="change changed" bindtap="change">明日兑换</button>
         </block>
     </view>
-    <view class="ad">
+    <view class="ad" wx-if="{{false}}">
         <view class="text">
             <include src="../marquee/marquee.wxml"/>
         </view>

@@ -1,96 +1,127 @@
 //app.js
 App({
 
-    API_URL: "http://api.mood.hh-idea.com/api/v1/",
+    // API_URL: "https://api.mood.hh-idea.com/api/v1/",
+    API_URL: "https://wx.xqzs.cn/xpi/",
 
-    // API_URL: "http://api.m.xqzs.cn/api/v1/",
-    WEB_DOMAIN: 'http://js.mood.hh-idea.com/',
+    onShow: function () {
 
-    onLaunch: function () {
+
 
         let _this = this;
-        let user = wx.getStorageSync('user') || {};
+         let user = wx.getStorageSync('user') || {};
+         //
+         wx.getSetting({
+            success(res) {
+                if (!user.id) {
+                    console.log('12121')
+                     wx.login({
+                        success: function (loginRes) {
+                            console.log(loginRes);
+                             wx.authorize({
+                                scope: 'scope.userInfo',
+                                success(errMsg) {
+                                     wx.getUserInfo({
+                                        success: res => {
+                                            let encryptedData;
+                                            let iv;
+                                            encryptedData = res.encryptedData;
+                                            iv = res.iv;
 
+                                            if (loginRes.code) {
+                                                 let code = loginRes.code;
 
+                                                wx.request({
+                                                    url: _this.API_URL + "user/create/by/secret",
+                                                    method: 'PUT',
+                                                    data: ({js_code: code, encryptedData: encryptedData, iv: iv}),
+                                                    success: function (res) {
+                                                        _this.getUserRunData();
+                                                        let user = res.data.data;
+                                                        wx.setStorageSync('user', user);//存储userInfo
 
-        if (!user.id) {
-            // 获取用户信息
-            wx.getSetting({
-                success: res => {
-                    if (!res.authSetting['scope.userInfo']) {
-                        // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-                        console.log("/ 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框")
-                        wx.getUserInfo({
-                            success: res => {
-                                // 可以将 res 发送给后台解码出 unionId
-                                // this.globalData.userInfo = res.userInfo
+                                                        wx.reLaunch({
+                                                            url: '/pages/index/index'
+                                                        });
 
-                                // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                                // 所以此处加入 callback 以防止这种情况
-                                if (_this.userInfoReadyCallback) {
-                                    _this.userInfoReadyCallback(res)
-                                }
-                            },
-                            fail: function (res) {
-                                wx.reLaunch({
-                                    url: '/pages/index/index'
-                                })
-                                console.log("授权许可")
-                                wx.showModal({
-                                    title: '授权许可',
-                                    content: '是否授权访问您的信息???',
-                                    success: function (res) {
-                                        if (res.confirm) {
-                                            wx.openSetting({
-                                                success: function (data) {
-                                                    if (data) {
-                                                        if (data.authSetting["scope.userInfo"] == true) {
-                                                            loginStatus = true;
-                                                            wx.getUserInfo({
-
-                                                                success: function (data) {
-
-                                                                    wx.reLaunch({
-                                                                        url: '/pages/index/index'
-                                                                    })
-                                                                },
-                                                                fail: function () {
-                                                                    console.info("3授权失败返回数据");
-                                                                }
-                                                            });
-                                                        }
                                                     }
-                                                    76
-                                                },
-                                                fail: function () {
-                                                    console.info("设置失败返回数据");
+                                                });
+
+
+                                            } else {
+                                                console.log('获取用户登录态失败！' + loginRes.errMsg)
+                                            }
+
+
+                                        },
+                                        fail: function (res) {
+                                            wx.reLaunch({
+                                                url: '/pages/index/index'
+                                            })
+                                            console.log("授权许可")
+                                            wx.showModal({
+                                                title: '授权许可',
+                                                content: '是否授权访问您的信息?',
+                                                success: function (res) {
+                                                    if (res.confirm) {
+                                                        wx.openSetting({
+                                                            success: function (data) {
+                                                                if (data) {
+                                                                    if (data.authSetting["scope.userInfo"] == true) {
+                                                                        wx.reLaunch({
+                                                                            url: '/pages/index/index'
+                                                                        })
+                                                                    }
+                                                                }
+
+                                                            },
+                                                            fail: function () {
+                                                                console.info("设置失败返回数据");
+                                                            }
+                                                        });
+                                                    } else if (res.cancel) {
+
+                                                    }
                                                 }
                                             });
-                                        } else if (res.cancel) {
+                                            console.log("fail")
+                                            console.log(res)
+                                        },
+                                        complete: function (res) {
 
                                         }
-                                    }
-                                });
-                                console.log("fail")
-                                console.log(res)
-                            },
-                            complete:function (res) {
+                                    });
+                                    console.log("success")
+                                },
+                                fail() {
 
-                            }
-                        })
-                    }
+                                },
+                                complete() {
+                                 }
+
+                            });
+
+
+                        }
+                    });
+
+
+                } else {
+                    _this.getUserRunData();
+
                 }
-            })
+            }
+        });
 
-        } else {
-            _this.getUserRunData();
 
-        }
+
+
+
 
 
     },
 
-    run:{
+    run: {
         dateTime: {
             DATE_TIME: "date_time",
             TIME: "time",
@@ -187,7 +218,19 @@ App({
     setRunStorageData: function (data) {
         wx.setStorageSync('runData', data)
     },
-    globalData: {
-        userInfo: null
+    visit: function (code) {
+        let _this=this;
+
+        wx.request({
+            url: _this.API_URL + 'log/visit?id=' + code+"&fullUrl=eeeeeeeeeeee",
+            method: 'GET',
+            success: function (res) {
+
+
+            }
+        });
+
+
+
     }
 })

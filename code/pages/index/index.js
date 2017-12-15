@@ -64,7 +64,7 @@ var options = Object.assign(marquee, {
             dataType= "week";
             item = _this.data.lastWeek[index];
         } else if (type == "lastMonth") {
-            dataType= "week";
+            dataType= "month";
             item = _this.data.lastMonth[index];
         }
         wx.request({
@@ -226,7 +226,7 @@ var options = Object.assign(marquee, {
                 wx.request({
                     url: app.API_URL + "werun/"+_this.data.userId,
                     method: "PUT",
-                    data:data,
+                    data:{stepData:data},
                     success: function (data) {
                         _this.getLastWeekData();
                         _this.getLastMonthData();
@@ -333,54 +333,6 @@ var options = Object.assign(marquee, {
 
     },
     onLoad: function () {
-        let date= new Date();
-        this.setData({
-            timetime:date
-        })
-
-
-        app.userInfoReadyCallback = res => {
-            let _this = this;
-            wx.login({
-                success: function (loginRes) {
-                    console.log(loginRes);
-
-                    let userInfo;
-                    let encryptedData;
-                    let iv;
-                    encryptedData = res.encryptedData;
-                    iv = res.iv;
-
-                    if (loginRes.code) {
-
-                        let code = loginRes.code;
-
-                        wx.request({
-                            url: app.API_URL + "user/create/by/secret",
-                            method: 'PUT',
-                            data: ({js_code: code, encryptedData: encryptedData, iv: iv}),
-                            success: function (res) {
-                                app.getUserRunData();
-                                let user = res.data.data;
-                                wx.setStorageSync('user', user);//存储userInfo
-
-                                wx.reLaunch({
-                                    url: '/pages/index/index'
-                                });
-
-                            }
-                        });
-
-
-                    } else {
-                        console.log('获取用户登录态失败！' + loginRes.errMsg)
-                    }
-
-
-
-                }
-            });
-        }
 
 
         this.setData({ userId: app.getUserId() });
@@ -437,6 +389,9 @@ var options = Object.assign(marquee, {
                         });
                     }
                 });
+                _this.getNotice();
+
+
             }
 
 
