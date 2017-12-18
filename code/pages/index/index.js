@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 import marquee from '../marquee/marquee.js';
+import NumberAnimate from "../../utils/NumberAnimate";
 var options = Object.assign(marquee, {
     data: {
         userId:app.getUserId(),
@@ -24,7 +25,8 @@ var options = Object.assign(marquee, {
         todayChangeCoin:{},
         yesterdayChangeCoin:{},
         timetime:0,
-        showAddCoinAninate:false
+        showAddCoinAninate:false,
+        todayRunNum:0
     },
     getExChangeCoin:function () {
        //werun/coin/exchange
@@ -224,26 +226,29 @@ var options = Object.assign(marquee, {
         let data = app.getRunStorageData();
         if(data.length>0){
             clearTimeout(_this.data.timeInData);
-            _this.setData({
-                todayNum: data[data.length-1].step,
-            });
-            let todayRunNum=0;
+
+
             let todayRunNumEnd=data[data.length-1].step;
-            let timeIn =    setInterval(function () {
-                todayRunNum= todayRunNum + parseInt(todayRunNumEnd/500);
-                _this.setData({
-                    todayNum: todayRunNum,
+
+            if(todayRunNumEnd>_this.data.todayNum) {
+                let n1 = new NumberAnimate({
+                    from: _this.data.todayNum,
+                    end:todayRunNumEnd,
+                    speed: 1000,
+                    refreshTime: 50,
+                    decimals: 0,
+                    onUpdate: () => {
+                        console.log(n1.tempValue)
+                        this.setData({
+                            todayNum: n1.tempValue
+                        });
+                    },
+                    onComplete: () => {
+
+                    }
                 });
-                if(todayRunNum>=todayRunNumEnd){
-                    _this.setData({
-                        todayNum: todayRunNumEnd,
-                    });
-                    clearInterval(timeIn);
+            }
 
-                }
-
-
-            },1);
 
             if(_this.data.userId){
                 wx.request({
@@ -255,7 +260,6 @@ var options = Object.assign(marquee, {
                         _this.getLastMonthData();
                         _this.getTodayData();
                         _this.getYesterdayData();
-                        _this.getExChangeCoin();
 
                     }
                 })
@@ -269,9 +273,6 @@ var options = Object.assign(marquee, {
              })
 
         }
-
-
-
     },
     getTodayData:function () {
         let _this=this;
@@ -363,12 +364,11 @@ var options = Object.assign(marquee, {
 
         console.log("options.fromuserid"+options.fromuserid)
         this.setData({ userId: app.getUserId() });
-        this.getNotice();
         this.isChanged();
         this.initScreen();
         this.getUserInfo();
         this.beComeFriend();
-        this.initData();
+
 
         const str = this.data.marquee.text;
         const width = this.getWidth(str);
@@ -376,11 +376,6 @@ var options = Object.assign(marquee, {
 
     },
     initData:function () {
-        // this.getLastWeekData();
-        // this.getLastMonthData();
-        // this.getTodayData();
-        // this.getYesterdayData();
-
         this.getRunData();
         this.getExChangeCoin();
     },
