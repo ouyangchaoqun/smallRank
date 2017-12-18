@@ -3,6 +3,7 @@
     <view class="top">
         <view class="coin">{{user.coinAmount}}</view>
         <view class="today_run_num">
+            <view class="bg {{round?'round':''}}" ></view>
             <view class="text">第{{myTodayRank.rank}}名</view>
             <view class="num">
                 <text>{{todayNum}}</text>
@@ -65,7 +66,7 @@
     </view>
     <view class="tj">
         <block wx-if="{{tab ==0}}">
-            <view class="item" wx:for="{{today}}" wx:for-item="name" wx:for-index="index">
+            <view class="item" wx:for="{{today}}" wx:for-item="name" wx:for-index="index" wx:key="key" >
                 <text class="order">{{index+1}}</text>
                 <view class="line"></view>
                 <image src="{{name.faceUrl}}"></image>
@@ -81,7 +82,7 @@
             </view>
         </block>
         <block wx-if="{{tab ==1}}">
-            <view class="item" wx:for="{{yesterday}}" wx:for-item="name" wx:for-index="index">
+            <view class="item" wx:for="{{yesterday}}" wx:for-item="name" wx:for-index="index" wx:key="key" >
                 <text class="order">{{index+1}}</text>
                 <view class="line"></view>
                 <image src="{{name.faceUrl}}"></image>
@@ -97,7 +98,7 @@
             </view>
         </block>
         <block wx-if="{{tab ==2}}">
-            <view class="item" wx:for="{{lastWeek}}" wx:for-item="name" wx:for-index="index">
+            <view class="item" wx:for="{{lastWeek}}" wx:for-item="name" wx:for-index="index" wx:key="key" >
                 <text class="order">{{index+1}}</text>
                 <view class="line"></view>
                 <image src="{{name.faceUrl}}"></image>
@@ -113,7 +114,7 @@
             </view>
         </block>
         <block wx-if="{{tab ==3}}">
-            <view class="item" wx:for="{{lastMonth}}" wx:for-item="name" wx:for-index="index">
+            <view class="item" wx:for="{{lastMonth}}" wx:for-item="name" wx:for-index="index" wx:key="key" >
                 <text class="order">{{index+1}}</text>
                 <view class="line"></view>
                 <image src="{{name.faceUrl}}"></image>

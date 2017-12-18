@@ -17,7 +17,7 @@ App({
                     console.log('12121')
                      wx.login({
                         success: function (loginRes) {
-                            console.log(loginRes);
+                            // console.log(loginRes);
                              wx.authorize({
                                 scope: 'scope.userInfo',
                                 success(errMsg) {
@@ -171,7 +171,7 @@ App({
         let _this = this;
         wx.login({
             success: function (loginRes) {
-                console.log(loginRes);
+                // console.log(loginRes);
                 wx.getWeRunData({
                     success(runRes) {
                         //发起网络请求

@@ -26,7 +26,8 @@ var options = Object.assign(marquee, {
         yesterdayChangeCoin:{},
         timetime:0,
         showAddCoinAninate:false,
-        todayRunNum:0
+        todayRunNum:0,
+        round:false
     },
     getExChangeCoin:function () {
        //werun/coin/exchange
@@ -238,9 +239,9 @@ var options = Object.assign(marquee, {
                     refreshTime: 50,
                     decimals: 0,
                     onUpdate: () => {
-                        console.log(n1.tempValue)
                         this.setData({
-                            todayNum: n1.tempValue
+                            todayNum: n1.tempValue,
+                            round:true
                         });
                     },
                     onComplete: () => {
@@ -362,7 +363,7 @@ var options = Object.assign(marquee, {
             wx.setStorageSync('fromuserid', options.fromuserid)
         }
 
-        console.log("options.fromuserid"+options.fromuserid)
+        // console.log("options.fromuserid"+options.fromuserid)
         this.setData({ userId: app.getUserId() });
         this.isChanged();
         this.initScreen();
@@ -386,7 +387,7 @@ var options = Object.assign(marquee, {
 
                 wx.login({
                     success: function (loginRes) {
-                        console.log("showLoainres");
+                        // console.log("showLoainres");
                         wx.getWeRunData({
                             success(runRes) {
                                 //发起网络请求

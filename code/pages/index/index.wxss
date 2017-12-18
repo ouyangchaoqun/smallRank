@@ -1,7 +1,40 @@
 .top{ margin: 15px; background: #fff; padding-top: 20px; padding-bottom: 15px;box-shadow:  0 3px 8px rgba(102,102,102,0.2); border-radius: 3px;
     position: relative;}
 page{ background: #f5f3fa}
-.top .today_run_num{ height: 140px; width: 165px; text-align: center;   background: url(http://oss.xqzs.cn/xqzs/mini/program/index_run_num_b.png) no-repeat ; background-size: 165px; margin: 0 auto; padding-top:32px;  }
+.top .today_run_num{ height: 140px; width: 165px; text-align: center;   margin: 0 auto; padding-top:32px;  }
+.top .today_run_num .bg{ height: 140px; width: 165px;content: '';padding-top:32px; display: block; position: absolute; top:20px; background: url(http://oss.xqzs.cn/xqzs/mini/program/index_run_num_b.png) no-repeat ; background-size: 165px;
+
+}
+.top .today_run_num .bg.round{
+    animation: round2 0.8s  forwards linear;
+    -webkit-animation: round2 0.8s  forwards  linear
+}
+
+@keyframes round2 {
+    0%{
+        transform:   scale(1);
+        -webkit-transform:  scale(1);
+    }
+   15%{
+        transform:  scale(1.15);
+        -webkit-transform:   scale(1.15);
+    }
+    40%{
+        transform:  scale(1);
+        -webkit-transform:   scale(1);
+    }
+    70%{
+        transform:  scale(1.25);
+        -webkit-transform:   scale(1.25);
+    }
+    100%{
+        transform:   scale(1);
+        -webkit-transform:  scale(1);
+    }
+}
+
+
+
 .top .coin{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_coin.png) no-repeat ;   background-size: 11px;   height: 12px; font-size: 12px; padding-left: 16px; line-height: 1; color:#FF9933 ; position: absolute;top:15px;left: 15px;}
 .today_run_num view{ display: block; line-height: 1;}
 .today_run_num view.num{ color: #00d082; font-size: 36px;  margin: 18px 0; margin-bottom: 28px;  }
