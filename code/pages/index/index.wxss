@@ -111,9 +111,9 @@ scroll-view{ height: 100%; overflow: auto}
 
 .tj .item .hearts{ width: 44px; text-align: center;margin-top: 18px;}
 
-.tj .item .hearts .heart_on{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_heart_on.png) no-repeat; height:13px; width: 14px; background-size: 14px; margin: 0 auto;  margin-top:3px;}
+.tj .item .hearts .heart_on{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_heart_on.png) no-repeat; height:15px; width: 16px; background-size: 16px; margin: 0 auto;  margin-top:3px;}
 
-.tj .item .hearts .heart{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_heart.png) no-repeat; height:13px; width: 14px; background-size: 14px; margin: 0 auto;  margin-top:3px;}
+.tj .item .hearts .heart{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_heart.png) no-repeat; height:15px; width: 16px; background-size: 16px; margin: 0 auto;  margin-top:3px;}
 .tj .item .hearts .num2{ font-size: 12px; color:#999; }
 
 .bottom_rank{background: #75CF85; height: 74px; position: fixed; bottom:0; left:0; width: 100%; border-top: none}
