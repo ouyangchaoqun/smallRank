@@ -97,14 +97,14 @@ button.change::after{
 .tj  .item{
     background: #fff; position: relative; height: 66px;
 }
-
+.tj  .item.myself{ background: rgba(117,207,133,0.15)}
 
 .tj .item .order{ line-height: 66px; color:#969696 ; font-size: 15px; margin-left: 20px;}
 .tj .item .line{ height: 1px; background: #f1f1f1; width: 100%;   display: block; position: absolute; bottom:0; left:0}
 .tj .item image{ height: 40px; width: 40px; border-radius: 50%; float:left; margin-top: 13px; margin-left: 20px;}
 .tj  .item text{line-height: 66px; color:#333; font-size: 14px; display: block;float:left; margin-left: 12px;}
 .tj .item .hearts{ float:right;}
-.tj  .item .num{ float:right;   }
+.tj  .item .num{ float:right;}
 .tj  .item .num text{ color:#75CF85 ; font-size: 23px; float:left; margin-right: 6px; margin-left: 0}
 .tj  .item .num text.c{ font-size:12px; margin-right: 0; line-height: 73px; height: 66px; overflow: hidden }
 scroll-view{ height: 100%; overflow: auto}

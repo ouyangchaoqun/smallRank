@@ -71,57 +71,66 @@ var options = Object.assign(marquee, {
             dataType= "month";
             item = _this.data.lastMonth[index];
         }
-        wx.request({
-            url: app.API_URL + "werun/care",
-            method: "PUT",
-            data: {
-                userId: _this.data.userId,
-                withId : item.id,
-                type:dataType
-            },
-            success: function (data) {
-                if(data.data.status===1){
-                    let dataRe =[];
 
-                    if (type === "today") {
-                        dataRe =  _this.data.today
-                    } else if (type === "yesterday") {
-                        dataRe =  _this.data.yesterday
-                    } else if (type === "lastWeek") {
-                        dataRe =  _this.data.lastWeek
-                    } else if (type === "lastMonth") {
-                        dataRe =  _this.data.lastMonth
+
+        if(_this.data.userId==item.userId){
+            _this.goCareListFromItem(item.id,item.careCount);
+        }else{
+            wx.request({
+                url: app.API_URL + "werun/care",
+                method: "PUT",
+                data: {
+                    userId: _this.data.userId,
+                    withId : item.id,
+                    type:dataType
+                },
+                success: function (data) {
+                    if(data.data.status===1){
+                        let dataRe =[];
+
+                        if (type === "today") {
+                            dataRe =  _this.data.today
+                        } else if (type === "yesterday") {
+                            dataRe =  _this.data.yesterday
+                        } else if (type === "lastWeek") {
+                            dataRe =  _this.data.lastWeek
+                        } else if (type === "lastMonth") {
+                            dataRe =  _this.data.lastMonth
+                        }
+                        dataRe[index].careCount=data.data.data.count;
+                        dataRe[index].careMe=1;
+                        dataRe[index].hit=true;
+                        if (type === "today") {
+                            _this.setData({
+                                today:dataRe
+                            });
+                            _this.getMyRank(0)
+                        } else if (type === "yesterday") {
+                            _this.setData({
+                                yesterday:dataRe
+                            });
+                            _this.getMyRank(1)
+                        } else if (type === "lastWeek") {
+                            _this.setData({
+                                lastWeek:dataRe
+                            });
+                            _this.getMyRank(2)
+                        } else if (type === "lastMonth") {
+                            _this.setData({
+                                lastMonth:dataRe
+                            });
+                            _this.getMyRank(3)
+                        }
                     }
-                    dataRe[index].careCount=data.data.data.count;
-                    dataRe[index].careMe=1;
-                    dataRe[index].hit=true;
-                    if (type === "today") {
-                        _this.setData({
-                            today:dataRe
-                        });
-                        _this.getMyRank(0)
-                    } else if (type === "yesterday") {
-                        _this.setData({
-                            yesterday:dataRe
-                        });
-                        _this.getMyRank(1)
-                    } else if (type === "lastWeek") {
-                        _this.setData({
-                            lastWeek:dataRe
-                        });
-                        _this.getMyRank(2)
-                    } else if (type === "lastMonth") {
-                        _this.setData({
-                            lastMonth:dataRe
-                        });
-                        _this.getMyRank(3)
-                    }
+
+
+
                 }
+            })
+        }
 
 
 
-            }
-        })
 
 
     },
@@ -144,7 +153,7 @@ var options = Object.assign(marquee, {
                 let  w= res.windowWidth;
                 let  h = res.windowHeight;
                 _this.setData({
-                    wHeight:h-75,
+                    wHeight:h,
                     tjHeight:  h -300
                 })
 
@@ -352,6 +361,22 @@ var options = Object.assign(marquee, {
             type = "month";
         }
          wx.navigateTo({
+            url: '/pages/care/list?type='+type+'&id='+id
+        })
+
+
+    },
+
+    goCareListFromItem:function (id,count) {
+        let _this=this;
+        if(count==0)return;
+        let type = "day";
+        if(_this.data.tab==2){
+            type = "week";
+        }else   if(_this.data.tab==3){
+            type = "month";
+        }
+        wx.navigateTo({
             url: '/pages/care/list?type='+type+'&id='+id
         })
 
