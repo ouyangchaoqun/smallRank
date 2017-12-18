@@ -324,6 +324,9 @@ var options = Object.assign(marquee, {
                 url: app.API_URL + "werun/rank/"+type+"/"+this.data.userId,
                 method: "GET",
                 success: function (data) {
+                    for(let i=0;i<data.data.data.rows.length;i++){
+                        data.data.data.rows[i].nickName=  data.data.data.rows[i].nickName.substring(0,6)
+                    }
                     callback(data);
                     wx.hideLoading()
                 }
