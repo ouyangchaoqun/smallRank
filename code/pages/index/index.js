@@ -23,7 +23,8 @@ var options = Object.assign(marquee, {
         timeInData:null,
         todayChangeCoin:{},
         yesterdayChangeCoin:{},
-        timetime:0
+        timetime:0,
+        showAddCoinAninate:false
     },
     getExChangeCoin:function () {
        //werun/coin/exchange
@@ -150,15 +151,37 @@ var options = Object.assign(marquee, {
     getUserInfo: function () {
         let _this = this;
         wx.request({
-            url: app.API_URL + "user/find/by/user/Id/" + this.data.userId,
+            url: app.API_URL + "user/find/by/user/Id/" + _this.data.userId,
             method: "GET",
             success: function (data) {
                 _this.setData({
                     user: data.data.data
-                })
+                });
 
             }
         })
+    },
+    beComeFriend:function () {
+        let _this = this;
+        let fromuserid= wx.getStorageSync('fromuserid');
+        if(fromuserid&&fromuserid!=''){
+            console.log("beComeFriendfromus1111111erid"+fromuserid)
+            wx.request({
+                url: app.API_URL + "user/be/friend/width/ids/"+fromuserid+'/' + _this.data.userId,
+                method: "POST",
+                success: function (data) {
+                    console.log("beComeFriendfrdataerid"+ +"|_this.data.userId"+_this.data.userId);
+                    console.log(data)
+                    if(data.data.status==1){
+
+                    }
+
+
+                }
+            })
+
+
+        }
     },
     getMyRank:function (index) {
         if(index==0){
@@ -332,14 +355,19 @@ var options = Object.assign(marquee, {
 
 
     },
-    onLoad: function () {
+    onLoad: function (options) {
 
+        if(options.fromuserid) {
+            wx.setStorageSync('fromuserid', options.fromuserid)
+        }
 
+        console.log("options.fromuserid"+options.fromuserid)
         this.setData({ userId: app.getUserId() });
         this.getNotice();
         this.isChanged();
         this.initScreen();
         this.getUserInfo();
+        this.beComeFriend();
         this.initData();
 
         const str = this.data.marquee.text;
@@ -441,18 +469,36 @@ var options = Object.assign(marquee, {
             success: function (data) {
                 wx.hideLoading();
                  if(data.data.status===1){
+
                     _this.getUserInfo();
                     wx.setStorage({
                         key:"todayChanged",
                         data:{date:_this.getDateFormat(),changed:true}
                     })
                     _this.setData({
-                        todayChanged:true
+                        todayChanged:true,
+                        showAddCoinAninate:true
                     });
                 }
             }
         })
 
+    },
+    onShareAppMessage: function (res) {
+        let _this=this;
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            path: '/pages/index/index?fromuserid='+_this.data.userId,
+            success: function(res) {
+                // 转发成功
+            },
+            fail: function(res) {
+                // 转发失败
+            }
+        }
     }
 });
 Page(options);

@@ -3,7 +3,7 @@ App({
 
     // API_URL: "https://api.mood.hh-idea.com/api/v1/",
     API_URL: "https://wx.xqzs.cn/xpi/",
-
+    fromuserid:0,
     onShow: function () {
 
 
@@ -40,6 +40,7 @@ App({
                                                         let user = res.data.data;
                                                         wx.setStorageSync('user', user);//存储userInfo
 
+
                                                         wx.reLaunch({
                                                             url: '/pages/index/index'
                                                         });
@@ -55,6 +56,7 @@ App({
 
                                         },
                                         fail: function (res) {
+
                                             wx.reLaunch({
                                                 url: '/pages/index/index'
                                             })
@@ -112,11 +114,6 @@ App({
                 }
             }
         });
-
-
-
-
-
 
 
     },

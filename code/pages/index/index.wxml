@@ -35,6 +35,8 @@
         </view>
     </view>
 
+
+
     <navigator url="{{noticeLink}}" open-type="navigate" class="notice_link" wx:if="{{notice.count>0}}">
         <view class="notice_box notice_box_p">
             <view class="notice">
@@ -148,4 +150,9 @@
 
 
 
+<view class="coin_add" wx-if="{{showAddCoinAninate}}">
+    <view class="coin_add_round"></view>
+    <view class="coin_add_coin"></view>
+    <view class="add_num">+{{yesterdayChangeCoin.coinNum}}</view>
+</view>
 

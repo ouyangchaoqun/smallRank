@@ -73,7 +73,7 @@ button.change::after{
 .tj .item .hearts{ float:right;}
 .tj  .item .num{ float:right;   }
 .tj  .item .num text{ color:#75CF85 ; font-size: 23px; float:left; margin-right: 6px; margin-left: 0}
-.tj  .item .num text.c{ font-size:12px; margin-right: 0 }
+.tj  .item .num text.c{ font-size:12px; margin-right: 0; line-height: 73px; height: 66px; overflow: hidden }
 scroll-view{ height: 100%; overflow: auto}
 
 .tj .item .hearts{ width: 44px; text-align: center;margin-top: 18px;}
@@ -83,7 +83,7 @@ scroll-view{ height: 100%; overflow: auto}
 .tj .item .hearts .heart{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_heart.png) no-repeat; height:13px; width: 14px; background-size: 14px; margin: 0 auto;  margin-top:3px;}
 .tj .item .hearts .num2{ font-size: 12px; color:#999; }
 
-.bottom_rank{background: #75CF85; height: 74px; position: fixed; bottom:0; left:0; width: 100%}
+.bottom_rank{background: #75CF85; height: 74px; position: fixed; bottom:0; left:0; width: 100%; border-top: none}
 .bottom_rank .item{ background: none; color:#fff !important}
 .bottom_rank .item .order{ color:#fff; font-size: 21px;  line-height: 74px;}
 .bottom_rank .item image{ height: 52px; width: 52px; border: 1px solid  #fff; margin-top: 10px;}
@@ -92,6 +92,7 @@ scroll-view{ height: 100%; overflow: auto}
 .bottom_rank .item .num text { color:#fff;}
 .bottom_rank .item .hearts .num2 { color:#fff;}
 .bottom_rank .item .hearts .heart{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_heart_w.png) no-repeat; height:13px; width: 14px; background-size: 14px; margin: 0 auto;  margin-top:3px;}
+.bottom_rank  .item .num text.c{ height: 70px; line-height: 80px; overflow: hidden}
 
 .hit {
     -webkit-animation: heart 0.1s linear;
@@ -164,3 +165,96 @@ scroll-view{ height: 100%; overflow: auto}
     width:30px;
 }
 
+
+
+/*积分动画*/
+.coin_add{ position: fixed; width:5.558823529411765rem; height: 5.558823529411765rem; top:50%; left:50%; margin-left: -2.779411764705883rem; margin-top: -2.779411764705883rem; z-index: 1000;
+    animation: coin_add_show 2.5s  forwards;
+    -webkit-animation: coin_add_show 2.5s  forwards;}
+.coin_add .coin_add_round{ background: url(http://oss.xqzs.cn/xqzs/mini/program/coin_add_round.png) no-repeat center; width: 100%; height: 100%; background-size: 100%; position: absolute; top:0;
+    animation: coin_round_round 1s    infinite linear ;
+    -webkit-animation: coin_round_round 1s  infinite linear ;
+    animation-delay:0.8s;
+    -webkit-animation-delay:0.8s;
+
+}
+.coin_add .coin_add_coin{ background: url(http://oss.xqzs.cn/xqzs/mini/program/coin_add_coin.png) no-repeat center; width: 100%; height: 100%; background-size: 3.617647058823529rem; position: absolute; top:0;
+    animation: coin_coin_round 1s   infinite linear ;
+    -webkit-animation: coin_coin_round 1s  infinite linear ;
+    animation-delay:0.8s;
+    -webkit-animation-delay:0.8s;}
+
+.coin_add .add_num{ font-size: 12px; color:#ffaa00; position: absolute; top:0; width: 100%; text-align: center;
+    animation: coin_big 1.5s  forwards linear;
+    -webkit-animation: coin_big 1.5s  forwards  linear;
+    animation-delay:0.8s;
+    -webkit-animation-delay:0.8s;
+}
+@keyframes coin_coin_round {
+    0%{
+        backface-visibility: hidden;
+        transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+    }
+    100%{
+        backface-visibility: hidden;
+        transform: rotateY(720deg);
+        -webkit-transform: rotateY(720deg);
+    }
+
+}
+
+@keyframes coin_round_round {
+
+    0%{
+        backface-visibility: hidden;
+
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100%{
+        backface-visibility: hidden;
+
+        transform: rotate(720deg);
+        -webkit-transform: rotate(720deg);
+    }
+
+}
+
+
+@keyframes coin_big {
+     0%{
+        transform: translate3d(0, 0, 0)   scale(1);
+        -webkit-transform: translate3d(0,0, 0) scale(1);
+    }
+    70%{
+        transform: translate3d(0, -200%, 0)   scale(2.5);
+        -webkit-transform: translate3d(0,-200%, 0) scale(2.5);
+        opacity: 1;
+    }
+    100%{
+        transform: translate3d(20%, -300%, 0)   scale(3);
+        -webkit-transform: translate3d(20%,-300%, 0) scale(3);
+        opacity: 0;
+    }
+
+}
+
+@keyframes coin_add_show {
+    0%{
+        transform: translate3d(100%, -200%, 0)   scale(0);
+        -webkit-transform: translate3d(100%,-200%, 0) scale(0);
+    }
+    15%{
+        transform: translate3d(0, 0, 0)   scale(1);
+        -webkit-transform: translate3d(0,0, 0) scale(1);
+    }
+    85%{
+        transform: translate3d(0, 0, 0)   scale(1);
+        -webkit-transform: translate3d(0,0, 0) scale(1);
+    }
+    100%{
+        transform: translate3d(-100%, -200%, 0)   scale(0);
+        -webkit-transform: translate3d(-100%,-200%, 0) scale(0);
+    }
+}
