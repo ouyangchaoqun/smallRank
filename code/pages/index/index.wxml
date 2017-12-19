@@ -12,22 +12,11 @@
             <view class="text">今日步数</view>
         </view>
         <block wx-if="{{!todayChanged}}">
-            <view class="nums">
-                <view class="change_coin">
-                    <text class="text">昨日步数可兑换积分</text>
-                    <text>{{yesterdayChangeCoin.coinNum}}</text>
-                </view>
-            </view>
-            <button class="change" bindtap="change">立即兑换</button>
+
+            <button class="change" bindtap="change">领取{{yesterdayChangeCoin.coinNum}}个积分</button>
         </block>
         <block wx-if="{{todayChanged}}">
-            <view class="nums">
-                <view class="change_coin">
-                    <text class="text">今日步数可兑换积分</text>
-                    <text>{{todayChangeCoin.coinNum}}</text>
-                </view>
-            </view>
-            <button class="change changed" bindtap="change">明日兑换</button>
+            <button class="change changed" bindtap="change">明日再来</button>
         </block>
     </view>
     <view class="ad" wx-if="{{false}}">
