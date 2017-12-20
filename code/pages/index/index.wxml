@@ -78,7 +78,7 @@
                 <text class="">{{name.nickName}}</text>
                 <view class="hearts" bindtap="care" data-index="{{index}}" data-type="yesterday">
                     <view class="num2">{{name.careCount}}</view>
-                    <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
+                    <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
                 </view>
                 <view class="num">
                     <text>{{name.step}}</text>
@@ -94,7 +94,7 @@
                 <text class="">{{name.nickName}}</text>
                 <view class="hearts" bindtap="care" data-index="{{index}}" data-type="lastWeek">
                     <view class="num2">{{name.careCount}}</view>
-                    <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
+                    <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
                 </view>
                 <view class="num">
                     <text>{{name.step}}</text>
@@ -110,7 +110,7 @@
                 <text class="">{{name.nickName}}</text>
                 <view class="hearts" bindtap="care" data-index="{{index}}" data-type="lastMonth">
                     <view class="num2">{{name.careCount}}</view>
-                    <view class="heart{{name.careMe?'_on':''}} {{name.hit?'hit':''}}"></view>
+                    <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
                 </view>
                 <view class="num">
                     <text>{{name.step}}</text>
