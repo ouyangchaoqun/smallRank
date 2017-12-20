@@ -54,13 +54,13 @@
         </text>
     </view>
     <view class="tj">
-        <block wx-if="{{tab ==0}}">
-            <view class="item {{userId==name.userId?'myself':''}}" wx:for="{{today}}" wx:for-item="name" wx:for-index="index" wx:key="key" >
+        <block wx-if="{{tab ==i}}" wx:for="{{[today,yesterday,lastWeek,lastMonth]}}" wx:for-item="item"  wx:for-index="i">
+            <view class="item {{userId==name.userId?'myself':''}}" wx:for="{{item}}"  wx:for-item="name" wx:for-index="index" wx:key="key" >
                 <text class="order">{{index+1}}</text>
                 <view class="line"></view>
                 <image src="{{name.faceUrl}}"></image>
                 <text class="">{{name.nickName}}</text>
-                <view class="hearts" bindtap="care" data-index="{{index}}" data-type="today">
+                <view class="hearts" bindtap="care" data-index="{{index}}" data-typeindex="{{i}}">
                     <view class="num2">{{name.careCount}}</view>
                     <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
                 </view>
@@ -70,54 +70,7 @@
                 </view>
             </view>
         </block>
-        <block wx-if="{{tab ==1}}">
-            <view class="item  {{userId==name.userId?'myself':''}}" wx:for="{{yesterday}}" wx:for-item="name" wx:for-index="index" wx:key="key" >
-                <text class="order">{{index+1}}</text>
-                <view class="line"></view>
-                <image src="{{name.faceUrl}}"></image>
-                <text class="">{{name.nickName}}</text>
-                <view class="hearts" bindtap="care" data-index="{{index}}" data-type="yesterday">
-                    <view class="num2">{{name.careCount}}</view>
-                    <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
-                </view>
-                <view class="num">
-                    <text>{{name.step}}</text>
-                    <text class="c">步</text>
-                </view>
-            </view>
-        </block>
-        <block wx-if="{{tab ==2}}">
-            <view class="item {{userId==name.userId?'myself':''}}" wx:for="{{lastWeek}}" wx:for-item="name" wx:for-index="index" wx:key="key" >
-                <text class="order">{{index+1}}</text>
-                <view class="line"></view>
-                <image src="{{name.faceUrl}}"></image>
-                <text class="">{{name.nickName}}</text>
-                <view class="hearts" bindtap="care" data-index="{{index}}" data-type="lastWeek">
-                    <view class="num2">{{name.careCount}}</view>
-                    <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
-                </view>
-                <view class="num">
-                    <text>{{name.step}}</text>
-                    <text class="c">步</text>
-                </view>
-            </view>
-        </block>
-        <block wx-if="{{tab ==3}}">
-            <view class="item {{userId==name.userId?'myself':''}}" wx:for="{{lastMonth}}" wx:for-item="name" wx:for-index="index" wx:key="key" >
-                <text class="order">{{index+1}}</text>
-                <view class="line"></view>
-                <image src="{{name.faceUrl}}"></image>
-                <text class="">{{name.nickName}}</text>
-                <view class="hearts" bindtap="care" data-index="{{index}}" data-type="lastMonth">
-                    <view class="num2">{{name.careCount}}</view>
-                    <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
-                </view>
-                <view class="num">
-                    <text>{{name.step}}</text>
-                    <text class="c">步</text>
-                </view>
-            </view>
-        </block>
+
     </view>
 </scroll-view>
 

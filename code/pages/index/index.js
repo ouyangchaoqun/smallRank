@@ -55,19 +55,19 @@ var options = Object.assign(marquee, {
     },
     care:function (e) {
         let _this = this;
-        let type = e.currentTarget.dataset.type;
-        let index = e.currentTarget.dataset.index;
+         let index = e.currentTarget.dataset.index;
+        let typeIndex = e.currentTarget.dataset.typeindex;
 
         let item;
         let dataType="day";
-        if (type == "today") {
+        if (typeIndex == 0) {
             item = _this.data.today[index];
-        } else if (type == "yesterday") {
+        } else if (typeIndex == 1) {
             item = _this.data.yesterday[index];
-        } else if (type == "lastWeek") {
+        } else if (typeIndex == 2) {
             dataType= "week";
             item = _this.data.lastWeek[index];
-        } else if (type == "lastMonth") {
+        } else if (typeIndex == 3) {
             dataType= "month";
             item = _this.data.lastMonth[index];
         }
@@ -88,34 +88,34 @@ var options = Object.assign(marquee, {
                     if(data.data.status===1){
                         let dataRe =[];
 
-                        if (type === "today") {
+                        if (typeIndex == 0) {
                             dataRe =  _this.data.today
-                        } else if (type === "yesterday") {
+                        } else if (typeIndex == 1) {
                             dataRe =  _this.data.yesterday
-                        } else if (type === "lastWeek") {
+                        } else if (typeIndex == 2) {
                             dataRe =  _this.data.lastWeek
-                        } else if (type === "lastMonth") {
+                        } else if (typeIndex == 3) {
                             dataRe =  _this.data.lastMonth
                         }
                         dataRe[index].careCount=data.data.data.count;
                         dataRe[index].careMe=1;
                         dataRe[index].hit=true;
-                        if (type === "today") {
+                        if (typeIndex == 0) {
                             _this.setData({
                                 today:dataRe
                             });
                             _this.getMyRank(0)
-                        } else if (type === "yesterday") {
+                        } else if (typeIndex == 1) {
                             _this.setData({
                                 yesterday:dataRe
                             });
                             _this.getMyRank(1)
-                        } else if (type === "lastWeek") {
+                        } else if (typeIndex == 2) {
                             _this.setData({
                                 lastWeek:dataRe
                             });
                             _this.getMyRank(2)
-                        } else if (type === "lastMonth") {
+                        } else if (typeIndex == 3) {
                             _this.setData({
                                 lastMonth:dataRe
                             });
