@@ -1,6 +1,7 @@
 .top{ margin: 0px;  padding-top: 10px; padding-bottom: 5px;
     position: relative;}
-page{ background: #f5f3fa}
+
+page{ background: #f5f3fa; }
 .top .today_run_num{ height: 140px; width: 165px; text-align: center;   margin: 0 auto; padding-top:32px;  }
 .top .today_run_num .bg{ height: 140px; width: 165px;content: '';padding-top:32px; display: block; position: absolute; top:20px; background: url(http://oss.xqzs.cn/xqzs/mini/program/index_run_num_b2.png) no-repeat ; background-size: 165px;
 
@@ -99,17 +100,18 @@ button.change::after{
 }
 .tj  .item.myself{ background: rgba(117,207,133,0.15)}
 
-.tj .item .order{ line-height: 66px; color:#969696 ; font-size: 15px; margin-left: 20px;}
+.tj .item .order{ line-height: 66px; color:#969696 ; font-size: 15px; width: 28px; text-align: center; margin-left: 10px;}
 .tj .item .line{ height: 1px; background: #f1f1f1; width: 100%;   display: block; position: absolute; bottom:0; left:0}
-.tj .item image{ height: 40px; width: 40px; border-radius: 50%; float:left; margin-top: 13px; margin-left: 20px;}
-.tj  .item text{line-height: 66px; color:#333; font-size: 14px; display: block;float:left; margin-left: 12px;}
+.tj .item image{ height: 40px; width: 40px; border-radius: 50%; float:left; margin-top: 13px; margin-left: 8px;}
+.tj  .item text{line-height: 66px; color:#333; font-size: 14px; display: block;float:left; margin-left: 12px; font-family: Arial;}
 .tj .item .hearts{ float:right;}
 .tj  .item .num{ float:right;}
-.tj  .item .num text{ color:#75CF85 ; font-size: 23px; float:left; margin-right: 6px; margin-left: 0}
+.tj  .item .num text{ color:#75CF85 ; font-size: 23px; float:left; margin-right: 2px; margin-left: 0}
+.tj .item .num text.step_w{color:#FF9933 ; }
 .tj  .item .num text.c{ font-size:12px; margin-right: 0; line-height: 73px; height: 66px; overflow: hidden }
 scroll-view{ height: 100%; overflow: auto}
 
-.tj .item .hearts{ width: 44px; text-align: center;margin-top: 18px;}
+.tj .item .hearts{ width: 44px; text-align: center;margin-top: 2px; padding-top: 12px; padding-bottom: 6px;}
 
 .tj .item .hearts .heart_on{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_heart_on.png) no-repeat; height:15px; width: 16px; background-size: 16px; margin: 0 auto;  margin-top:3px;}
 
@@ -291,3 +293,22 @@ scroll-view{ height: 100%; overflow: auto}
         -webkit-transform: translate3d(-100%,-200%, 0) scale(0);
     }
 }
+
+button.share_btn {
+     background:#75CF85;
+    height:42px;
+    display:block;
+
+    width:200px;
+    overflow:hidden;
+    border:0;
+    border-radius:21px;
+    line-height:42px;
+    color:#fff;
+    font-size:15px;
+
+}
+button.share_btn:active{ background: #56cf51  }
+button.share_btn::after{  border:none;  }
+
+.view_btn_share{ padding-top: 24px; padding-bottom: 24px;}

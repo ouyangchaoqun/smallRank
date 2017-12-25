@@ -325,7 +325,7 @@ var options = Object.assign(marquee, {
                 method: "GET",
                 success: function (data) {
                     for(let i=0;i<data.data.data.rows.length;i++){
-                        data.data.data.rows[i].nickName=  data.data.data.rows[i].nickName.substring(0,6)
+                        data.data.data.rows[i].nickName=  data.data.data.rows[i].nickName.substring(0,7)
                     }
                     callback(data);
                     wx.hideLoading()
