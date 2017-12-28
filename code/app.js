@@ -3,6 +3,7 @@ App({
 
     // API_URL: "https://api.mood.hh-idea.com/api/v1/",
     API_URL: "https://wx.xqzs.cn/xpi/",
+    PROGRAM_ID:2,
     fromuserid:0,
     onShow: function () {
 

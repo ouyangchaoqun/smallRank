@@ -27,8 +27,12 @@ var options = Object.assign(marquee, {
         timetime:0,
         showAddCoinAninate:false,
         todayRunNum:0,
-        round:false
+        round:false,
+        canIUse: wx.canIUse('button.open-type.contact')
+
     },
+
+
     getExChangeCoin:function () {
        //werun/coin/exchange
         let _this=this;

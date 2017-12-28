@@ -22,9 +22,14 @@ Page({
                 if(data.data.status===1){
 
                     let notices = data.data.data;
+                    console.log(notices);
                     for(let i=0;i<notices.length;i++){
                         notices[i].addTime=app.run.dateTime.formatDateTime(notices[i].addTime)
+                        notices[i].nickName = notices[i].nickName.substring(0,7)
                     }
+
+
+
                     _this.setData({
                         newNotices: notices,
                     })

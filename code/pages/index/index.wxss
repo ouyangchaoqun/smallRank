@@ -37,6 +37,8 @@ page{ background: #f5f3fa; }
 
 
 .top .coin{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_coin.png) no-repeat ;   background-size: 15px;   height: 16px; font-size: 15px; padding-left: 20px; line-height: 1; color:#FF9933 ; position: absolute;top:15px;left: 15px;}
+.top .contactttt{color:#FF9933 ; font-size: 14px; position: absolute;top:30px;left: 15px; padding: 0; border: none;  background: none    }
+.top .contactttt:after{ display: none}
 .today_run_num view{ display: block; line-height: 1;}
 .today_run_num view.num{ color: #00d082; font-size: 36px;  margin: 26px 0; margin-bottom: 28px;  }
 .notice_link.navigator-hover{ background: none}
