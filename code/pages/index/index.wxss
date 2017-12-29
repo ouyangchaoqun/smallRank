@@ -36,9 +36,20 @@ page{ background: #f5f3fa; }
 
 
 
-.top .coin{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_coin.png) no-repeat ;   background-size: 15px;   height: 16px; font-size: 15px; padding-left: 20px; line-height: 1; color:#FF9933 ; position: absolute;top:15px;left: 15px;}
-.top .contactttt{color:#FF9933 ; font-size: 14px; position: absolute;top:30px;left: 15px; padding: 0; border: none;  background: none    }
-.top .contactttt:after{ display: none}
+
+
+.top .coin{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_coin.png) no-repeat ;   background-size: 15px;   height: 16px; font-size: 15px; padding-left: 20px; line-height: 1; color:#FF9933 ; position: absolute;top:20px;left: 15px;}
+
+.contact_btn_h{background: #FF9933;height: 36px; width: 84px;border-bottom-left-radius: 18px;border-top-left-radius: 18px; position: absolute; right:0; top:20px;}
+.top  .contact_btn_h .coin{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_coin_w.png) no-repeat ;   background-size: 10px; line-height: 1;   height: 10px; font-size: 12px; padding-left: 16px ; color:#fff ; position: absolute;top:4px;left: 13px;}
+.top  .contact_btn_h .line{ height: 1px ; width: 54px; background: rgba(255,255,255,0.6); position: absolute; top:18px; left:12px; }
+.top .contact_btn_h .right{ background: url(http://oss.xqzs.cn/xqzs/mini/program/run/mini_run_coin_right.png) no-repeat; width: 11px; height: 22px; background-size: 6px; position: absolute; right:0px; top:12px;}
+
+
+.top .contactttt{color:#fff ; font-size: 10px; position: absolute;top:0px;left: 0px; padding: 0; border: none;  background: none; padding-left:13px; padding-top:14px; padding-right: 15px; z-index: 1111 }
+.top .contactttt:after{ display: none; }
+
+
 .today_run_num view{ display: block; line-height: 1;}
 .today_run_num view.num{ color: #00d082; font-size: 36px;  margin: 26px 0; margin-bottom: 28px;  }
 .notice_link.navigator-hover{ background: none}

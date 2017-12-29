@@ -1,9 +1,14 @@
 <!--index.wxml-->
 <scroll-view bindscroll="scroll" scroll-y="{{true}}" style="height:{{wHeight}}px">
     <view class="top">
-        <view class="coin">{{user.coinAmount}}</view>
-        <button wx:if="{{canIUse}}" open-type="contact" class="contactttt"> 免费兑好礼 </button>
-        <contact-button  class="contactttt" wx:else>免费兑好礼</contact-button>
+        <view class="coin" wx:if="{{isSubscribe}}">{{user.coinAmount}}</view>
+        <view class="contact_btn_h"  wx:if="{{!isSubscribe}}">
+            <view class="coin">{{user.coinAmount}}</view>
+            <view class="line"></view>
+            <button wx:if="{{canIUse}}" open-type="contact" class="contactttt"> 免费兑好礼 </button>
+            <contact-button  class="contactttt" wx:else>免费兑好礼</contact-button>
+            <view class="right"></view>
+        </view>
 
         <view class="today_run_num">
             <view class="bg {{round?'round':''}}" ></view>
@@ -57,9 +62,26 @@
             <text class="line"></text>
         </text>
     </view>
+
+
+    <view class="  tj" style="margin-bottom: 10px;" >
+        <view class="item">
+            <text class="order">{{myRank.rank}}</text>
+            <image src="{{user.faceUrl}}"></image>
+            <text class="">{{user.nickName}}</text>
+            <view class="hearts"  bindtap="goCareList" data-id="{{myRank.id}}" data-count="{{myRank.careCount}}">
+                <view class="num2">{{myRank.careCount}}</view>
+                <view class="heart{{myRank.careCount>0?'_on':''}}"></view>
+            </view>
+            <view class="num">
+                <text>{{myRank.step}}</text>
+            </view>
+        </view>
+    </view>
+
     <view class="tj">
         <block wx-if="{{tab ==i}}" wx:for="{{[today,yesterday,lastWeek,lastMonth]}}" wx:for-item="item"  wx:for-index="i">
-            <view class="item {{userId==name.userId?'myself':''}}" wx:for="{{item}}"  wx:for-item="name" wx:for-index="index" wx:key="key" >
+            <view class="item {{userId==name.userId&&false?'myself':''}}" wx:for="{{item}}"  wx:for-item="name" wx:for-index="index" wx:key="key" >
                 <text class="order">{{index+1}}</text>
                 <view class="line"></view>
                 <image src="{{name.faceUrl}}"></image>
@@ -81,21 +103,6 @@
 </scroll-view>
 
 
-<view class="bottom_rank tj" wx-if="{{false}}">
-    <view class="item">
-        <text class="order">{{myRank.rank}}</text>
-        <image src="{{user.faceUrl}}"></image>
-        <text class="">{{user.nickName}}</text>
-        <view class="hearts"  bindtap="goCareList" data-id="{{myRank.id}}" data-count="{{myRank.careCount}}">
-            <view class="num2">{{myRank.careCount}}</view>
-            <view class="heart{{myRank.careCount>0?'_on':''}}"></view>
-        </view>
-        <view class="num">
-            <text>{{myRank.step}}</text>
-            <text class="c">步</text>
-        </view>
-    </view>
-</view>
 
 
 

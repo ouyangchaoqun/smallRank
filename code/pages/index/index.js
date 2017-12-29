@@ -28,7 +28,8 @@ var options = Object.assign(marquee, {
         showAddCoinAninate:false,
         todayRunNum:0,
         round:false,
-        canIUse: wx.canIUse('button.open-type.contact')
+        canIUse: wx.canIUse('button.open-type.contact'),
+        isSubscribe:false
 
     },
 
@@ -171,7 +172,8 @@ var options = Object.assign(marquee, {
             method: "GET",
             success: function (data) {
                 _this.setData({
-                    user: data.data.data
+                    user: data.data.data,
+                    isSubscribe:data.data.data.issubscribe
                 });
 
             }
