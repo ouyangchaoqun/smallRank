@@ -3,6 +3,8 @@
 const app = getApp()
 import marquee from '../marquee/marquee.js';
 import NumberAnimate from "../../utils/NumberAnimate";
+var timeOutHeart=null;
+
 var options = Object.assign(marquee, {
     data: {
         userId:app.getUserId(),
@@ -58,6 +60,77 @@ var options = Object.assign(marquee, {
         })
 
     },
+    flyStart:function (e) {
+        let _this=this;
+        let itemInfo= _this.getItemInfo(e);
+        let item= itemInfo.item;
+        let dataRe= itemInfo.dataRe;
+        item.flyHeart=[];
+
+        for(let i =0  ;i<5;i++){
+            item.flyHeart.push({rnd:i});
+        }
+        _this.setData({
+            [dataRe]: item
+        });
+        timeOutHeart =  setInterval(function () {
+            _this.rndFlyHeart(item,dataRe)
+        },500)
+
+    },
+    rndFlyHeart:function (item,dataRe) {
+        let _this=this;
+        let rnd = parseInt(Math.random()*5);
+        if(typeof item.flyHeart !='object'){
+            item.flyHeart=[];
+        }
+        item.flyHeart.push({rnd:rnd});
+        rnd = parseInt(Math.random()*5);
+        item.flyHeart.push({rnd:rnd});
+        rnd = parseInt(Math.random()*5);
+        item.flyHeart.push({rnd:rnd});
+        _this.setData({
+            [dataRe]: item
+        });
+    },
+    getItemInfo:function (e) {
+        let _this=this;
+        let index = e.currentTarget.dataset.index;
+        let typeIndex = e.currentTarget.dataset.typeindex;
+        let item,dataRe;
+        if (typeIndex == 0) {
+            item = _this.data.today[index];
+            dataRe="today["+index+"]";
+        } else if (typeIndex == 1) {
+            item = _this.data.yesterday[index];
+            dataRe="yesterday["+index+"]";
+        } else if (typeIndex == 2) {
+            item = _this.data.lastWeek[index];
+            dataRe="lastWeek["+index+"]";
+        } else if (typeIndex == 3) {
+            item = _this.data.lastMonth[index];
+            dataRe="lastMonth["+index+"]";
+        }
+
+        return {item:item,dataRe:dataRe}
+    },
+
+    flyOver:function (e) {
+        let _this=this;
+        let itemInfo= _this.getItemInfo(e);
+        let item= itemInfo.item;
+        let dataRe= itemInfo.dataRe;
+        if(timeOutHeart){
+            clearInterval(timeOutHeart)
+        }
+        setTimeout(function () {
+            item.flyHeart=[];
+            _this.setData({
+                [dataRe]: item
+            });
+        },2900)
+    },
+
     care:function (e) {
         let _this = this;
          let index = e.currentTarget.dataset.index;
@@ -331,7 +404,8 @@ var options = Object.assign(marquee, {
                 method: "GET",
                 success: function (data) {
                     for(let i=0;i<data.data.data.rows.length;i++){
-                        data.data.data.rows[i].nickName=  data.data.data.rows[i].nickName.substring(0,7)
+                        data.data.data.rows[i].nickName=  data.data.data.rows[i].nickName.substring(0,7);
+                        data.data.data.rows[i].faceUrl= app.string.smallFace(data.data.data.rows[i].faceUrl)
                     }
                     callback(data);
                     wx.hideLoading()

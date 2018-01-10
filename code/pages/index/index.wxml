@@ -86,8 +86,9 @@
                 <view class="line"></view>
                 <image src="{{name.faceUrl}}"></image>
                 <text class="">{{name.nickName}}</text>
-                <view class="hearts" bindtap="care" data-index="{{index}}" data-typeindex="{{i}}">
+                <view class="hearts" bindtap="care" data-index="{{index}}" data-typeindex="{{i}}"  bindtouchstart='flyStart'  bindtouchend='flyOver'>
                     <view class="num2">{{name.careCount}}</view>
+                    <image   wx:for="{{name.flyHeart}}" src="http://oss.xqzs.cn/xqzs/mini/program/index_heart_on.png"  class="fly_heart start{{itemf.rnd}}"  wx:for-item="itemf"></image>
                     <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
                 </view>
                 <view class="num">
