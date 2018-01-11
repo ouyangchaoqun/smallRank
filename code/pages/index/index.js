@@ -490,6 +490,9 @@ var options = Object.assign(marquee, {
     },
 
     onShow:function () {
+        wx.showShareMenu({
+            withShareTicket: true
+        })
             let _this = this;
             if(_this.data.userId){
 
@@ -589,6 +592,7 @@ var options = Object.assign(marquee, {
 
     },
     onShareAppMessage: function (res) {
+        console.log(res)
         let _this=this;
         if (res.from === 'button') {
             // 来自页面内转发按钮
@@ -598,6 +602,40 @@ var options = Object.assign(marquee, {
             path: '/pages/index/index?fromuserid='+_this.data.userId,
             success: function(res) {
                 // 转发成功
+                console.log(res)
+                wx.getShareInfo({
+                    shareTicket: res.shareTickets[0],
+                    success: function (res) {
+
+                        wx.login({
+                            success: function (loginRes) {
+                                wx.request({
+                                    url: app.API_URL + "wei/xin/post/decrypt/data",
+                                    method: "POST",
+                                    data: {
+                                        iv: res.iv,
+                                        encryptedData: res.encryptedData,
+                                        code: loginRes.code
+                                    },
+                                    success: function (data) {
+                                        console.log(data.data.data);
+                                        console.log(data.data.data.openGId);
+                                        _this.setData({
+                                            ggggggid:data.data.data.openGId
+                                        })
+
+                                    }
+                                })
+                            }
+                        })
+
+
+                        console.log(res)
+                    },
+                    fail: function (res) {
+                        console.log(res)
+                    },
+                 })
             },
             fail: function(res) {
                 // 转发失败

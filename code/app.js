@@ -231,7 +231,7 @@ App({
     },
     string:{
         smallFace:function (url) {
-            return  url.substring(0,url.lastIndexOf('/0'))+'/132';
+            return url.replace(/\/0$/i, '/132');
         }
     }
 })
