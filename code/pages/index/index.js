@@ -4,7 +4,7 @@ const app = getApp()
 import marquee from '../marquee/marquee.js';
 import NumberAnimate from "../../utils/NumberAnimate";
 var timeOutHeart=null;
-
+var runTime=null;
 var options = Object.assign(marquee, {
     data: {
         userId:app.getUserId(),
@@ -489,11 +489,84 @@ var options = Object.assign(marquee, {
         this.getExChangeCoin();
     },
 
+
+    cirle:function (ctx,deg) {
+        let R = 95; //半径
+        let a= deg*Math.PI/180;
+        let x,y;
+        if(deg<=90){
+            x = R + Math.sin(a)* R ;
+            y = R - Math.cos(a)* R ;
+        }else if(deg<180){
+            a= (deg-90)*Math.PI/180
+            x = R + Math.cos(a)* R ;
+            y = R + Math.sin(a)* R ;
+        }else if(deg < 270){
+            a= (deg-180)*Math.PI/180
+            x = R - Math.sin(a)* R ;
+            y = R + Math.cos(a)* R ;
+        }else{
+            a= (deg-270)*Math.PI/180
+            x = R - Math.cos(a)* R ;
+            y = R - Math.sin(a)* R ;
+        }
+
+        x +=5;
+        y +=5;
+
+
+        ctx.arc(x,y, 5, 0, 2 * Math.PI);
+        ctx.setFillStyle('#ffffff');
+        ctx.fill();
+
+
+        ctx.draw(true)
+    },
+
+
     onShow:function () {
+        let _this = this;
+
+        let remote = 260;
+        let duration=5000;
+
+        var animation = wx.createAnimation({
+            duration: duration,
+            timingFunction: 'linear',
+        })
+        animation.rotate(remote).step()
+        this.setData({
+            animationMan:animation.export()
+        });
+
+
+
+
+        let ctx = wx.createCanvasContext('myCanvas');
+
+
+
+        let i =0 ;
+        runTime =  setInterval(function () {
+            _this.cirle(ctx,i);
+            if(i>remote) {clearInterval(runTime)}
+            i++;
+        },duration/remote);
+
+
+
+
+
+
+
+
+
+
+
         wx.showShareMenu({
             withShareTicket: true
         })
-            let _this = this;
+
             if(_this.data.userId){
 
                 wx.login({

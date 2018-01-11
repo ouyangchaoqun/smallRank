@@ -1,4 +1,36 @@
 <!--index.wxml-->
+<view class="top_animation">
+    <view class="man.go" animation="{{animationMan}}"  >
+        <image src="/image/run.gif"></image>
+    </view>
+
+    <view class="run_glup">
+        <view class="cirle"></view>
+        <canvas canvas-id="myCanvas" class="yyyy" />
+
+
+
+
+
+        <!--<div class="pie_left">-->
+            <!--<div class="left" animation="{{animationLeft}}"></div>-->
+        <!--</div>-->
+        <!--<div class="pie_right">-->
+            <!--<div class="right" animation="{{animationRight}}"></div>-->
+        <!--</div>-->
+    </view>
+
+
+
+
+
+</view>
+
+
+
+
+
+
 <scroll-view bindscroll="scroll" scroll-y="{{true}}" style="height:{{wHeight}}px">
     <view class="top">
         <view class="coin" wx:if="{{isSubscribe}}">{{user.coinAmount}}</view>
