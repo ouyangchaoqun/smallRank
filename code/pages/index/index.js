@@ -491,8 +491,8 @@ var options = Object.assign(marquee, {
 
 
     cirle:function (ctx,deg) {
-        let R = 95; //半径
-        let a= deg*Math.PI/180;
+        let R = 85; //半径
+        let a= deg*Math.PI/180; //弧度
         let x,y;
         if(deg<=90){
             x = R + Math.sin(a)* R ;
@@ -527,7 +527,7 @@ var options = Object.assign(marquee, {
     onShow:function () {
         let _this = this;
 
-        let remote = 260;
+        let remote = 90/100*360;
         let duration=5000;
 
         var animation = wx.createAnimation({
@@ -546,7 +546,7 @@ var options = Object.assign(marquee, {
 
 
 
-        let i =0 ;
+        let i =0;
         runTime =  setInterval(function () {
             _this.cirle(ctx,i);
             if(i>remote) {clearInterval(runTime)}

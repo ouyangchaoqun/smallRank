@@ -1,25 +1,81 @@
 <!--index.wxml-->
 <view class="top_animation">
-    <view class="man.go" animation="{{animationMan}}"  >
-        <image src="/image/run.gif"></image>
+  <view class="man.go" animation="{{animationMan}}">
+    <image src="/image/index_lion.png"></image>
+  </view>
+
+  <view class="run_glup">
+    <view class="cirle">
+      <view class="run_info">
+        <view class="run_title">今日步数</view>
+        <view class="run_bushu">15300</view>
+        <view class="run_goal">目标：20000</view>
+      </view>
     </view>
-
-    <view class="run_glup">
-        <view class="cirle"></view>
-        <canvas canvas-id="myCanvas" class="yyyy" />
+    <canvas canvas-id="myCanvas" class="yyyy" />
 
 
 
 
 
-        <!--<div class="pie_left">-->
-            <!--<div class="left" animation="{{animationLeft}}"></div>-->
-        <!--</div>-->
-        <!--<div class="pie_right">-->
-            <!--<div class="right" animation="{{animationRight}}"></div>-->
-        <!--</div>-->
+    <!--<div class="pie_left">-->
+    <!--<div class="left" animation="{{animationLeft}}"></div>-->
+    <!--</div>-->
+    <!--<div class="pie_right">-->
+    <!--<div class="right" animation="{{animationRight}}"></div>-->
+    <!--</div>-->
+  </view>
+  <view class="img cloud1">
+    <image src='/image/index_cloud1.png' mode='widthFix'></image>
+  </view>
+  <view class="img cloud2">
+    <image src='/image/index_cloud2.png' mode='widthFix'></image>
+  </view>
+  <view class="img branch1">
+    <image src='/image/index_branch1.png' mode='widthFix'></image>
+  </view>
+  <view class="img branch2">
+    <image src='/image/index_branch2.png' mode='widthFix'></image>
+  </view>
+  <view class="img branch3">
+    <image src='/image/index_branch3.png' mode='widthFix'></image>
+  </view>
+
+  <view class="nav">
+    <view class="nav_cat">
+      <image src='http://oss.xqzs.cn/resources/runmini/index_cat.png' mode='widthFix'></image>
     </view>
+    <view class="nav_snow">
+      <image src='http://oss.xqzs.cn/resources/runmini/index_house_snow.png' mode='widthFix'></image>
+    </view>
+    <view class="nav_items">
+      <view class="nav_item">
+        <view class="nav_icon">
+          <image src='http://oss.xqzs.cn/resources/runmini/index_total.png' mode='widthFix'></image>
+        </view>
+        <view class="nav_wz">统计</view>
+      </view>
+      <view class="nav_item">
+        <view class="nav_icon">
+          <image src='http://oss.xqzs.cn/resources/runmini/index_goal.png' mode='widthFix'></image>
+        </view>
+        <view class="nav_wz">目标</view>
+      </view>
+      <view class="nav_item">
+        <view class="nav_icon">
+          <image src='http://oss.xqzs.cn/resources/runmini/index_relation.png' mode='widthFix'></image>
+        </view>
+        <view class="nav_wz">关联</view>
+      </view>
+      <view class="nav_item">
+        <view class="nav_icon">
+          <image src='http://oss.xqzs.cn/resources/runmini/index_pk.png' mode='widthFix'></image>
+        </view>
+        <view class="nav_wz">好友PK</view>
+      </view>
 
+    </view>
+  </view>
 
 
 
@@ -31,8 +87,8 @@
 
 
 
-<scroll-view bindscroll="scroll" scroll-y="{{true}}" style="height:{{wHeight}}px">
-    <view class="top">
+<scroll-view bindscroll="scroll" scroll-y="{{true}}" style="height:{{wHeight}}px;background:#DFD0C2">
+  <!-- <view class="top">
         <view class="coin" wx:if="{{isSubscribe}}">{{user.coinAmount}}</view>
         <view class="contact_btn_h"  wx:if="{{!isSubscribe}}">
             <view class="coin">{{user.coinAmount}}</view>
@@ -58,96 +114,111 @@
         <block wx-if="{{todayChanged}}">
             <button class="change changed" bindtap="change">明日再来</button>
         </block>
+    </view> -->
+  <view class="ad" wx-if="{{false}}">
+    <view class="text">
+      <include src="../marquee/marquee.wxml" />
     </view>
-    <view class="ad" wx-if="{{false}}">
-        <view class="text">
-            <include src="../marquee/marquee.wxml"/>
+  </view>
+
+
+
+
+  <navigator url="{{noticeLink}}" open-type="navigate" class="notice_link" wx:if="{{notice.count>0}}">
+    <view class="notice_box notice_box_p">
+      <view class="notice">
+        <image class="notice_friend" src="{{notice.user[0].faceUrl}}"></image>
+        <view>{{notice.count}} 条新消息</view>
+        <image class="goNotice" src="http://oss.xqzs.cn/xqzs/mini/program/iconjt.png" alt="" />
+      </view>
+    </view>
+  </navigator>
+
+  <view class="rank">
+  <view class="img snow1">
+    <image src='http://oss.xqzs.cn/resources/runmini/index_snow1.png' mode='widthFix'></image>
+  </view>
+   <view class="img snow">
+    <image src='http://oss.xqzs.cn/resources/runmini/index_snow.png' mode='widthFix'></image>
+  </view>
+   <view class="img cloud1">
+    <image src='http://oss.xqzs.cn/resources/runmini/index.png' mode='widthFix'></image>
+  </view>
+   <view class="img cloud1">
+    <image src='/image/index_cloud1.png' mode='widthFix'></image>
+  </view>
+    <view class="artsnow"></view>
+  <view class="tabs">
+    <view class="btn {{tab==0?'selected':''}}" bindtap='tab' data-index="0">
+      <view class="rank_wz">好友排行</view>
+    </view>
+    <view class="btn {{tab==1?'selected':''}}" bindtap='tab' data-index="1">
+      <view class="rank_wz">TOP100</view>
+    </view>
+  </view>
+  </view>
+
+  <view class="  tj" style="margin-bottom: 10px;">
+   <view class="img listsnow">
+    <image src='http://oss.xqzs.cn/resources/runmini/index_list_snwo.png' mode='widthFix'></image>
+  </view>
+  <view class="img rightsnow">
+    <image src='http://oss.xqzs.cn/resources/runmini/index_list_snwo.png' mode='widthFix'></image>
+  </view>
+    <view class="item">
+      <text class="order">{{myRank.rank}}</text>
+      <image src="{{user.faceUrl}}"></image>
+      <text class="">{{user.nickName}}</text>
+      <view class="hearts" bindtap="goCareList" data-id="{{myRank.id}}" data-count="{{myRank.careCount}}">
+        <view class="num2">{{myRank.careCount}}</view>
+        <view class="heart{{myRank.careCount>0?'_on':''}}"></view>
+      </view>
+      <view class="num">
+        <text>{{myRank.step}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="tj">
+    <block wx-if="{{tab ==i}}" wx:for="{{[today,yesterday,lastWeek,lastMonth]}}" wx:for-item="item" wx:for-index="i">
+      <view class="item {{userId==name.userId&&false?'myself':''}}" wx:for="{{item}}" wx:for-item="name" wx:for-index="index" wx:key="key">
+        <text class="order">{{index+1}}</text>
+        <view class="line"></view>
+        <image src="{{name.faceUrl}}"></image>
+        <view class="run_info">
+        <view class="">{{name.nickName}}</view>
+        <view class="shuju">步行距离1.3KL</view>
         </view>
-    </view>
-
-
-
-
-    <navigator url="{{noticeLink}}" open-type="navigate" class="notice_link" wx:if="{{notice.count>0}}">
-        <view class="notice_box notice_box_p">
-            <view class="notice">
-                <image class="notice_friend" src="{{notice.user[0].faceUrl}}"></image>
-                <view>{{notice.count}} 条新消息</view>
-                <image class="goNotice" src="http://oss.xqzs.cn/xqzs/mini/program/iconjt.png" alt=""/>
-            </view>
+        <view class="hearts" bindtap="care" data-index="{{index}}" data-typeindex="{{i}}" bindtouchstart='flyStart' bindtouchend='flyOver'>
+          <view class="num2">{{name.careCount}}</view>
+          <image wx:for="{{name.flyHeart}}" src="http://oss.xqzs.cn/resources/runmini/index_good_on.png" class="fly_heart start{{itemf.rnd}}" wx:for-item="itemf"></image>
+          <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
         </view>
-    </navigator>
-
-
-    <view wx-if="{{tabOver}}" class="tabh"></view>
-    <view class="tab {{tabOver?'over':''}}">
-        <text class="{{tab ==0?'on':''}}" bindtap="tab" data-index="0">今天
-            <text class="line"></text>
-        </text>
-        <text class="{{tab ==1?'on':''}}" bindtap="tab" data-index="1">昨天
-            <text class="line"></text>
-        </text>
-        <text class="{{tab ==2?'on':''}}" bindtap="tab" data-index="2">上周
-            <text class="line"></text>
-        </text>
-        <text class="{{tab ==3?'on':''}}" bindtap="tab" data-index="3">上月
-            <text class="line"></text>
-        </text>
-    </view>
-
-
-    <view class="  tj" style="margin-bottom: 10px;" >
-        <view class="item">
-            <text class="order">{{myRank.rank}}</text>
-            <image src="{{user.faceUrl}}"></image>
-            <text class="">{{user.nickName}}</text>
-            <view class="hearts"  bindtap="goCareList" data-id="{{myRank.id}}" data-count="{{myRank.careCount}}">
-                <view class="num2">{{myRank.careCount}}</view>
-                <view class="heart{{myRank.careCount>0?'_on':''}}"></view>
-            </view>
-            <view class="num">
-                <text>{{myRank.step}}</text>
-            </view>
+        <view class="num">
+          <text class="{{i<2&&name.step>9999?'step_w':''}}">{{name.step}}</text>
         </view>
-    </view>
+      </view>
+    </block>
 
-    <view class="tj">
-        <block wx-if="{{tab ==i}}" wx:for="{{[today,yesterday,lastWeek,lastMonth]}}" wx:for-item="item"  wx:for-index="i">
-            <view class="item {{userId==name.userId&&false?'myself':''}}" wx:for="{{item}}"  wx:for-item="name" wx:for-index="index" wx:key="key" >
-                <text class="order">{{index+1}}</text>
-                <view class="line"></view>
-                <image src="{{name.faceUrl}}"></image>
-                <text class="">{{name.nickName}}</text>
-                <view class="hearts" bindtap="care" data-index="{{index}}" data-typeindex="{{i}}"  bindtouchstart='flyStart'  bindtouchend='flyOver'>
-                    <view class="num2">{{name.careCount}}</view>
-                    <image   wx:for="{{name.flyHeart}}" src="http://oss.xqzs.cn/xqzs/mini/program/index_heart_on.png"  class="fly_heart start{{itemf.rnd}}"  wx:for-item="itemf"></image>
-                    <view class="heart{{name.careMe||(userId==name.userId&&name.careCount>0)?'_on':''}} {{name.hit?'hit':''}}"></view>
-                </view>
-                <view class="num">
-                    <text class="{{i<2&&name.step>9999?'step_w':''}}">{{name.step}}</text>
-                </view>
-            </view>
-        </block>
-
-    </view>
-    <view class="view_btn_share">
-        <button class="share_btn"  open-type="share">邀请好友</button>
-    </view>
+  </view>
+  <view class="view_btn_share">
+    <button class="share_btn" open-type="share">邀请好友</button>
+  </view>
 </scroll-view>
 
 
 
 
 
-<view class="coin_add" wx-if="{{showAddCoinAninate}}">
+<!-- <view class="coin_add" wx-if="{{showAddCoinAninate}}">
     <view class="coin_add_round"></view>
     <view class="coin_add_coin"></view>
     <view class="add_num">+{{yesterdayChangeCoin.coinNum}}</view>
-</view>
+</view> -->
 
-<view   wx-if="{{false}}">
-<!--[<open-data type="groupName" open-gid="{{ggggggid}}"></open-data>]-->
-<!--[<open-data type="groupFaceUrl" open-gid="{{ggggggid}}"></open-data>]-->
+<view wx-if="{{false}}">
+  <!--[<open-data type="groupName" open-gid="{{ggggggid}}"></open-data>]-->
+  <!--[<open-data type="groupFaceUrl" open-gid="{{ggggggid}}"></open-data>]-->
 
-<!--dsfdsfd-->
+  <!--dsfdsfd-->
 </view>
