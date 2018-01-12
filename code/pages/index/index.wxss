@@ -177,7 +177,7 @@ scroll-view{ height: 100%; overflow: auto}
 .bottom_rank .item .hearts .num2 { color:#fff;}
 .bottom_rank .item .hearts .heart{ background: url(http://oss.xqzs.cn/xqzs/mini/program/index_heart_w.png) no-repeat; height:26rpx; width: 28rpx; background-size: 28rpx; margin: 0 auto;  margin-top:6rpx;}
 .bottom_rank  .item .num text.c{ height: 140rpx; line-height: 160rpx; overflow: hidden}
-.run_info{float: left}
+.run_infos{float: left;height: 132rpx; width: 360rpx; margin-left: 20rpx;}
 .hit {
     -webkit-animation: heart 0.1s linear;
     animation: heart 0.1s linear;
@@ -448,7 +448,7 @@ button.share_btn::after{  border:none;  }
   
 }
 .img.cloud2{
-  top: 230rpx;
+  top: 255rpx;
   left: 0rpx;
   width: 172rpx;
 }
@@ -513,6 +513,37 @@ overflow: hidden;
 .img.rightsnow{top:-26rpx; right: -160rpx;width: 250rpx;position: absolute; z-index: 5}
 .artsnow{width: 80rpx; height: 28rpx; border-radius: 10rpx; position: absolute;right: -40rpx; top: 110rpx;background: #FFF}
 .shuju{
+  text-align: left;
   color: #7D8892;
   font-size: 24rpx;
+}
+.run_name{
+  text-align: left;
+ color: #8C8D98 ;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  margin-top: 30rpx;
+}
+.run_infos .shuju text{ text-align: left;
+  color: #7D8892;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  margin-left: 0}
+.moredata{ font-weight: bold; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif}
+.img.dl{top: 48rpx;left: 52rpx;width: 64rpx; height: 224rpx; animation: denglong infinite linear 5s}
+.img.dl1{top: 110rpx;right: 42rpx;width: 48rpx; height: 168rpx; animation: denglong infinite linear 6s}
+.denglong{margin-top:112rpx;  }
+@keyframes denglong{
+  0%{
+    transform-origin: 50% 50%; transform: rotate(0deg);
+  }
+  25%{
+     transform-origin: 50% 50%; transform: rotate(45deg)
+  }
+  50%{transform-origin: 50% 50%; transform: rotate(0deg) }
+
+  75%{
+    transform-origin: 50% 50%; transform: rotate(45deg)
+  }
+  100%{ transform-origin: 50% 50%; transform: rotate(0deg)}
 }

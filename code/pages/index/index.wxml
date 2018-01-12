@@ -28,6 +28,12 @@
   <view class="img cloud1">
     <image src='/image/index_cloud1.png' mode='widthFix'></image>
   </view>
+  <view class="img dl">
+    <image class="denglong" src='/image/index_dl.png' mode='widthFix'></image>
+  </view>
+  <view class="img dl1">
+    <image class="denglong" src='/image/index_dl.png' mode='widthFix'></image>
+  </view>
   <view class="img cloud2">
     <image src='/image/index_cloud2.png' mode='widthFix'></image>
   </view>
@@ -124,7 +130,7 @@
 
 
 
-  <navigator url="{{noticeLink}}" open-type="navigate" class="notice_link" wx:if="{{notice.count>0}}">
+  <!-- <navigator url="{{noticeLink}}" open-type="navigate" class="notice_link" wx:if="{{notice.count>0}}">
     <view class="notice_box notice_box_p">
       <view class="notice">
         <image class="notice_friend" src="{{notice.user[0].faceUrl}}"></image>
@@ -132,20 +138,11 @@
         <image class="goNotice" src="http://oss.xqzs.cn/xqzs/mini/program/iconjt.png" alt="" />
       </view>
     </view>
-  </navigator>
+  </navigator> -->
 
   <view class="rank">
   <view class="img snow1">
     <image src='http://oss.xqzs.cn/resources/runmini/index_snow1.png' mode='widthFix'></image>
-  </view>
-   <view class="img snow">
-    <image src='http://oss.xqzs.cn/resources/runmini/index_snow.png' mode='widthFix'></image>
-  </view>
-   <view class="img cloud1">
-    <image src='http://oss.xqzs.cn/resources/runmini/index.png' mode='widthFix'></image>
-  </view>
-   <view class="img cloud1">
-    <image src='/image/index_cloud1.png' mode='widthFix'></image>
   </view>
     <view class="artsnow"></view>
   <view class="tabs">
@@ -168,7 +165,11 @@
     <view class="item">
       <text class="order">{{myRank.rank}}</text>
       <image src="{{user.faceUrl}}"></image>
-      <text class="">{{user.nickName}}</text>
+      <view class="run_infos">
+        <view class="run_name">{{myRank.nickName}}</view>
+        <view class="shuju">
+        <text>步行距离</text><text class="moredata">1.3</text><text>KM 消耗热量</text><text class="moredata">50</text><text>KCL</text></view>
+        </view>
       <view class="hearts" bindtap="goCareList" data-id="{{myRank.id}}" data-count="{{myRank.careCount}}">
         <view class="num2">{{myRank.careCount}}</view>
         <view class="heart{{myRank.careCount>0?'_on':''}}"></view>
@@ -185,8 +186,8 @@
         <text class="order">{{index+1}}</text>
         <view class="line"></view>
         <image src="{{name.faceUrl}}"></image>
-        <view class="run_info">
-        <view class="">{{name.nickName}}</view>
+        <view class="run_infos">
+        <view class="run_name">{{name.nickName}}</view>
         <view class="shuju">步行距离1.3KL</view>
         </view>
         <view class="hearts" bindtap="care" data-index="{{index}}" data-typeindex="{{i}}" bindtouchstart='flyStart' bindtouchend='flyOver'>
