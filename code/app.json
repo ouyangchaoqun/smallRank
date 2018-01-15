@@ -5,7 +5,8 @@
     "pages/notice/notice",
     "pages/care/list",
     "pages/target/target",
-    "pages/friendsRank/friendsRank"
+    "pages/friendsRank/friendsRank",
+    "pages/rankHistory/rankHistory"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -9,10 +9,5 @@ Page({
         this.setData({
 
         })
-    },
-    goHistory:function () {
-        wx.navigateTo({
-            url: '../rankHistory/rankHistory'
-        })
     }
 })

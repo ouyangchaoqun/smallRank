@@ -1,3 +1,53 @@
 <view class="friendsRank_box">
-    
+    <view class="rank_top">
+        <view class="rank_img">
+            <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
+        </view>
+        <view class="rank_name">皮小条</view>
+    </view>
+    <view class="rank_count">
+        <view>
+            <view>123132</view>
+            <text>单日最高步数</text>
+        </view>
+        <view>
+            <view>123132</view>
+            <text>当前步数</text>
+            <view class="count_border border_left"></view>
+            <view class="count_border border_right"></view>
+        </view>
+        <view>
+            <view>123132</view>
+            <text>点赞数</text>
+        </view>
+    </view>
+    <view class="rank_title">
+        荣誉勋章
+        <view>
+            <text>4</text>/7
+        </view>
+    </view>
+    <scroll-view scroll-x="true" class="medal_type">
+        <view >1</view>
+        <view >2</view>
+        <view >3</view>
+        <view >4</view>
+        <view >5</view>
+        <view >6</view>
+        <view >7</view>
+    </scroll-view>
+    <view class="rank_title">
+        PK记录
+        <view bindtap="goHistory">
+            >
+        </view>
+    </view>
+    <view class="rank_item">
+        <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
+        <view class="item_name">好一点用户体验群</view>
+        <view class="item_right">第一名</view>
+    </view>
+    <view class="rank_share">
+        <view class="rank_btn">发起挑战</view>
+    </view>
 </view>

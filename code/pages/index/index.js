@@ -61,10 +61,14 @@ var options = Object.assign(marquee, {
 
     },
     goTarget: function () {
-        console.log('target')
       wx.navigateTo({
         url: '../target/target'
       })
+    },
+    goRank:function () {
+        wx.navigateTo({
+            url: '../friendsRank/friendsRank'
+        })
     },
     flyStart:function (e) {
         let _this=this;
