@@ -40,7 +40,7 @@ Page({
         url: app.API_URL + "werun/set/day/goal",
         method:"POST",
         data:{
-          userId: this.data.userid,
+          userId: this.data.userId,
           goal:n
         },
         success:function(response){
