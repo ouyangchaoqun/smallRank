@@ -26,25 +26,25 @@
     <!--</div>-->
   </view>
   <view class="img cloud1">
-    <image src='/image/index_cloud1.png' mode='widthFix'></image>
+    <image src='http://oss.xqzs.cn/resources/runmini/index_cloud1.png' mode='widthFix'></image>
   </view>
   <view class="img dl">
-    <image class="denglong" src='/image/index_dl.png' mode='widthFix'></image>
+    <image class="denglong" src='http://oss.xqzs.cn/resources/runmini/index_dl.png' mode='widthFix'></image>
   </view>
   <view class="img dl1">
-    <image class="denglong" src='/image/index_dl.png' mode='widthFix'></image>
+    <image class="denglong" src='http://oss.xqzs.cn/resources/runmini/index_dl.png' mode='widthFix'></image>
   </view>
   <view class="img cloud2">
-    <image src='/image/index_cloud2.png' mode='widthFix'></image>
+    <image src='http://oss.xqzs.cn/resources/runmini/index_cloud2.png' mode='widthFix'></image>
   </view>
   <view class="img branch1">
-    <image src='/image/index_branch1.png' mode='widthFix'></image>
+    <image src='http://oss.xqzs.cn/resources/runmini/index_branch1.png' mode='widthFix'></image>
   </view>
   <view class="img branch2">
-    <image src='/image/index_branch2.png' mode='widthFix'></image>
+    <image src='http://oss.xqzs.cn/resources/runmini/index_branch2.png' mode='widthFix'></image>
   </view>
   <view class="img branch3">
-    <image src='/image/index_branch3.png' mode='widthFix'></image>
+    <image src='http://oss.xqzs.cn/resources/runmini/index_branch3.png' mode='widthFix'></image>
   </view>
 
   <view class="nav">
@@ -199,7 +199,8 @@
         <image src="{{name.faceUrl}}"></image>
         <view class="run_infos">
         <view class="run_name">{{name.nickName}}</view>
-        <view class="shuju">步行距离1.3KL</view>
+       <view class="shuju">
+        <text>步行距离</text><text class="moredata">1.3</text><text>KM 消耗热量</text><text class="moredata">50</text><text>KCL</text></view>
         </view>
         <view class="hearts" bindtap="care" data-index="{{index}}" data-typeindex="{{i}}" bindtouchstart='flyStart' bindtouchend='flyOver'>
           <view class="num2">{{name.careCount}}</view>
