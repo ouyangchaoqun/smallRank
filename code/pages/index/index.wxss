@@ -508,10 +508,16 @@ overflow: hidden;
   background: #FC5739  !important;
 }
 .rank{height: 240rpx; background: #DFD0C2 ;width: 100%;position: relative;}
+.rank .z1{position: absolute; width:15rpx; right: 80rpx; top: 110rpx;font-size: 24rpx;}
+.rank .z2{position: absolute; width:15rpx; right: 65rpx; top: 100rpx; font-size: 28rpx; animation: z2 5s linear infinite}
+.rank .z3{position: absolute; width:15rpx; right: 45rpx; top: 90rpx; font-size: 32rpx; animation: z3 5s linear infinite}
 .img.snow1{top:102rpx; left: 0;width: 170rpx;}
+.img.dog{top:106.2rpx; right: 70rpx;width: 130rpx; z-index: 2}
+.img.hulu{top:157rpx; right: 105rpx;width: 25rpx; z-index: 3 ;animation: hulu linear infinite 5s}
 .img.listsnow{top: -26rpx; left: 0;width: 250rpx; position: absolute;z-index: 5}
 .img.rightsnow{top:-26rpx; right: -160rpx;width: 250rpx;position: absolute; z-index: 5}
-.artsnow{width: 80rpx; height: 28rpx; border-radius: 10rpx; position: absolute;right: -40rpx; top: 110rpx;background: #FFF}
+.artsnow{width: 70rpx; height: 28rpx; border-radius: 70%; position: absolute;right: -40rpx; top:80rpx;background: #FFF}
+.artshadow{width: 110rpx; height: 30rpx; border-radius: 70%; position: absolute;right: 80rpx; top: 200rpx;background: rgba(125,136,146,0.7)}
 .shuju{
   text-align: left;
   color: #7D8892;
@@ -547,3 +553,27 @@ overflow: hidden;
   }
   100%{ transform-origin: 50% 50%; transform: rotate(0deg)}
 }
+@keyframes hulu{
+  0% {   transform: translate3d(-0, -0, 0)   scale(1);}
+  50%{ transform: translate3d(-0, -0, 0)   scale(1.5);}
+  100%{ transform: translate3d(-0, -0, 0)   scale(1);}
+}
+@keyframes z2{
+  0% {   transform: translate3d(-0, -0, 0)   scale(1);
+  opacity: 0}
+  40%{ transform: translate3d(-0, -0, 0)   scale(1);
+  opacity: 1}
+  99%{transform: translate3d(-0, -0, 0)   scale(1); opacity: 1}
+  100%{ transform: translate3d(-0, -0, 0)   scale(1);
+  opacity: 0}
+}
+@keyframes z3{
+  0% {   transform: translate3d(-0, -0, 0)   scale(1);
+  opacity: 0}
+  50%{ transform: translate3d(-0, -0, 0)   scale(1);
+  opacity: 0}
+  99%{transform: translate3d(-0, -0, 0)   scale(1); opacity: 1}
+  100%{ transform: translate3d(-0, -0, 0)   scale(1);
+  opacity: 0}
+}
+

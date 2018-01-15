@@ -144,6 +144,17 @@
   <view class="img snow1">
     <image src='http://oss.xqzs.cn/resources/runmini/index_snow1.png' mode='widthFix'></image>
   </view>
+  <view class="img dog">
+    <image src='http://oss.xqzs.cn/resources/runmini/index_dog.png' mode='widthFix'></image>
+  </view>
+   <view class="img hulu">
+    <image src='http://oss.xqzs.cn/resources/runmini/index_hulu.png' mode='widthFix'></image>
+  </view>
+  <view class="z1">z</view>
+  <view class="z2">z</view>
+  <view class="z3">z</view>
+    <view class="artshadow"></view>
+   
     <view class="artsnow"></view>
   <view class="tabs">
     <view class="btn {{tab==0?'selected':''}}" bindtap='tab' data-index="0">
