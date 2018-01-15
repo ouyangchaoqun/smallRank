@@ -155,7 +155,7 @@ button.change::after{
 .tj  .item text{line-height: 132rpx; color:#333; font-size: 28rpx; display: block;float:left; margin-left: 24rpx; font-family: Arial;}
 .tj .item .hearts{ float:right;position: relative}
 .tj  .item .num{ float:right;}
-.tj  .item .num text{ color:#3E3F52 ; font-size: 46rpx; float:left; margin-right: 4rpx; margin-left: 0;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif}
+.tj  .item .num text{ color:#3E3F52 ; font-size: 36rpx; float:left; margin-right: 4rpx; margin-left: 0;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif}
 .tj .item .num text.step_w{color:#FF9933 ; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif }
 .tj  .item .num text.c{ font-size:24rpx; margin-right: 0; line-height: 146rpx; height: 132rpx; overflow: hidden }
 scroll-view{ height: 100%; overflow: auto}
