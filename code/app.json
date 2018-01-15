@@ -10,7 +10,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FD674C",
+    "navigationBarBackgroundColor": "#ff0000",
     "navigationBarTitleText": "运动步数排行",
     "navigationBarTextStyle": "light"
   }

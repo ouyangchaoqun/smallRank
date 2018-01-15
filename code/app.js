@@ -5,6 +5,7 @@ App({
     API_URL: "https://wx.xqzs.cn/xpi/",
     PROGRAM_ID:2,
     fromuserid:0,
+    APP_ID:'wx43317052cc1b35a6',
     onShow: function () {
 
 
@@ -231,7 +232,22 @@ App({
     },
     string:{
         smallFace:function (url) {
+            if(url==null||url==undefined){
+                return '';
+            }
             return url.replace(/\/0$/i, '/132');
         }
+    },
+    copy:function (v) {
+        wx.setClipboardData({
+            data: v,
+            success: function(res) {
+                wx.showToast({
+                    title: '复制成功',
+                    icon: 'success',
+                    duration: 1000
+                })
+            }
+        })
     }
 })

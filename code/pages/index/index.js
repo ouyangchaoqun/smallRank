@@ -15,6 +15,7 @@ var options = Object.assign(marquee, {
         tjHeight:300,
         wHeight:600,
         today:[],
+        allToday:[],
         yesterday:[],
         lastMonth:[],
         lastWeek:[],
@@ -31,10 +32,56 @@ var options = Object.assign(marquee, {
         todayRunNum:0,
         round:false,
         canIUse: wx.canIUse('button.open-type.contact'),
-        isSubscribe:false
+        isSubscribe:false,
+        lionX:77,
+        lionY:0,
+        snowflake:[],
+        snowflakeCount:10,
+        bindMiniProgramTip:false,
+        bindMiniProgramTipOut:null,
+        APP_ID:app.APP_ID,
+        canvasShow:true,
+        goal:3000
 
     },
+    showBind:function (e) {
+        console.log(e)
+        this.setData({
+            bindMiniProgramTip:true,
+            bindMiniProgramTipOut:true
+        })
+    },
+    closeBindMiniProgramTip:function () {
+        let _this= this;
+        _this.setData({
+            bindMiniProgramTipOut:false
+        });
+        setTimeout(function () {
+            _this.setData({
+                bindMiniProgramTip:false,
+                bindMiniProgramTipOut:null
+            });
+        },500)
+    },
+    copyAppId:function () {
+        app.copy(app.APP_ID);
+    },
+    copyPage:function () {
+        app.copy('pages/index/index');
 
+    },
+    initSnowflake:function () {
+        let _this=this;
+        setTimeout(function () {
+            if(_this.data.snowflakeCount<40){
+                _this.setData({
+                    snowflakeCount:_this.data.snowflakeCount+10
+                });
+                _this.initSnowflake();
+            }
+
+        },1500)
+    },
 
     getExChangeCoin:function () {
        //werun/coin/exchange
@@ -72,9 +119,11 @@ var options = Object.assign(marquee, {
     },
     flyStart:function (e) {
         let _this=this;
+        console.log(e)
         let itemInfo= _this.getItemInfo(e);
         let item= itemInfo.item;
         let dataRe= itemInfo.dataRe;
+        console.log(item)
         item.flyHeart=[];
 
         for(let i =0  ;i<5;i++){
@@ -112,14 +161,8 @@ var options = Object.assign(marquee, {
             item = _this.data.today[index];
             dataRe="today["+index+"]";
         } else if (typeIndex == 1) {
-            item = _this.data.yesterday[index];
-            dataRe="yesterday["+index+"]";
-        } else if (typeIndex == 2) {
-            item = _this.data.lastWeek[index];
-            dataRe="lastWeek["+index+"]";
-        } else if (typeIndex == 3) {
-            item = _this.data.lastMonth[index];
-            dataRe="lastMonth["+index+"]";
+            item = _this.data.allToday[index];
+            dataRe="allToday["+index+"]";
         }
 
         return {item:item,dataRe:dataRe}
@@ -151,13 +194,7 @@ var options = Object.assign(marquee, {
         if (typeIndex == 0) {
             item = _this.data.today[index];
         } else if (typeIndex == 1) {
-            item = _this.data.yesterday[index];
-        } else if (typeIndex == 2) {
-            dataType= "week";
-            item = _this.data.lastWeek[index];
-        } else if (typeIndex == 3) {
-            dataType= "month";
-            item = _this.data.lastMonth[index];
+            item = _this.data.allToday[index];
         }
 
 
@@ -179,11 +216,7 @@ var options = Object.assign(marquee, {
                         if (typeIndex == 0) {
                             dataRe =  _this.data.today
                         } else if (typeIndex == 1) {
-                            dataRe =  _this.data.yesterday
-                        } else if (typeIndex == 2) {
-                            dataRe =  _this.data.lastWeek
-                        } else if (typeIndex == 3) {
-                            dataRe =  _this.data.lastMonth
+                            dataRe =  _this.data.allToday
                         }
                         dataRe[index].careCount=data.data.data.count;
                         dataRe[index].careMe=1;
@@ -195,7 +228,7 @@ var options = Object.assign(marquee, {
                             _this.getMyRank(0)
                         } else if (typeIndex == 1) {
                             _this.setData({
-                                yesterday:dataRe
+                                allToday:dataRe
                             });
                             _this.getMyRank(1)
                         } else if (typeIndex == 2) {
@@ -295,9 +328,14 @@ var options = Object.assign(marquee, {
 
 
         }else if(index==1){
+
+
             this.setData({
-                myRank: this._getMyRank(this.data.yesterday),
+                myRank: this.data.myRank1,
             })
+            // this.setData({
+            //     myRank: this._getMyRank(this.data.yesterday),
+            // })
         }else if(index==2){
             this.setData({
                 myRank: this._getMyRank(this.data.lastWeek),
@@ -341,9 +379,10 @@ var options = Object.assign(marquee, {
                             todayNum: n1.tempValue,
                             round:true
                         });
+
                     },
                     onComplete: () => {
-
+                        _this.getGoal();
                     }
                 });
             }
@@ -355,10 +394,10 @@ var options = Object.assign(marquee, {
                     method: "PUT",
                     data:{stepData:data},
                     success: function (data) {
-                        _this.getLastWeekData();
-                        _this.getLastMonthData();
+                        // _this.getLastWeekData();
+                        _this.getTodayTopData();
                         _this.getTodayData();
-                        _this.getYesterdayData();
+                        // _this.getYesterdayData();
 
                     }
                 })
@@ -373,6 +412,18 @@ var options = Object.assign(marquee, {
 
         }
     },
+    initRunDataItem:function (item) {
+        item.nickName=  item.nickName.substring(0,7);
+        item.faceUrl= app.string.smallFace(item.faceUrl);
+        if(item.sex==1){
+            item.km= Math.ceil(item.step * 0.74 / 1000);
+            item.kll=Math.ceil(item.step * 0.74 / 1000 * 40)
+        }else{
+            item.km= Math.ceil(item.step * 0.66 / 1000);
+            item.kll=Math.ceil(item.step * 0.66 / 1000 * 35)
+        }
+        return item;
+    },
     getTodayData:function () {
         let _this=this;
         this._getData("today",function (data) {
@@ -382,40 +433,90 @@ var options = Object.assign(marquee, {
             _this.getMyRank(0);
         })
     },
-    getYesterdayData:function () {
+    getTodayTopData:function () {
         let _this=this;
-        this._getData("yesterday",function (data) {
-            _this.setData({
-                yesterday: data.data.data.rows
-            })
-        })
-    },
-    getLastMonthData:function () {
-        let _this=this;
-        this._getData("last/month",function (data) {
-            _this.setData({
-                lastMonth: data.data.data.rows
-            })
-        })
-    },
-    getLastWeekData:function () {
-        let _this=this;
-        this._getData("last/week",function (data) {
-            _this.setData({
-                lastWeek: data.data.data.rows
-            })
-        })
-    },
-    _getData:function (type,callback) {
         if(this.data.userId){
             wx.showLoading()
             wx.request({
-                url: app.API_URL + "werun/rank/"+type+"/"+this.data.userId,
+                url: app.API_URL + "werun/rank/all/today/"+this.data.userId +"/100",
+                method: "GET",
+                success: function (data) {
+                    console.log(data.data)
+                    for(let i=0;i<data.data.data.rows.length;i++){
+                        data.data.data.rows[i] =_this.initRunDataItem( data.data.data.rows[i] );
+                    }
+                    _this.setData({
+                        allToday: data.data.data.rows,
+                        myRank1:_this.initRunDataItem(data.data.data.userRank)
+                    });
+                    wx.hideLoading();
+                }
+            })
+        }
+
+
+
+    },
+
+    getGoal:function () {
+        let _this= this;
+        wx.request({
+            url: app.API_URL + "werun/get/day/goal/"+this.data.userId ,
+            method: "GET",
+            success: function (data) {
+                console.log(data.data)
+                _this.setData({
+                    goal:data.data.data.goal
+                })
+                let remote = _this.data.todayNum/data.data.data.goal*360;
+                if(remote>360)remote=360;
+                let duration=2500;
+                let ctx = wx.createCanvasContext('myCanvas');
+                ctx.draw();
+                _this.setData({
+                    canvasShow:true
+                });
+                let i =0;
+                runTime =  setInterval(function () {
+                    _this.cirle(ctx,i);
+                    if(i>remote) {clearInterval(runTime);
+                        _this.setData({
+                            canvasShow:false
+                        })
+
+                        wx.canvasToTempFilePath({
+
+                            canvasId: 'myCanvas',
+                            success: function(res) {
+                                // console.log(res.tempFilePath)
+                                _this.setData({
+                                    canvasImg:res.tempFilePath
+                                });
+
+                            }
+                        })
+
+                    }
+                    i++;
+                },duration/remote);
+
+            }
+        })
+
+    },
+
+
+    _getData:function (type,callback) {
+
+        let _this=this;
+        if(this.data.userId){
+            wx.showLoading()
+            wx.request({
+                url: app.API_URL + "werun/rank/"+type+"/"+this.data.userId ,
                 method: "GET",
                 success: function (data) {
                     for(let i=0;i<data.data.data.rows.length;i++){
-                        data.data.data.rows[i].nickName=  data.data.data.rows[i].nickName.substring(0,7);
-                        data.data.data.rows[i].faceUrl= app.string.smallFace(data.data.data.rows[i].faceUrl)
+                        data.data.data.rows[i] =_this.initRunDataItem( data.data.data.rows[i] );
                     }
                     callback(data);
                     wx.hideLoading()
@@ -501,7 +602,8 @@ var options = Object.assign(marquee, {
 
 
     cirle:function (ctx,deg) {
-        let R = 85; //半径
+        let _this=this;
+        let R = 77; //半径
         let a= deg*Math.PI/180; //弧度
         let x,y;
         if(deg<=90){
@@ -521,47 +623,32 @@ var options = Object.assign(marquee, {
             y = R - Math.sin(a)* R ;
         }
 
+
+
         x +=5;
         y +=5;
 
+        this.setData({
+            lionX:x,
+            lionY:y
+        })
 
         ctx.arc(x,y, 5, 0, 2 * Math.PI);
         ctx.setFillStyle('#ffffff');
         ctx.fill();
+        ctx.draw(true);
 
 
-        ctx.draw(true)
+
+
     },
 
 
     onShow:function () {
         let _this = this;
-
-        let remote = 90/100*360;
-        let duration=5000;
-
-        var animation = wx.createAnimation({
-            duration: duration,
-            timingFunction: 'linear',
-        })
-        animation.rotate(remote).step()
-        this.setData({
-            animationMan:animation.export()
-        });
+        _this.initSnowflake();
 
 
-
-
-        let ctx = wx.createCanvasContext('myCanvas');
-
-
-
-        let i =0;
-        runTime =  setInterval(function () {
-            _this.cirle(ctx,i);
-            if(i>remote) {clearInterval(runTime)}
-            i++;
-        },duration/remote);
 
 
 
@@ -577,40 +664,40 @@ var options = Object.assign(marquee, {
             withShareTicket: true
         })
 
-            if(_this.data.userId){
+        if (_this.data.userId) {
 
-                wx.login({
-                    success: function (loginRes) {
-                        // console.log("showLoainres");
-                        wx.getWeRunData({
-                            success(runRes) {
-                                //发起网络请求
-                                wx.request({
-                                    url: app.API_URL + "wei/xin/post/decrypt/data",
-                                    method: "POST",
-                                    data: {
-                                        iv: runRes.iv,
-                                        encryptedData: runRes.encryptedData,
-                                        code: loginRes.code
-                                    },
-                                    success: function (data) {
+            wx.login({
+                success: function (loginRes) {
+                    // console.log("showLoainres");
+                    wx.getWeRunData({
+                        success(runRes) {
+                            //发起网络请求
+                            wx.request({
+                                url: app.API_URL + "wei/xin/post/decrypt/data",
+                                method: "POST",
+                                data: {
+                                    iv: runRes.iv,
+                                    encryptedData: runRes.encryptedData,
+                                    code: loginRes.code
+                                },
+                                success: function (data) {
 
-                                        if (data.data.data.stepInfoList) {
-                                            app.setRunStorageData(data.data.data.stepInfoList);
-                                        }
-                                        _this.initData();
-
+                                    if (data.data.data.stepInfoList) {
+                                        app.setRunStorageData(data.data.data.stepInfoList);
                                     }
-                                })
+                                    _this.initData();
 
-                            }
-                        });
-                    }
-                });
-                _this.getNotice();
+                                }
+                            })
+
+                        }
+                    });
+                }
+            });
+            _this.getNotice();
 
 
-            }
+        }
 
 
     },
