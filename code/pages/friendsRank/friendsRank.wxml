@@ -24,17 +24,18 @@
     <view class="rank_title">
         荣誉勋章
         <view>
-            <text>4</text>/7
+            <text>4</text>
+            /7
         </view>
     </view>
     <scroll-view scroll-x="true" class="medal_type">
-        <view >1</view>
-        <view >2</view>
-        <view >3</view>
-        <view >4</view>
-        <view >5</view>
-        <view >6</view>
-        <view >7</view>
+        <view bindtap='showCard'>1</view>
+        <view>2</view>
+        <view>3</view>
+        <view>4</view>
+        <view>5</view>
+        <view>6</view>
+        <view>7</view>
     </scroll-view>
     <view class="rank_title">
         PK记录
@@ -50,4 +51,13 @@
     <view class="rank_share">
         <view class="rank_btn">发起挑战</view>
     </view>
+</view>
+
+<view class="card" wx:if="{{isShowCard}}">
+    <view class="x" bindtap='close'>X</view>
+    <view class="xz_img"></view>
+    <view class="xz_shadow"></view>
+    <view class="xz_title"> 初级者</view>
+    <view class="xz_content">「单日步数超过3000步」</view>
+    <button class="xz_btn" bindtap="saveImg">保存</button>
 </view>
