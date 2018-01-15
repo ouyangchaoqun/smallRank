@@ -1,9 +1,14 @@
 <view class="target_box">
-    <view class="target_item">
-
+  <view class="target_item" wx:for="{{list}}" wx:for-index="index" bindtap='select' data-index="{{index}}">
+  <view class="selectcol" wx:if="{{index==select}}"></view>
+    <view class="imgs">{{index}}</view>
+    <view class="goal">
+      <view class="num">20000</view>
+      <view class="name">终极目标</view>
     </view>
-    <view class="target_item"></view>
-    <view class="target_item"></view>
-    <view class="target_item"></view>
-    <view class="target_item"></view>
+    <view class="select" wx:if="{{index==select}}">
+      <view class="square"><text>当前目标</text></view>
+      <view class="triangle"></view>
+    </view>
+  </view>
 </view>

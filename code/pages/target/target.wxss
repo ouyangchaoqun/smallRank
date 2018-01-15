@@ -2,6 +2,11 @@ page{
   height:100%;
   background: rgba(246,247,245,1);
 }
+
+@font-face{
+    font-family: 'YaHei Consolas Hybrid';
+    src : url('../fonts/yaheiconsolashybrid.ttf');
+}
 .target_box{
   padding-top: 80rpx;
 }
@@ -11,4 +16,21 @@ page{
   background: #fff;
   margin:0 auto;
   margin-bottom: 30rpx;
+  position: relative;
 }
+.imgs{ width: 100rpx;height: 72rpx; margin-left: 38rpx; margin-top: 26rpx; background: url("http://oss.xqzs.cn/resources/runmini/target_bian.png") no-repeat;float: left; background-size: 100%; text-align: center; font-size: 24rpx;color: #FFAA45;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;line-height:  72rpx;}
+.goal{ margin-left: 32rpx; margin-top: 26rpx; float: left; line-height: 1}
+.goal .num{font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-size: 40rpx;color: #8F9AA3;}
+.goal .name{color: #B5B5B5; font-size: 28rpx;}
+.selectcol{position: absolute;left: 0;top: 0; width: 10rpx; background: #73D2D4;height: 100%}
+.square{ width: 80rpx; height: 70rpx; position: absolute;background: #FD6246;right: 78rpx; top:0;color: #FFFFFF;font-size: 24rpx;}
+.triangle{ position: absolute;right: 78rpx; top:70rpx;
+    width: 0;
+    height: 0;
+    border-left: 40rpx solid transparent;
+    border-right: 40rpx solid transparent;
+    border-top: 26rpx solid #FD6246;
+ }
+ .square text{width: 48rpx;
+ margin: 2rpx auto;
+ display: block}

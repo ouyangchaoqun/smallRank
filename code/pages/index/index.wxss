@@ -3,7 +3,7 @@
 
 page{ background: #f5f3fa; }
 .top .today_run_num{ height: 280rpx; width: 330rpx; text-align: center;   margin: 0 auto; padding-top:64rpx;  }
-.top .today_run_num .bg{ height: 280rpx; width: 330rpx;content: '';padding-top:64rpx; display: block; position: absolute; top:40rpx; background: url(http://oss.xqzs.cn/xqzs/mini/program/  .png) no-repeat ; background-size: 330rpx;  }
+.top .today_run_num .bg{ height: 280rpx; width: 330rpx;content: '';padding-top:64rpx; display: block; position: absolute; top:40rpx; background: url(http://oss.xqzs.cn/xqzs/mini/program/zan.png) no-repeat ; background-size: 330rpx;  }
 .top .today_run_num .bg.round{
     animation: round2 0.8s  forwards linear;
     -webkit-animation: round2 0.8s  forwards  linear
