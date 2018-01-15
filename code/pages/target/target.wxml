@@ -1,0 +1,9 @@
+<view class="target_box">
+    <view class="target_item">
+
+    </view>
+    <view class="target_item"></view>
+    <view class="target_item"></view>
+    <view class="target_item"></view>
+    <view class="target_item"></view>
+</view>
