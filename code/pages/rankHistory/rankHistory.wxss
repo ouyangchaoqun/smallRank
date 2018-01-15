@@ -1,4 +1,61 @@
 page{
     height:100%;
-    background: rgba(246,247,245,1);
+    background: pink;
+}
+.history_top{
+    height:106rpx;
+    padding-top: 78rpx;
+    background: #FD674C;
+    position: relative;
+}
+.history_header{
+    margin:0 auto;
+    height:26rpx;
+    width:88%;
+    border-radius: 13rpx;
+    background: linear-gradient(#922B02, #D94139);
+    background: -webkit-linear-gradient(#922B02, #D94139);
+    position: relative;
+}
+.history_box{
+    position: absolute;
+    top:-500rpx;
+    width:98%;
+    left:1%;
+}
+.history_item{
+    height:88rpx;
+    line-height: 88rpx;
+    background: linear-gradient(to right ,#FF8A83, #FABD5D);
+    background: -webkit-linear-gradient(to right ,#FF8A83, #FABD5D);
+    border-radius: 10rpx;
+    margin-bottom: 16rpx;
+    padding:35rpx 30rpx;
+    color:#FFFFFF;
+}
+.history_item .item_img{
+    width:84rpx;
+    height:84rpx;
+    border: 4rpx solid #fff;
+    border-radius: 10rpx;
+    float: left;
+    margin-right: 16rpx;
+
+}
+.history_item image{
+    width:100%;
+    height:100%;
+    border-radius: 10rpx;
+}
+.history_item .item_name{
+    font-size: 30rpx;
+    float: left;
+    width:50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.history_item .item_right{
+    float: right;
+    font-size: 36rpx;
 }
