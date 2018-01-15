@@ -44,6 +44,21 @@ var options = Object.assign(marquee, {
         goal:3000
 
     },
+    goTj:function () {
+        wx.navigateTo({
+            url: '/pages/target/target'
+        })
+    },
+    goTarget:function () {
+        wx.navigateTo({
+            url: '/pages/target/target'
+        })
+    },
+    goPK:function () {
+        wx.navigateTo({
+            url: '/pages/friendsRank/friendsRank'
+        })
+    },
     showBind:function (e) {
         console.log(e)
         this.setData({
@@ -382,11 +397,11 @@ var options = Object.assign(marquee, {
 
                     },
                     onComplete: () => {
-                        _this.getGoal();
+
                     }
                 });
             }
-
+            _this.getGoal();
 
             if(_this.data.userId){
                 wx.request({

@@ -49,33 +49,18 @@
                 <image src='http://oss.xqzs.cn/resources/runmini/index_house_snow.png' mode='widthFix'></image>
             </view>
             <view class="nav_items">
-                <view class="nav_item tj">
-                    <view class="nav_icon">
-                        <image src='http://oss.xqzs.cn/resources/runmini/index_total.png' mode='aspectFit'></image>
-                    </view>
-                    <view class="nav_wz">统计</view>
-                </view>
-                <view class="nav_item">
-                    <view class="nav_icon">
-                        <image src='http://oss.xqzs.cn/resources/runmini/index_goal.png' mode='aspectFit'></image>
-                    </view>
-                    <view class="nav_wz">目标</view>
-                </view>
-                <form bindsubmit="showBind" class="nav_item bind" report-submit="{{true}}">
-                    <button formType="submit">
-
-                    <view class="nav_icon">
-                        <image src='http://oss.xqzs.cn/resources/runmini/index_relation.png' mode='aspectFit'></image>
-                    </view>
-                    <view class="nav_wz">关联</view>
-                    </button>
+                <form bindsubmit="goTj" class="nav_item tj" report-submit="{{true}}">
+                    <button formType="submit">统计</button>
                 </form>
-                <view class="nav_item pk">
-                    <view class="nav_icon">
-                        <image src='http://oss.xqzs.cn/resources/runmini/index_pk.png' mode='widthFix'></image>
-                    </view>
-                    <view class="nav_wz">好友PK</view>
-                </view>
+                <form bindsubmit="goTarget" class="nav_item goal" report-submit="{{true}}">
+                    <button formType="submit">目标</button>
+                </form>
+                <form bindsubmit="showBind" class="nav_item bind" report-submit="{{true}}">
+                    <button formType="submit">关联</button>
+                </form>
+                <form bindsubmit="goPK" class="nav_item pk" report-submit="{{true}}">
+                    <button formType="submit">好友PK</button>
+                </form>
 
             </view>
         </view>
