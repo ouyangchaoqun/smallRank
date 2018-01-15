@@ -44,7 +44,7 @@
         <view class="item_right">第一名</view>
     </view>
     <view class="rank_share">
-        <view class="rank_btn">发起挑战</view>
+        <button class="rank_btn" open-type="share">发起挑战</button>
     </view>
 </view>
 

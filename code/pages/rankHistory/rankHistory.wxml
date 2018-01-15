@@ -1,5 +1,8 @@
 <view>
     <view class="history_top">
+        <view class="cover">
+            <view class="cover_bar"></view>
+        </view>
         <view class="history_header">
             <view class="history_box" animation="{{animationData}}">
                 <view class="history_item">
@@ -27,3 +30,8 @@
         </view>
     </view>
 </view>
+
+
+<view class="crile"></view>
+
+<view class="crile2"></view>

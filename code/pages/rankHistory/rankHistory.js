@@ -11,11 +11,11 @@ Page({
     },
     onShow:function () {
         var animation = wx.createAnimation({
-            duration:'3000',
+            duration:'1000',
             timingFunction: 'linear',
             delay:'400'
         })
-        animation.top(14+'rpx').step()
+        animation.top(0+'rpx').step()
         this.setData({
             animationData:animation.export()
         });
