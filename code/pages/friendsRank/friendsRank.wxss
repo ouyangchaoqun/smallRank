@@ -86,7 +86,6 @@ page{
 .medal_type view{
     width:162rpx;
     height:162rpx;
-    background: pink;
     display: inline-block;
     margin:0 28rpx;
 }
@@ -154,7 +153,7 @@ width: 100%;height: 100%}
     height: 390rpx;
     margin: 0 auto;
     margin-top: 72rpx;
-    background: #fff;
+
    
 }
 .card .xz_shadow{
@@ -190,3 +189,24 @@ width: 100%;height: 100%}
     text-align: center;
     box-shadow: 0rpx 10rpx 30rpx rgba(255,104,87,1);
 }
+
+
+
+.medal_type .medal{
+    height: 160rpx; width: 160rpx;
+}
+
+ .medal500{background: url(http://oss.xqzs.cn/resources/runmini/medal_500.png) no-repeat center bottom; background-size: 90%}
+ .medal3000{background: url(http://oss.xqzs.cn/resources/runmini/medal_3000.png) no-repeat center bottom; background-size: 90%}
+ .medal5000{background: url(http://oss.xqzs.cn/resources/runmini/medal_5000.png) no-repeat center bottom; background-size: 90%}
+ .medal10000{background: url(http://oss.xqzs.cn/resources/runmini/medal_10000.png) no-repeat center bottom; background-size: 90%}
+ .medal20000{background: url(http://oss.xqzs.cn/resources/runmini/medal_20000.png) no-repeat center bottom; background-size: 90%}
+ .medal30000{background: url(http://oss.xqzs.cn/resources/runmini/medal_30000.png) no-repeat center bottom; background-size: 90%}
+ .medal50000{background: url(http://oss.xqzs.cn/resources/runmini/medal_50000.png) no-repeat center bottom; background-size: 90%}
+ .medal500_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_500_on.png) no-repeat center bottom; background-size: 90%}
+ .medal3000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_3000_on.png) no-repeat  center bottom; background-size: 90%}
+ .medal5000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_5000_on.png) no-repeat center bottom; background-size: 90%}
+ .medal10000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_10000_on.png) no-repeat center bottom; background-size: 90%}
+ .medal20000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_20000_on.png) no-repeat center bottom; background-size: 90%}
+ .medal30000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_30000_on.png) no-repeat center bottom; background-size: 90%}
+ .medal50000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_50000_on.png) no-repeat center bottom; background-size: 90%}
