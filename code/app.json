@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/notice/notice",
-    "pages/care/list"
+    "pages/care/list",
+    "pages/target/target"
   ],
   "window": {
     "backgroundTextStyle": "light",

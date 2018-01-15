@@ -61,7 +61,7 @@
         </view>
         <view class="nav_wz">统计</view>
       </view>
-      <view class="nav_item">
+      <view class="nav_item" bindtap="goTarget">
         <view class="nav_icon">
           <image src='http://oss.xqzs.cn/resources/runmini/index_goal.png' mode='widthFix'></image>
         </view>

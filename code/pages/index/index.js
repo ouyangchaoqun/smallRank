@@ -60,6 +60,12 @@ var options = Object.assign(marquee, {
         })
 
     },
+    goTarget: function () {
+        console.log('target')
+      wx.navigateTo({
+        url: '../target/target'
+      })
+    },
     flyStart:function (e) {
         let _this=this;
         let itemInfo= _this.getItemInfo(e);
