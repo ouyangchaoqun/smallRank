@@ -6,16 +6,21 @@ App({
     PROGRAM_ID:2,
     fromuserid:0,
     APP_ID:'wx43317052cc1b35a6',
+    DOWN_LOAD_URL:"https://wx.xqzs.cn/ali-oss",
+    replaceDownUrl:function (v) {
+        return v.replace('http://oss.xqzs.cn',this.DOWN_LOAD_URL)
+    },
     onShow: function () {
 
 
 
         let _this = this;
          let user = wx.getStorageSync('user') || {};
+         let wxUser=_this.getWxUserInfo();
          //
          wx.getSetting({
             success(res) {
-                if (!user.id) {
+                if (!user.id||!wxUser) {
                     console.log('12121')
                      wx.login({
                         success: function (loginRes) {
@@ -29,7 +34,7 @@ App({
                                             let iv;
                                             encryptedData = res.encryptedData;
                                             iv = res.iv;
-
+                                            wx.setStorageSync('wxuser', res.userInfo);//存储userInfo
                                             if (loginRes.code) {
                                                  let code = loginRes.code;
 
@@ -249,5 +254,28 @@ App({
                 })
             }
         })
-    }
+    },
+    setStorageSync:function (k,v) {
+        wx.setStorageSync(k, v)
+    },
+    getStorageSync:function (k) {
+        return  wx.getStorageSync(k)
+    },
+    setMiniProgramQrUrl:function (url) {
+        wx.setStorageSync('mini_program_qr_url', url)
+    },
+    getMiniProgramQrUrl:function () {
+        return  wx.getStorageSync('mini_program_qr_url')
+    },
+    showLoading:function (data) {
+        if(!data)data={};
+        wx.showLoading(data);
+    },
+    hideLoading:function () {
+        wx.hideLoading();
+    },
+    getWxUserInfo(){
+        return   wx.getStorageSync('wxuser');
+    },
+
 })

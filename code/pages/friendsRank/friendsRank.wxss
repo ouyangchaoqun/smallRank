@@ -141,12 +141,18 @@ width: 100%;height: 100%}
     color: #fff;
 }
 .card .x{
-  margin-top: 10rpx;
+
     width: 36rpx;
     height: 36rpx;
     float: right;
-    margin-right: 50rpx;  
-    color: #A71302
+
+    position: absolute;
+    top:50rpx;
+    right:50rpx;
+    background: url(http://oss.xqzs.cn/resources/runmini/medal_close_red.png); background-size: 100%;
+}
+.card.gray .x{
+    background: url(http://oss.xqzs.cn/resources/runmini/medal_close_w.png); background-size: 100%
 }
 .card .xz_img{
     width: 390rpx;
@@ -156,6 +162,9 @@ width: 100%;height: 100%}
 
    
 }
+
+.card.gray{ color:rgba(255,255,255,0.5); background: #615D6A ;}
+.card.gray .xz_shadow{background: rgba(0,0,0,0.4); box-shadow: 0rpx 0rpx  25rpx #000}
 .card .xz_shadow{
     border-radius: 80%;
     width: 282rpx;
@@ -165,7 +174,7 @@ width: 100%;height: 100%}
     margin-top: 54rpx;
 }
 .card .xz_title{
-    margin-top: 148rpx;
+    margin-top: 88rpx;
     font-size:88rpx;
     line-height:124rpx;
      opacity: 0.82
@@ -189,6 +198,11 @@ width: 100%;height: 100%}
     text-align: center;
     box-shadow: 0rpx 10rpx 30rpx rgba(255,104,87,1);
 }
+.card.gray .xz_btn{
+    background: #47434F;
+    box-shadow: 0rpx 10rpx 30rpx #47434F;
+}
+
 
 
 
@@ -196,17 +210,20 @@ width: 100%;height: 100%}
     height: 160rpx; width: 160rpx;
 }
 
- .medal500{background: url(http://oss.xqzs.cn/resources/runmini/medal_500.png) no-repeat center bottom; background-size: 90%}
- .medal3000{background: url(http://oss.xqzs.cn/resources/runmini/medal_3000.png) no-repeat center bottom; background-size: 90%}
- .medal5000{background: url(http://oss.xqzs.cn/resources/runmini/medal_5000.png) no-repeat center bottom; background-size: 90%}
- .medal10000{background: url(http://oss.xqzs.cn/resources/runmini/medal_10000.png) no-repeat center bottom; background-size: 90%}
- .medal20000{background: url(http://oss.xqzs.cn/resources/runmini/medal_20000.png) no-repeat center bottom; background-size: 90%}
- .medal30000{background: url(http://oss.xqzs.cn/resources/runmini/medal_30000.png) no-repeat center bottom; background-size: 90%}
- .medal50000{background: url(http://oss.xqzs.cn/resources/runmini/medal_50000.png) no-repeat center bottom; background-size: 90%}
- .medal500_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_500_on.png) no-repeat center bottom; background-size: 90%}
- .medal3000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_3000_on.png) no-repeat  center bottom; background-size: 90%}
- .medal5000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_5000_on.png) no-repeat center bottom; background-size: 90%}
- .medal10000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_10000_on.png) no-repeat center bottom; background-size: 90%}
- .medal20000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_20000_on.png) no-repeat center bottom; background-size: 90%}
- .medal30000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_30000_on.png) no-repeat center bottom; background-size: 90%}
- .medal50000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_50000_on.png) no-repeat center bottom; background-size: 90%}
+ .medal500{background: url(http://oss.xqzs.cn/resources/runmini/medal_500.png) no-repeat center bottom; background-size: 100%}
+ .medal3000{background: url(http://oss.xqzs.cn/resources/runmini/medal_3000.png) no-repeat center bottom; background-size: 100%}
+ .medal5000{background: url(http://oss.xqzs.cn/resources/runmini/medal_5000.png) no-repeat center bottom; background-size: 100%}
+ .medal10000{background: url(http://oss.xqzs.cn/resources/runmini/medal_10000.png) no-repeat center bottom; background-size: 100%}
+ .medal20000{background: url(http://oss.xqzs.cn/resources/runmini/medal_20000.png) no-repeat center bottom; background-size: 100%}
+ .medal30000{background: url(http://oss.xqzs.cn/resources/runmini/medal_30000.png) no-repeat center bottom; background-size: 100%}
+ .medal50000{background: url(http://oss.xqzs.cn/resources/runmini/medal_50000.png) no-repeat center bottom; background-size: 100%}
+ .medal500_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_500_on.png) no-repeat center bottom; background-size: 100%}
+ .medal3000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_3000_on.png) no-repeat  center bottom; background-size: 100%}
+ .medal5000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_5000_on.png) no-repeat center bottom; background-size: 100%}
+ .medal10000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_10000_on.png) no-repeat center bottom; background-size: 100%}
+ .medal20000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_20000_on.png) no-repeat center bottom; background-size: 100%}
+ .medal30000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_30000_on.png) no-repeat center bottom; background-size: 100%}
+ .medal50000_on{background: url(http://oss.xqzs.cn/resources/runmini/medal_50000_on.png) no-repeat center bottom; background-size: 100%}
+
+ canvas.card{ height: 100%; width: 100%;
+    background:none;  }
