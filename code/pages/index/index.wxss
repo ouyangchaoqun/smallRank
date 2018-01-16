@@ -9,9 +9,9 @@ page{ background: #f5f3fa; }
 }
 
 .top_animation{ height: 640rpx; position: relative;
-	background:red; /* 一些不支持背景渐变的浏览器 */
-    background:-moz-linear-gradient(top, #ff0000, rgba(254,222,151,1));
-    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#ff0000), to(rgba(254,222,151,1)));  
+	background:#FF514A; /* 一些不支持背景渐变的浏览器 */
+    background:-moz-linear-gradient(top, #FF514A, #FEDE97);
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#FF514A), to(#FEDE97));
 }
 .man{
     width:164px;
@@ -350,7 +350,7 @@ button.share_btn {
     line-height:84rpx;
     color:#fff;
     font-size:30rpx;
-
+    margin: 0 auto;
 }
 button.share_btn:active{ background: #56cf51  }
 button.share_btn::after{  border:none;  }

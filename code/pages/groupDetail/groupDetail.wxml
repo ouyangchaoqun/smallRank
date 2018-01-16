@@ -1,0 +1,23 @@
+<view>
+    <view class="detail_top"></view>
+    <view class="detail_ul">
+        <view class="detail_title">本群排行榜</view>
+        <view class="detail_box">
+            <view class="detail_item">
+                <view class="detail_left">1</view>
+                <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
+                <view class="detail_info">
+                    <view>° 多久</view>
+                    <view class="detail_step">
+                        步行距离<text>1.3</text>KM
+
+
+                        消耗热量<text>50</text>KCAL
+                    </view>
+                </view>
+                <view class="detail_right">1500</view>
+            </view>
+        </view>
+    </view>
+    <view class="detail_btn">发起新挑战</view>
+</view>

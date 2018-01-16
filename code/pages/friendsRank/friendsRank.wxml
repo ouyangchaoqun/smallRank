@@ -28,7 +28,7 @@
             /{{medal.length}}
         </view>
     </view>
-    <scroll-view scroll-x="true" class="medal_type">
+    <scroll-view scroll-x="true" class="medal_type" style="width:{{screenWidth}}px">
         <view bindtap='showCard' class="medal medal{{item.v}}{{item.on?'_on':''}}" data-index="{{index}}" wx:for-index="index" wx:for="{{medal}}"></view>
 
     </scroll-view>
@@ -48,11 +48,16 @@
     </view>
 </view>
 
-<view class="card" wx:if="{{isShowCard}}">
-    <view class="x" bindtap='close'>X</view>
-    <view class="xz_img medal{{card.v}}_on"></view>
+
+<canvas class="card" canvas-id="myCanvas" wx:if="{{canvasShow}}" />
+
+
+<view class="card {{card.on?'':'gray'}}" wx:if="{{isShowCard}}">
+    <view class="x" bindtap='close'></view>
+    <view class="xz_img medal{{card.v}}{{card.on?'_on':''}}"></view>
     <view class="xz_shadow"></view>
     <view class="xz_title"> {{card.t}}</view>
     <view class="xz_content">「日步数超过{{card.v}}步」</view>
-    <button class="xz_btn" bindtap="saveImg">保存</button>
+    <button class="xz_btn" bindtap="saveImg" wx:if="{{card.on}}" data-card="{{card}}">保存</button>
+    <button class="xz_btn"  wx:if="{{!card.on}}">未得到</button>
 </view>
