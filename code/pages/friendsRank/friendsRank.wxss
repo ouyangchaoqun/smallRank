@@ -135,13 +135,14 @@ page{
     background: -o-linear-gradient(#FF6253 , #FFB07E); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(#FF6253 , #FFB07E); /* Firefox 3.6 - 15 */
     background: linear-gradient(#FF6253 , #FFB07E); /* 标准的语法 */
-width: 100%;height: 100%}
+    width: 100%;height: 100%;
+}
 .card view {
     text-align: center;
     color: #fff;
 }
 .card .x{
-  margin-top: 10rpx;
+    margin-top: 10rpx;
     width: 36rpx;
     height: 36rpx;
     float: right;
@@ -153,8 +154,6 @@ width: 100%;height: 100%}
     height: 390rpx;
     margin: 0 auto;
     margin-top: 72rpx;
-
-   
 }
 .card .xz_shadow{
     border-radius: 80%;

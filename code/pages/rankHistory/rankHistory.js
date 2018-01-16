@@ -19,5 +19,10 @@ Page({
         this.setData({
             animationData:animation.export()
         });
-    }
+    },
+    goGroup:function () {
+        wx.navigateTo({
+            url: '../groupDetail/groupDetail'
+        })
+    },
 })
