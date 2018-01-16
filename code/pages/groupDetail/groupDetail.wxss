@@ -49,6 +49,7 @@ page{
     text-align: right;
     color:rgba(73,75,95,1);
     font-size: 36rpx;
+    font-family: Impact;
 }
 .detail_item image{
     height:80rpx;
@@ -71,6 +72,9 @@ page{
     line-height: 34rpx;
     color:rgba(125,136,146,1);
     font-size: 24rpx;
+}
+.detail_step text{
+    font-family: Impact;
 }
 .detail_box{
     height:100%;

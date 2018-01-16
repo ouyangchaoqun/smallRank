@@ -3,19 +3,19 @@
     <view class="detail_ul">
         <view class="detail_title">本群排行榜</view>
         <view class="detail_box">
-            <view class="detail_item">
-                <view class="detail_left">1</view>
-                <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
+            <view class="detail_item" wx:for="{{list}}">
+                <view class="detail_left">{{index+1}}</view>
+                <image src="{{item.faceUrl}}"></image>
                 <view class="detail_info">
-                    <view>° 多久</view>
+                    <view>{{item.nickName}}</view>
                     <view class="detail_step">
-                        步行距离<text>1.3</text>KM
+                        步行距离<text>{{item.km}}</text>KM
 
 
-                        消耗热量<text>50</text>KCAL
+                        消耗热量<text>{{item.kll}}</text>KCAL
                     </view>
                 </view>
-                <view class="detail_right">1500</view>
+                <view class="detail_right">{{item.step}}</view>
             </view>
         </view>
     </view>
