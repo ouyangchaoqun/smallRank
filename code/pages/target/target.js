@@ -5,6 +5,7 @@ Page({
     data: {
         logs: [],
         userId : app.getUserId(),
+        zdyGoal:5000,
         list:[
           { rank:5,
             goal:20000,

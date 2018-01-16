@@ -11,4 +11,21 @@
       <view class="triangle"></view>
     </view>
   </view>
+  <!-- <view class="zdy" bindtap='showzdy'>
+    <view class="left">
+      <view class="left_s">自定义目标</view>
+      <view class="left_x">设定目标步数</view>
+    </view>
+    <view class="right1">> </view>
+    <view class="right2"> {{zdyGoal}} </view>
+  </view> -->
 </view>
+<!-- <view class="menceng">
+<view class="set">
+  <view class="set_title">自定义目标</view>
+  <view class="set_goal">{{zdyGoal}}/view>
+  <view class="set_text"></view>
+  <view class="set_slider"></view>
+  <button class="set_btn">保存</button>
+</view>
+</view> -->
