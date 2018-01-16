@@ -9,7 +9,22 @@ Page({
         card:{},
         isShowCard:false,
         canvasShow:false,
-        screenWidth:750
+        screenWidth:750,
+        snowflake: [],
+        snowflakeCount: 10,
+    },
+
+    initSnowflake: function () {
+      let _this = this;
+      setTimeout(function () {
+        if (_this.data.snowflakeCount < 20) {
+          _this.setData({
+            snowflakeCount: _this.data.snowflakeCount + 10
+          });
+          _this.initSnowflake();
+        }
+
+      }, 30000)
     },
 
     onShareAppMessage: function (res) {
@@ -389,5 +404,9 @@ Page({
                 }
             })
         },50)
-    }
+    },
+    onShow: function () {
+      let _this = this;
+      _this.initSnowflake();
+      }
 })

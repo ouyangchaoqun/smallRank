@@ -2,10 +2,87 @@ page{
     height:100%;
     background: rgba(246,247,245,1);
 }
+
+.flow{
+    width: 27200rpx;
+    position: absolute;
+    height: 320rpx;
+    bottom: -20rpx;
+}
+
+.flow .img{
+
+    opacity: 1;
+    width: 34000rpx;
+    background: url(http://oss.xqzs.cn/resources/runmini/index_flow.png) repeat-x top;background-size: 1000rpx;
+    height: 80rpx;
+    animation: flow 260s infinite;
+    -webkit-animation: flow 260s infinite;  position: absolute; bottom:0;
+    animation-timing-function:linear}
+ .flow .img2{
+     opacity: 0.4;
+     width: 34000rpx;
+     background: url(http://oss.xqzs.cn/resources/runmini/index_flow.png) repeat-x top;background-size: 1000rpx ;
+     height: 80rpx;
+    animation: flow 600s infinite;
+    -webkit-animation: flow 600s infinite;  position: absolute; bottom:0;
+    animation-timing-function:linear}
+ .flow .img3{
+
+     opacity: 0.4;
+     width: 34000rpx;
+     background: url(http://oss.xqzs.cn/resources/runmini/index_flow.png) repeat-x top;background-size: 1000rpx;
+     height: 80rpx;
+    animation: flow 720s infinite;
+    -webkit-animation: flow 720s infinite;  position: absolute; bottom:0;
+    animation-timing-function:linear}
+ 
+
+@keyframes  flow {
+    0%{
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100%{
+        transform: translate3d(-100%, 0, 0);
+        -webkit-transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.snowflakes{ position: absolute; height: 100%; width: 100%; z-index: 1;opacity: 0.6}
+.snowflakes .snowflake{
+
+    position: absolute; top:0; left:0; height:10rpx ; width: 10rpx; background: #fff; opacity: 0.5; 
+    border-radius: 50%;
+}
+.snowflakes .snowflake1{animation: pop infinite linear 20s; top:25rpx; left:15rpx ;opacity:0.5;width: 8rxp;height:8rxp }
+.snowflakes .snowflake2{animation: pop infinite linear 25s; top:50rpx; left:150rpx;opacity:0.6;width: 10rxp;height:10rxp }
+.snowflakes .snowflake3{animation: pop infinite linear 23s; top:10rpx; left:255rpx;opacity:0.7;width: 5rxp;height:5rxp }
+.snowflakes .snowflake4{animation: pop infinite linear 30s; top:30rpx; left:350rpx;opacity:0.5;width: 12rxp;height:12rxp }
+.snowflakes .snowflake5{animation: pop infinite linear 40s; top:60rpx; left:450rpx;opacity:0.8;width: 13rxp;height:13rxp }
+.snowflakes .snowflake6{animation: pop infinite linear 15s; top:50rpx; left:550rpx;opacity:0.9;width: 15rxp;height:15rxp }
+.snowflakes .snowflake7{animation: pop infinite linear 35s; top:150rpx; left:650rpx;opacity:1;width: 7rxp;height:7rxp }
+.snowflakes .snowflake8{animation: pop infinite linear 26s; top:120rpx; left:700rpx;opacity:0.8;width: 9rxp;height:9rxp }
+.snowflakes .snowflake9{animation: pop infinite linear 21s; top:100rpx; left:500rpx;opacity:0.4;width: 9rxp;height:9rxp }
+.snowflakes .snowflake0{animation: pop infinite linear 28s; top:90rpx; left:600rpx;opacity:1;width: 10rxp;height:10rxp }
+
+@keyframes pop{
+  0%{  
+     transform: translate3d(0, 0, 0);
+  }
+  90%{
+    opacity:0.5
+  }
+  100%{
+    transform: translate3d(0, -320rpx, 0);
+     opacity: 0
+  }
+}
 .rank_top{
     background: rgba(255,118,94,1);
-    height:294rpx;
+    height:320rpx;
     padding-top: 44rpx;
+    position: relative;
 }
 .rank_img{
     width:156rpx;
@@ -16,6 +93,8 @@ page{
     overflow: hidden;
     margin:0 auto;
     margin-bottom: 26rpx;
+    position: relative;
+    z-index: 3;
 }
 .rank_img image{
     width:100%;

@@ -24,25 +24,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "勋章",
 					"pathName": "pages/friendsRank/friendsRank",
 					"query": ""
-				},
-				{
-					"id": 1,
-					"name": "模拟分享",
-					"pathName": "pages/index/index",
-					"query": "shareTicket=24fdaad8-fa73-4664-9a36-dce3f76a5161&fromuserid=25"
-				},
-				{
-					"id": -1,
-					"name": "统计",
-					"pathName": "pages/statistics/statistics",
-					"query": "shareTicket=24fdaad8-fa73-4664-9a36-dce3f76a5161&fromuserid=25"
 				}
 			]
 		}

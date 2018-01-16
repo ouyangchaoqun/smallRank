@@ -4,6 +4,15 @@
             <image src="{{user.faceUrl}}"></image>
         </view>
         <view class="rank_name">{{user.nickName}}</view>
+          <view class="snowflakes">
+            <view class="snowflake snowflake{{item % 10}}" wx:for="{{ snowflakeCount }}" ></view>
+        </view>
+          
+        <view class="flow">
+            <view class="img"></view>
+            <view class="img2"></view>
+            <view class="img3"></view>
+        </view>
     </view>
     <view class="rank_count">
         <view>
