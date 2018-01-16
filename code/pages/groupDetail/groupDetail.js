@@ -1,130 +1,46 @@
+//logs.js
+
 const app = getApp()
 Page({
     data: {
-        logs: [],
-        user:app.getUser(),
-        info:{},
-        medal:[{v:3000,t:'魅力新人'},{v:5000,t:'毅力帝'},{v:10000,t:'战无不胜'},{v:20000,t:'六出祁山'},{v:30000,t:'手机放哪了'},{v:50000,t:'什么情况'},{v:500,t:'蓝癌晚期'}],
-        count:0,
-        card:{},
-        isShowCard:false
+        list: [],
+        pkId:''
+
     },
 
-    onShareAppMessage: function (res) {
-        console.log(res)
-        let _this=this;
-        if (res.from === 'button') {
-            // 来自页面内转发按钮
-            console.log(res.target)
-        }
-        return {
-            path: '/pages/index/index?fromuserid='+_this.data.userId,
-            success: function(res) {
-                // 转发成功
-                console.log(res)
-                wx.getShareInfo({
-                    shareTicket: res.shareTickets[0],
-                    success: function (res) {
-
-                        wx.login({
-                            success: function (loginRes) {
-                                wx.request({
-                                    url: app.API_URL + "wei/xin/post/decrypt/data",
-                                    method: "POST",
-                                    data: {
-                                        iv: res.iv,
-                                        encryptedData: res.encryptedData,
-                                        code: loginRes.code
-                                    },
-                                    success: function (data) {
-                                        console.log(data.data.data);
-                                        console.log(data.data.data.openGId);
-                                        _this.setData({
-                                            ggggggid:data.data.data.openGId
-                                        })
-
-                                    }
-                                })
-                            }
-                        })
-
-
-                        console.log(res)
-                    },
-                    fail: function (res) {
-                        console.log(res)
-                    },
-                })
-            },
-            fail: function(res) {
-                // 转发失败
-            }
-        }
-    },
-    onLoad: function () {
+    onLoad: function (option) {
+        console.log(option.pkId)
         this.setData({
-            user:app.getUser()
+            pkId : option.pkId
         })
-        this.getUserInfo();
+        this.getList()
     },
-    getUserInfo:function () {
+    initRunDataItem:function (item) {
+        item.nickName=  item.nickName.substring(0,7);
+        item.faceUrl= app.string.smallFace(item.faceUrl);
+        if(item.sex==1){
+            item.km= Math.ceil(item.step * 0.74 / 1000);
+            item.kll=Math.ceil(item.step * 0.74 / 1000 * 40)
+        }else{
+            item.km= Math.ceil(item.step * 0.66 / 1000);
+            item.kll=Math.ceil(item.step * 0.66 / 1000 * 35)
+        }
+        return item;
+    },
+    getList:function () {
         let _this= this;
+        let userId = app.getUserId();
         wx.request({
-            url: app.API_URL + "werun/get/userInfo/"+ app.getUserId(),
+            url: app.API_URL + "werun/rank/pk/"+userId+'/'+_this.data.pkId,
             method: "GET",
             success: function (data) {
-                console.log(data);
-                _this.setData({
-                    info:data.data.data
-                })
-                let max = data.data.data.maxStep;
-                for(let i =0;i<_this.data.medal.length;i++){
-                    if( max >=_this.data.medal[i].v ){
-                        let item= _this.data.medal[i];
-                        item.on=true;
-                        _this.setData({
-                            ['medal['+i+']']:item,
-                            count:++_this.data.count
-                        })
-                    }
+                for(let i=0;i<data.data.data.list.length;i++){
+                    data.data.data.list[i] =_this.initRunDataItem( data.data.data.list[i] );
                 }
-
+                _this.setData({
+                    list: data.data.data.list
+                })
             }
         })
-        // 1275
-    },
-    showCard:function (e) {
-        console.log(e);
-
-
-        let index = e.currentTarget.dataset.index;
-        let item = this.data.medal[index]
-
-        if(item.on){
-            this.setData({
-                isShowCard:true,
-                card:item
-            })
-
-        }
-
-
-
-
-    },
-    goHistory:function () {
-        wx.navigateTo({
-            url: '../rankHistory/rankHistory'
-        })
-    },
-    goGroup:function () {
-        wx.navigateTo({
-            url: '../groupDetail/groupDetail'
-        })
-    },
-    close:function(){
-      this.setData({
-      isShowCard: false,
-      })
     }
 })
