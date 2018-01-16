@@ -330,3 +330,17 @@ width: 100%;height: 100%}
   font-size: 30rpx;
   color: #8C8D98 ;
 }
+
+.groupImg image{ border-radius: 0; margin-right: 0; line-height: 1; display: block; float:left;}
+.groupImg { height:80rpx; width: 80rpx; border-radius: 10rpx; background: #f1f1f1 }
+
+.groupImg.imgG9 image,.groupImg.imgG8 image,.groupImg.imgG7 image,.groupImg.imgG6 image,.groupImg.imgG5 image{ width: 27%; height: 27%; margin-left: 4rpx; margin-top: 4rpx; }
+.groupImg.imgG8 image:nth-child(1){ margin-left: 16rpx;}
+.groupImg.imgG7 image:nth-child(1){ margin-left: 29rpx; margin-right: 30rpx;}
+.groupImg.imgG6 image:nth-child(1),.groupImg.imgG6 image:nth-child(2),.groupImg.imgG6 image:nth-child(3){ margin-top: 16rpx;}
+.groupImg.imgG5 image:nth-child(1),.groupImg.imgG5 image:nth-child(2){ margin-top: 16rpx; margin-left: 12rpx;}
+
+.groupImg.imgG4 image,.groupImg.imgG3 image,.groupImg.imgG2 image{ width: 43.5%; height: 43.5%; margin-left: 4rpx; margin-top: 4rpx; }
+
+.groupImg.imgG3 image:nth-child(1){ margin-left: 23rpx;}
+.groupImg.imgG2 image:nth-child(1),.groupImg.imgG2 image:nth-child(2){ margin-top: 23rpx;}

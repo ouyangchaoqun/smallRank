@@ -45,7 +45,13 @@
         PK记录<view >></view>
     </view>
     <view class="rank_item" wx:if="{{info.lastPK!=null&&info.lastPK.shareType==2}}" bindtap="goHistory">
-        <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
+        <view class="groupImg imgG{{info.lastPK.faceList.length>9?'9':info.lastPK.faceList.length}}" >
+            <image src="{{item}}" wx:for="{{info.lastPK.faceList}}"></image>
+        </view>
+
+
+
+
         <view class="item_name"><open-data type="groupName" open-gid="{{info.lastPK.openGId}}"></open-data></view>
         <view class="item_right">第{{info.lastPK.rank}}名</view>
     </view>
