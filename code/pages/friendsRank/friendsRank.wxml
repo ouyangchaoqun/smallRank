@@ -7,7 +7,7 @@
           <view class="snowflakes">
             <view class="snowflake snowflake{{item % 10}}" wx:for="{{ snowflakeCount }}" ></view>
         </view>
-          
+
         <view class="flow">
             <view class="img"></view>
             <view class="img2"></view>
@@ -54,6 +54,7 @@
         <view class="item_name">{{info.lastPK.targetNickName}}</view>
         <view class="item_right"><text wx:if="{{info.lastPK.rank==1}}">胜利</text><text wx:if="{{info.lastPK.rank!=1}}">失败</text></view>
     </view>
+    <view class="noPk_box"   wx:if="{{info.lastPK==null}}"><text class="noPk">没有PK记录</text></view>
     <view class="rank_share">
         <button class="rank_btn" open-type="share">发起挑战</button>
     </view>
