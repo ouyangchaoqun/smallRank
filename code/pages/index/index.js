@@ -593,8 +593,14 @@ var options = Object.assign(marquee, {
     },
     onLoad: function (options) {
 
+
         if(options.fromuserid) {
-            wx.setStorageSync('fromuserid', options.fromuserid)
+            wx.setStorageSync('fromuserid', options.fromuserid);
+
+            if(options.shareTicket){
+                console.log(options.shareTicket)
+                this.createPk(options.shareTicket,options.fromuserid)
+            }
         }
 
         // console.log("options.fromuserid"+options.fromuserid)
@@ -826,6 +832,56 @@ var options = Object.assign(marquee, {
                 // 转发失败
             }
         }
+    },
+    createPk:function (shareTicket,fromuserid) {
+        let _this=this;
+        wx.getShareInfo({
+            shareTicket: shareTicket,
+            success: function (res) {
+
+                wx.login({
+                    success: function (loginRes) {
+                        wx.request({
+                            url: app.API_URL + "wei/xin/post/decrypt/data",
+                            method: "POST",
+                            data: {
+                                iv: res.iv,
+                                encryptedData: res.encryptedData,
+                                code: loginRes.code
+                            },
+                            success: function (data) {
+
+
+                                wx.request({
+                                    url: app.API_URL + "werun/pk",
+                                    method: "POST",
+                                    data: {
+                                        userId : app.getUserId(),
+                                        shareUserId :fromuserid,
+                                        openGId: data.data.data.openGId,
+                                        programId:app.PROGRAM_ID
+                                    },
+                                    success: function (data) {
+
+                                        console.log(data);
+                                    }
+                                })
+
+
+
+
+
+
+                            }
+                        })
+                    }
+                })
+                console.log(res)
+            },
+            fail: function (res) {
+                console.log(res)
+            },
+        })
     }
 });
 Page(options);

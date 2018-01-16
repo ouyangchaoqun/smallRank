@@ -12,13 +12,17 @@ Page({
     },
 
     onShareAppMessage: function (res) {
+
+
         console.log(res)
         let _this=this;
         if (res.from === 'button') {
             // 来自页面内转发按钮
             console.log(res.target)
         }
+
         return {
+            title:"发起pk",
             path: '/pages/index/index?fromuserid='+_this.data.userId,
             success: function(res) {
                 // 转发成功
@@ -48,8 +52,6 @@ Page({
                                 })
                             }
                         })
-
-
                         console.log(res)
                     },
                     fail: function (res) {
@@ -68,6 +70,9 @@ Page({
         })
         this.getUserInfo();
         this.getMinStep();
+        wx.showShareMenu({
+            withShareTicket: true
+        })
      },
     getMinStep:function () {
     //
