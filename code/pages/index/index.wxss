@@ -350,7 +350,7 @@ button.share_btn {
     line-height:84rpx;
     color:#fff;
     font-size:30rpx;
-
+    margin: 0 auto;
 }
 button.share_btn:active{ background: #56cf51  }
 button.share_btn::after{  border:none;  }

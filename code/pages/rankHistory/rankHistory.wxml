@@ -5,7 +5,7 @@
         </view>
         <view class="history_header">
             <view class="history_box" animation="{{animationData}}">
-                <view class="history_item">
+                <view class="history_item" bindtap="goGroup">
                     <view class="item_img">
                         <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
                     </view>
