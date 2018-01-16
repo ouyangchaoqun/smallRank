@@ -5,26 +5,14 @@
         </view>
         <view class="history_header">
             <view class="history_box" animation="{{animationData}}">
-                <view class="history_item" bindtap="goGroup">
+                <view class="history_item" wx:for="{{list}}" bindtap="goGroup" id="{{item.pkId}}">
                     <view class="item_img">
-                        <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
+                        <image src="{{item .targetFaceUrl}}"></image>
                     </view>
-                    <view class="item_name">好一点用户体验群</view>
-                    <view class="item_right">第3名</view>
-                </view>
-                <view class="history_item">
-                    <view class="item_img">
-                        <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
+                    <view class="item_name">
+                        <open-data type="groupName" open-gid="{{item.openGId}}"></open-data>
                     </view>
-                    <view class="item_name">好一点用户体验群</view>
-                    <view class="item_right">第3名</view>
-                </view>
-                <view class="history_item">
-                    <view class="item_img">
-                        <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
-                    </view>
-                    <view class="item_name">好一点用户体验群</view>
-                    <view class="item_right">第3名</view>
+                    <view class="item_right">第{{item.rank}}名</view>
                 </view>
             </view>
         </view>
