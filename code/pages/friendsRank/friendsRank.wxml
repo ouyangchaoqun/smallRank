@@ -32,16 +32,18 @@
         <view bindtap='showCard' class="medal medal{{item.v}}{{item.on?'_on':''}}" data-index="{{index}}" wx:for-index="index" wx:for="{{medal}}"></view>
 
     </scroll-view>
-    <view class="rank_title">
-        PK记录
-        <view bindtap="goHistory">
-            >
-        </view>
+    <view class="rank_title" wx:if="info.lastPK!=null" bindtap="goHistory">
+        PK记录<view >></view>
     </view>
-    <view class="rank_item">
+    <view class="rank_item" wx:if="{{info.lastPK!=null&&info.lastPK.shareType==2}}" bindtap="goHistory">
         <image src="http://wx.qlogo.cn/mmopen/EqFW7C97wDfIL6nwA9360YuIkChKaa754hNj8QaBgwchdwDpZXvXmqG2n5yEzcwN4cNsgYrsBIibpDcw9c8r2ZjC6tuQwmMGz/132"></image>
-        <view class="item_name">好一点用户体验群</view>
-        <view class="item_right">第一名</view>
+        <view class="item_name"><open-data type="groupName" open-gid="{{info.lastPK.openGId}}"></open-data></view>
+        <view class="item_right">第{{info.lastPK.rank}}名</view>
+    </view>
+    <view class="rank_item" wx:if="{{info.lastPK!=null&&info.lastPK.shareType!=2}}" bindtap="goHistory">
+        <image src="{{info.lastPK.targetFaceUrl}}"></image>
+        <view class="item_name">{{info.lastPK.targetNickName}}</view>
+        <view class="item_right"><text wx:if="{{info.lastPK.rank==1}}">胜利</text><text wx:if="{{info.lastPK.rank!=1}}">失败</text></view>
     </view>
     <view class="rank_share">
         <button class="rank_btn" open-type="share">发起挑战</button>
