@@ -439,32 +439,34 @@ button.share_btn::after{  border:none;  }
 
 @keyframes cloud {
     0%{
-        transform: translate3d(-50rpx, 0, 0) ;
+        opacity:0.8;
+        transform: translate3d(650rpx, 0, 0) ;
     }
     100%{
-        transform: translate3d(50rpx, 0, 0) ;
+        opacity:0.8;
+        transform: translate3d(-700rpx, 0, 0) ;
 
     }
 }
 .img.cloud1{
+    opacity: 0.5;
   top: 20rpx;
   left: 440rpx;
   width: 140rpx;
     height: 26rpx;
-    animation: cloud 2.5s infinite linear;
-    animation-direction:alternate;
-    -webkit-animation-direction:alternate; /* Safari 和 Chrome */
+    animation: cloud 12s infinite linear;
     background: url(http://oss.xqzs.cn/resources/runmini/index_cloud1.png) no-repeat; background-size:100%;
 }
 .img.cloud2{
-  top: 255rpx;
-  left: 0rpx;
+    opacity: 0;
+  top: 30rpx;
+  left: 340rpx;
     height: 32rpx;
   width: 172rpx;
     background: url(http://oss.xqzs.cn/resources/runmini/index_cloud1.png) no-repeat; background-size:100%;
-    animation: cloud 2.5s infinite linear;
-    animation-direction:alternate;
-    -webkit-animation-direction:alternate; /* Safari 和 Chrome */
+    animation: cloud 15s infinite linear;
+    -webkit-animation-delay: 2s;
+
 }
 .img.branch1{ top:0rpx; left: 0rpx; width: 170rpx; height: 204rpx;background: url(http://oss.xqzs.cn/resources/runmini/index_branch1.png) no-repeat; background-size: 100%}
 .img.branch2{top:70rpx; right: 0rpx;width:170rpx;height: 204rpx;background: url(http://oss.xqzs.cn/resources/runmini/index_branch2.png) no-repeat; background-size: 100%}
@@ -490,9 +492,9 @@ button.share_btn::after{  border:none;  }
   margin-top: 10rpx;
 }
 .run_goal{font-size: 24rpx;margin-top: 12rpx;}
-.nav{width: 690rpx; height: 230rpx;position:relative;z-index: 200; left: 30rpx; top:480rpx; background: url("http://oss.xqzs.cn/resources/runmini/index_housetop.png") no-repeat;background-size: 100%}
+.nav{width: 690rpx; height: 230rpx;position:relative;z-index: 99; left: 30rpx; top:480rpx; background: url("http://oss.xqzs.cn/resources/runmini/index_housetop.png") no-repeat;background-size: 100%}
 .nav .nav_items{display: flex;height: 180rpx; position: absolute;top:100rpx; width: 100%;text-align: center}
-.nav .nav_cat{position: absolute;left: 20rpx;top: -56rpx; width: 130rpx;}
+.nav .nav_cat{position: absolute;left: 8rpx;top: -56rpx; width: 130rpx;}
 .nav .nav_snow{position: absolute;width: 548rpx; left: 110rpx; top: -10rpx;}
 .nav .nav_items .nav_icon{ width: 40rpx; margin: 0 auto;}
 .nav .nav_items .nav_icon image{width: 100%}
@@ -593,7 +595,7 @@ overflow: hidden;
 }
 @keyframes hulu{
   0% {   transform: translate3d(0, 0, 0)   scale(1);}
-  50%{ transform: translate3d(5rpx, -10rpx, 0)   scale(1.8);}
+  50%{ transform: translate3d(30rpx, -30rpx, 0)   scale(3);}
   100%{ transform: translate3d(0, 0, 0)   scale(1);}
 }
 
@@ -601,7 +603,7 @@ overflow: hidden;
 
 .lion{ width: 60rpx; height: 60rpx; position: absolute; z-index: 500; margin-top: -30rpx; margin-left: -30rpx;}
 
-.snowflakes{ position: absolute; height: 100%; width: 100%; z-index: 100}
+.snowflakes{ position: absolute; height: 580rpx; width: 100%; z-index: 100}
 .snowflakes .snowflake{
 
     position: absolute; top:0; left:0; height:28rpx ; width: 32rpx; background: url(http://oss.xqzs.cn/resources/runmini/index_smallsnow.png) no-repeat; background-size: 32rpx;
@@ -617,64 +619,64 @@ overflow: hidden;
 .snowflakes .snowflake9{animation: snowflake9 infinite linear 8.3s}
 .snowflakes .snowflake0{animation: snowflake0 infinite linear 8.5s}
 @keyframes snowflake1  {
-    0% {transform: translate3d(750rpx, 0, 0) scale(0.8);opacity: 1}
-    50% {transform: translate3d(550rpx, 320rpx, 0) scale(0.8);opacity: 1}
-    90%{transform: translate3d(150rpx, 540rpx, 0)scale(0.8);opacity: 1}
-    100%{transform: translate3d(140rpx, 540rpx, 0)scale(0.8);opacity: 0}
+    0% {transform: translate3d(750rpx, 0, 0) scale(0.3);opacity: 0.8}
+    50% {transform: translate3d(550rpx, 320rpx, 0) scale(0.3);opacity: 0.8}
+    90%{transform: translate3d(150rpx, 540rpx, 0)scale(0.3);opacity:0.8}
+    100%{transform: translate3d(140rpx, 540rpx, 0)scale(0.3);opacity: 0}
 }
 
 @keyframes snowflake2  {
-    0% {transform: translate3d(450rpx, 0, 0) scale(0.8);opacity: 1}
-    50% {transform: translate3d(250rpx, 420rpx, 0) scale(0.8);opacity: 1}
-    90%{transform: translate3d(100rpx, 520rpx, 0)scale(0.8);opacity: 1}
-    100%{transform: translate3d(100rpx, 540rpx, 0)scale(0.8);opacity: 0}
+    0% {transform: translate3d(450rpx, 0, 0) scale(0.4);opacity: 0.8}
+    50% {transform: translate3d(250rpx, 420rpx, 0) scale(0.4);opacity: 0.8}
+    90%{transform: translate3d(100rpx, 520rpx, 0)scale(0.4);opacity: 0.8}
+    100%{transform: translate3d(100rpx, 540rpx, 0)scale(0.4);opacity: 0}
 }
 
 @keyframes snowflake3  {
-    0% {transform: translate3d(350rpx, 0, 0) scale(0.5);opacity: 0.8}
-    50% {transform: translate3d(250rpx, 320rpx, 0) scale(0.5);opacity: 0.8}
-    90%{transform: translate3d(50rpx, 540rpx, 0)scale(0.5);opacity: 0.8}
-    100%{transform: translate3d(50rpx, 540rpx, 0)scale(0.5);opacity:0}
+    0% {transform: translate3d(350rpx, 0, 0) scale(0.3);opacity: 0.8}
+    50% {transform: translate3d(250rpx, 320rpx, 0) scale(0.3);opacity: 0.8}
+    90%{transform: translate3d(50rpx, 540rpx, 0)scale(0.3);opacity: 0.8}
+    100%{transform: translate3d(50rpx, 540rpx, 0)scale(0.3);opacity:0}
 }
 
 @keyframes snowflake4  {
-    0% {transform: translate3d(150rpx, 0, 0) scale(1.3);opacity: 1}
-    50% {transform: translate3d(50rpx, 320rpx, 0) scale(1.3);opacity: 1}
-    90%{transform: translate3d(60rpx, 540rpx, 0)scale(1.3);opacity: 1}
-    100%{transform: translate3d(60rpx, 540rpx, 0)scale(1);opacity: 0}
+    0% {transform: translate3d(150rpx, 0, 0) scale(0.6);opacity: 1}
+    50% {transform: translate3d(50rpx, 320rpx, 0) scale(0.6);opacity: 1}
+    90%{transform: translate3d(60rpx, 540rpx, 0)scale(0.6);opacity: 1}
+    100%{transform: translate3d(60rpx, 540rpx, 0)scale(0.2);opacity: 0}
 }
 
 @keyframes snowflake5  {
-    0% {transform: translate3d(600rpx, 0, 0) scale(1.2);opacity: 1}
-    50% {transform: translate3d(400rpx, 320rpx, 0) scale(1.2);opacity: 1}
-    90%{transform: translate3d(300rpx, 540rpx, 0)scale(1.2);opacity: 1}
-    100%{transform: translate3d(300rpx, 540rpx, 0)scale(1);opacity: 0}
+    0% {transform: translate3d(600rpx, 0, 0) scale(0.55);opacity: 1}
+    50% {transform: translate3d(400rpx, 320rpx, 0) scale(0.55);opacity: 1}
+    90%{transform: translate3d(300rpx, 540rpx, 0)scale(0.55);opacity: 1}
+    100%{transform: translate3d(300rpx, 540rpx, 0)scale(0.45);opacity: 0}
 }
 
 @keyframes snowflake6  {
-    0% {transform: translate3d(300rpx, 0, 0) scale(1);opacity: 1}
-    50% {transform: translate3d(200rpx, 300rpx, 0) scale(1);opacity: 1}
-    90%{transform: translate3d(100rpx, 540rpx, 0)scale(1);opacity: 1}
-    100%{transform: translate3d(100rpx, 540rpx, 0)scale(1);opacity:0}
+    0% {transform: translate3d(300rpx, 0, 0) scale(0.54);opacity: 1}
+    50% {transform: translate3d(200rpx, 300rpx, 0) scale(0.52);opacity: 1}
+    90%{transform: translate3d(100rpx, 540rpx, 0)scale(0.53);opacity: 1}
+    100%{transform: translate3d(100rpx, 540rpx, 0)scale(0.54);opacity:0}
 }
 
 @keyframes snowflake7  {
-    0% {transform: translate3d(750rpx, 0, 0) scale(1);opacity: 1}
-    50% {transform: translate3d(600rpx, 400rpx, 0) scale(1);opacity: 1}
-    90%{transform: translate3d(500rpx, 540rpx, 0)scale(1);opacity: 1}
-    100%{transform: translate3d(500rpx, 540rpx, 0)scale(1);opacity: 0}
+    0% {transform: translate3d(750rpx, 0, 0) scale(0.51);opacity: 1}
+    50% {transform: translate3d(600rpx, 400rpx, 0) scale(0.51);opacity: 1}
+    90%{transform: translate3d(500rpx, 540rpx, 0)scale(0.51);opacity: 1}
+    100%{transform: translate3d(500rpx, 540rpx, 0)scale(0.45);opacity: 0}
 }
 @keyframes snowflake8  {
-    0% {transform: translate3d(450rpx, 0, 0) scale(1);opacity: 1}
-    50% {transform: translate3d(300rpx, 400rpx, 0) scale(1);opacity: 1}
-    90%{transform: translate3d(600rpx, 540rpx, 0)scale(1);opacity: 1}
-    100%{transform: translate3d(600rpx, 540rpx, 0)scale(1);opacity: 0}
+    0% {transform: translate3d(450rpx, 0, 0) scale(0.48);opacity: 1}
+    50% {transform: translate3d(300rpx, 400rpx, 0) scale(0.48);opacity: 1}
+    90%{transform: translate3d(600rpx, 540rpx, 0)scale(0.48);opacity: 1}
+    100%{transform: translate3d(600rpx, 540rpx, 0)scale(0.4);opacity: 0}
 }
 @keyframes snowflake9  {
-    0% {transform: translate3d(550rpx, 0, 0) scale(1);opacity: 1}
-    50% {transform: translate3d(300rpx, 400rpx, 0) scale(1);opacity: 1}
-    90%{transform: translate3d(200rpx, 540rpx, 0)scale(1);opacity: 1}
-    100%{transform: translate3d(100rpx, 540rpx, 0)scale(1);opacity: 0}
+    0% {transform: translate3d(550rpx, 0, 0) scale(0.46);opacity: 1}
+    50% {transform: translate3d(300rpx, 400rpx, 0) scale(0.46);opacity: 1}
+    90%{transform: translate3d(200rpx, 540rpx, 0)scale(0.46);opacity: 1}
+    100%{transform: translate3d(100rpx, 540rpx, 0)scale(0.4);opacity: 0}
 }
 
 @keyframes snowflake0  {

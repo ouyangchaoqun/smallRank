@@ -88,7 +88,7 @@ var options = Object.assign(marquee, {
     initSnowflake:function () {
         let _this=this;
         setTimeout(function () {
-            if(_this.data.snowflakeCount<40){
+            if(_this.data.snowflakeCount<30){
                 _this.setData({
                     snowflakeCount:_this.data.snowflakeCount+10
                 });
