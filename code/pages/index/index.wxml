@@ -188,7 +188,7 @@
 
     </view>
     <view class="view_btn_share">
-        <button class="share_btn" open-type="share">邀请好友</button>
+        <button class="share_btn" open-type="share"  wx:if="{{false}}">邀请好友</button>
     </view>
 </scroll-view>
 

@@ -8,7 +8,8 @@ Page({
         count:0,
         card:{},
         isShowCard:false,
-        canvasShow:false
+        canvasShow:false,
+        screenWidth:750
     },
 
     onShareAppMessage: function (res) {
@@ -73,6 +74,21 @@ Page({
         wx.showShareMenu({
             withShareTicket: true
         })
+
+        let _this=this;
+
+
+        wx.getSystemInfo({
+            success:function(res){
+                let w = res.windowWidth;
+
+                _this.setData({
+                    screenWidth:w
+                })
+            }
+        })
+
+
      },
     getMinStep:function () {
     //
@@ -363,6 +379,9 @@ Page({
                                 title: '保存失败',
                                 icon: 'error',
                                 duration: 2000
+                            });
+                            _this.setData({
+                                canvasShow:false
                             });
                             wx.hideLoading();
                         }

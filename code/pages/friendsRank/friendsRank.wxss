@@ -76,19 +76,20 @@ page{
     color:rgba(252,79,70,1);
 }
 .medal_type{
-    height:162rpx;
+    height:200rpx;
     background: #fff;
-    display: flex;
     white-space: nowrap;
-    padding-top: 54rpx;
-    padding-bottom: 50rpx;
+    padding-top: 34rpx;
+    padding-bottom: 30rpx;
 }
-.medal_type view{
-    width:162rpx;
-    height:162rpx;
+.medal_type view.medal{
+    height: 200rpx; width: 200rpx;
     display: inline-block;
-    margin:0 28rpx;
+    margin:0 10rpx;
 }
+
+
+
 .rank_item{
     height:84rpx;
     background: #fff;
@@ -105,7 +106,7 @@ page{
     margin-right: 20rpx;
 }
 .rank_share{
-    padding-top: 80rpx;
+    padding-top: 68rpx;
     padding-bottom: 60rpx;
 }
 .item_name{
@@ -206,9 +207,6 @@ width: 100%;height: 100%}
 
 
 
-.medal_type .medal{
-    height: 160rpx; width: 160rpx;
-}
 
  .medal500{background: url(http://oss.xqzs.cn/resources/runmini/medal_500.png) no-repeat center bottom; background-size: 100%}
  .medal3000{background: url(http://oss.xqzs.cn/resources/runmini/medal_3000.png) no-repeat center bottom; background-size: 100%}

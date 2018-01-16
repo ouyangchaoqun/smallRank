@@ -28,7 +28,7 @@
             /{{medal.length}}
         </view>
     </view>
-    <scroll-view scroll-x="true" class="medal_type">
+    <scroll-view scroll-x="true" class="medal_type" style="width:{{screenWidth}}px">
         <view bindtap='showCard' class="medal medal{{item.v}}{{item.on?'_on':''}}" data-index="{{index}}" wx:for-index="index" wx:for="{{medal}}"></view>
 
     </scroll-view>
