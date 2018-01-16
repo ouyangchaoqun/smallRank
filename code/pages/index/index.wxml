@@ -9,7 +9,7 @@
         </view>
 
         <view class="run_glup">
-            <image src="http://oss.xqzs.cn/resources/runmini/index_lion.png" class="lion" style="top:{{lionY}}px;left:{{lionX}}px" ></image>
+            <view class="rnd"  animation="{{animationLion}}">  <image src="http://oss.xqzs.cn/resources/runmini/index_lion.png" class="lion"  animation="{{animationLion2}}">   ></image></view>
             <view class="cirle">
                 <view class="run_info">
                     <view class="run_title">今日步数</view>
@@ -17,12 +17,23 @@
                     <view class="run_goal">目标：{{goal}}</view>
                 </view>
             </view>
-            <image src="{{canvasImg}}" class="rnd" wx:if="{{!canvasShow}}"></image>
-            <canvas canvas-id="myCanvas" class="yyyy" wx:if="{{canvasShow}}" >
-                <cover-view class="play" bindtap="play">
-                    <cover-image  class="lion" style="top:{{lionY}}px;left:{{lionX}}px"  src="http://oss.xqzs.cn/resources/runmini/index_lion.png" />
-                </cover-view>
-            </canvas>
+
+
+
+            <view class="pie_left"  >
+                <view class="left"  animation="{{animationLeftCrile}}"></view>
+            </view>
+            <view class="pie_right">
+                <view class="right"  animation="{{animationRightCrile}}"></view>
+            </view>
+
+
+            <!--<image src="{{canvasImg}}" class="rnd" wx:if="{{!canvasShow}}"></image>-->
+            <!--<canvas canvas-id="myCanvas" class="yyyy" wx:if="{{canvasShow}}" >-->
+                <!--&lt;!&ndash;<cover-view  >&ndash;&gt;-->
+                    <!--&lt;!&ndash;<cover-image  class="lion" style="top:{{lionY}}px;left:{{lionX}}px"  src="http://oss.xqzs.cn/resources/runmini/index_lion.png" />&ndash;&gt;-->
+                <!--&lt;!&ndash;</cover-view>&ndash;&gt;-->
+            <!--</canvas>-->
 
 
         </view>

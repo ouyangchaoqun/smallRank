@@ -378,6 +378,8 @@ var options = Object.assign(marquee, {
 
             let todayRunNumEnd=data[data.length-1].step;
 
+            _this.getGoal(todayRunNumEnd);
+
             if(todayRunNumEnd>_this.data.todayNum) {
                 let n1 = new NumberAnimate({
                     from: _this.data.todayNum,
@@ -390,14 +392,13 @@ var options = Object.assign(marquee, {
                             todayNum: n1.tempValue,
                             round:true
                         });
-
                     },
                     onComplete: () => {
 
                     }
                 });
             }
-            _this.getGoal();
+
 
             if(_this.data.userId){
                 wx.request({
@@ -469,48 +470,53 @@ var options = Object.assign(marquee, {
 
     },
 
-    getGoal:function () {
+    getGoal:function (step) {
         let _this= this;
         wx.request({
             url: app.API_URL + "werun/get/day/goal/"+this.data.userId ,
             method: "GET",
             success: function (data) {
-                console.log(data.data)
-                _this.setData({
-                    goal:data.data.data.goal
+                let remote = step / data.data.data.goal * 360;
+                if (remote > 360) remote = 360;
+                let duration = 1500;
+                let animation = wx.createAnimation({
+                    duration: duration,
                 })
-                let remote = _this.data.todayNum/data.data.data.goal*360;
-                if(remote>360)remote=360;
-                let duration=2500;
-                let ctx = wx.createCanvasContext('myCanvas');
-                ctx.draw();
+                animation.rotate(remote).step()
+                let animation2 = wx.createAnimation({
+                    duration: duration,
+                })
+                animation2.rotate(-remote).step()
                 _this.setData({
-                    canvasShow:true
+                    animationLion: animation.export(),
+                    animationLion2: animation2.export()
                 });
-                let i =0;
-                runTime =  setInterval(function () {
-                    _this.cirle(ctx,i);
-                    if(i>remote) {clearInterval(runTime);
-                        _this.setData({
-                            canvasShow:false
-                        })
 
-                        wx.canvasToTempFilePath({
+                if (remote <= 180) {
+                    let rightanimation = wx.createAnimation({
+                        duration: duration,
+                    })
+                    rightanimation.rotate(remote).step()
+                    _this.setData({
+                        animationRightCrile: rightanimation.export()
+                    });
+                } else {
+                    let rightanimation = wx.createAnimation({
+                        duration: duration * 180 / remote,
 
-                            canvasId: 'myCanvas',
-                            success: function(res) {
-                                // console.log(res.tempFilePath)
-                                _this.setData({
-                                    canvasImg:res.tempFilePath
-                                });
+                    })
+                    rightanimation.rotate(180).step()
 
-                            }
-                        })
-
-                    }
-                    i++;
-                },duration/remote);
-
+                    let leftanimation = wx.createAnimation({
+                        duration: duration - duration * 180 / remote,
+                        delay: duration * 180 / remote
+                    })
+                    leftanimation.rotate((remote - 180)).step();
+                    _this.setData({
+                        animationLeftCrile: leftanimation.export(),
+                        animationRightCrile: rightanimation.export()
+                    });
+                }
             }
         })
 
@@ -651,7 +657,6 @@ var options = Object.assign(marquee, {
         })
 
         ctx.arc(x,y, 5, 0, 2 * Math.PI);
-        ctx.setFillStyle('#ffffff');
         ctx.fill();
         ctx.draw(true);
 
