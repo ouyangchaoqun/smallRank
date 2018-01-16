@@ -46,7 +46,7 @@ var options = Object.assign(marquee, {
     },
     goTj:function () {
         wx.navigateTo({
-            url: '/pages/target/target'
+            url: '/pages/statistics/statistics'
         })
     },
     goTarget:function () {
@@ -122,11 +122,7 @@ var options = Object.assign(marquee, {
         })
 
     },
-    goTarget: function () {
-      wx.navigateTo({
-        url: '../target/target'
-      })
-    },
+
     goRank:function () {
         wx.navigateTo({
             url: '../friendsRank/friendsRank'

@@ -231,7 +231,6 @@
 
 <view wx-if="{{false}}">
     <!--[<open-data type="groupName" open-gid="{{ggggggid}}"></open-data>]-->
-    <!--[<open-data type="groupFaceUrl" open-gid="{{ggggggid}}"></open-data>]-->
 
     <!--dsfdsfd-->
 </view>
