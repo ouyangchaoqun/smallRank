@@ -13,7 +13,6 @@ App({
     onShow: function () {
 
 
-
         let _this = this;
          let user = wx.getStorageSync('user') || {};
          let wxUser=_this.getWxUserInfo();

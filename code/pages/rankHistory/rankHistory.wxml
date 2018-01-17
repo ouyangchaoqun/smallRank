@@ -6,11 +6,20 @@
         <view class="history_header">
             <view class="history_box" animation="{{animationData}}">
                 <view class="history_item" wx:for="{{list}}" bindtap="goGroup" id="{{item.pkId}}">
-                    <view class="item_img">
+                    <view class="item_img" wx:if="{{item.shareType==1}}">
                         <image src="{{item .targetFaceUrl}}"></image>
                     </view>
+                    <view wx:if="{{item.shareType==2}}" class="groupImg imgG{{item.faceList.length>9?'9':item.faceList.length}}" >
+                        <image src="{{item}}" wx:for="{{item.faceList}}"></image>
+                    </view>
+
                     <view class="item_name">
-                        <open-data type="groupName" open-gid="{{item.openGId}}"></open-data>
+                        <block wx:if="{{item.shareType==2}}">
+                            <open-data type="groupName" open-gid="{{item.openGId}}"></open-data>
+                        </block>
+                        <block wx:if="{{item.shareType==1}}">
+                            {{item.targetNickName}}                 
+                        </block>
                     </view>
                     <view class="item_right">第{{item.rank}}名</view>
                 </view>

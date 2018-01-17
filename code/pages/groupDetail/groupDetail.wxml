@@ -19,5 +19,5 @@
             </view>
         </view>
     </view>
-    <view class="detail_btn">发起新挑战</view>
+    <button open-type="share" class="detail_btn">发起新挑战</button>
 </view>

@@ -41,7 +41,7 @@
         <view bindtap='showCard' class="medal medal{{item.v}}{{item.on?'_on':''}}" data-index="{{index}}" wx:for-index="index" wx:for="{{medal}}"></view>
 
     </scroll-view>
-    <view class="rank_title" wx:if="info.lastPK!=null" bindtap="goHistory">
+    <view class="rank_title" wx:if="info.lastPK!=null">
         PK记录<view >></view>
     </view>
     <view class="rank_item" wx:if="{{info.lastPK!=null&&info.lastPK.shareType==2}}" bindtap="goHistory">

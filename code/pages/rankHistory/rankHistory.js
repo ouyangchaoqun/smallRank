@@ -4,7 +4,7 @@ const app = getApp()
 Page({
     data: {
         list: [],
-
+        info:{}
     },
 
     onLoad: function () {
